@@ -1,2 +1,0 @@
-DROP DATABASE IF EXISTS tasklist;
-CREATE DATABASE tasklist;
