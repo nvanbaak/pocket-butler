@@ -21,7 +21,9 @@
     "express": "^4.17.1",
     "fs": "0.0.1-security",
     "mysql2": "^2.2.5",
+    "nodemailer": "^6.4.14",
     "path": "^0.12.7",
-    "sequelize": "^6.3.5"
+    "sequelize": "^6.3.5",
+    "websmscom": "^1.0.3"
   }
 }
