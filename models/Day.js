@@ -4,7 +4,7 @@ module.exports = function(sequelize, DataTypes) {
         //ex: name: DataTypes.STRING
     });
 
-    Day.associate = function(models){
+    Day.associate = function(models) {
         // add associations here
         // ex: Day.hasMany(models.BlogPost)
     };
