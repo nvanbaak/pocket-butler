@@ -1,26 +1,20 @@
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+body {
+    background-color: whitesmoke;
 }
 
-a:link {
-  text-decoration: none;
+.dashboard {
+    background-color: salmon;
 }
 
-a:visited {
-  text-decoration: none;
+header {
+    background-color: maroon;
 }
 
-a:hover {
-  text-decoration: none;
+.settings-icon {
+    color: snow;
 }
 
-a:active {
-  text-decoration: none;
+.constrain-to-parent {
+    max-height: 100%;
+    max-width: 100%;
 }
-
-ul {
-  list-style-type: none;
-}
-/*# sourceMappingURL=main.css.map */
