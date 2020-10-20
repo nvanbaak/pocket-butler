@@ -1,26 +1,8 @@
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+.dashboard {
+    background-color: salmon;
 }
 
-a:link {
-  text-decoration: none;
+.sidebar {
+    background-color: aqua;
+    height: 100%;
 }
-
-a:visited {
-  text-decoration: none;
-}
-
-a:hover {
-  text-decoration: none;
-}
-
-a:active {
-  text-decoration: none;
-}
-
-ul {
-  list-style-type: none;
-}
-/*# sourceMappingURL=main.css.map */
