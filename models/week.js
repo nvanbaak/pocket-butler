@@ -1,14 +1,13 @@
 module.exports = function(sequelize, DataTypes) {
-    var Week = sequelize.define('Week', {
-        //add properties here
-        //ex: name: DataTypes.STRING
-    });
-  
-    Week.associate = function(models) {
-      Week.hasMany(models.Day, {
-        onDelete: "cascade"
-      }); 
+  var Week = sequelize.define("Week", {
+    name: DataTypes.RANGE(Sequelize.DATEONLY)
+  });
 
-    };
-    return Week;
-}
+  Week.associate = function(models) {
+    Week.hasMany(models.Day, {
+      onDelete: "cascade"
+    }); 
+  };
+
+  return Week;
+};
