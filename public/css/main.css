@@ -3,22 +3,28 @@ body {
 }
 
 .dashboard {
-    background-color: sienna;
-    background-image: url(public\assets\wood-background.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-color: coral;
     border-radius: 10px;
     height: 80vh;
 }
 
 header {
     background-color: maroon;
-
+    max-height: 100px;
 }
 
 .settings-icon {
     color: snow;
 }
 
+.logo-img {
+    max-height: 75px;
+}
+
 .constrain-to-parent {
     max-height: 100%;
+    min-height: 100%;
     max-width: 100%;
 }
