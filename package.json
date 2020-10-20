@@ -18,6 +18,8 @@
     },
     "homepage": "https://github.com/nvanbaak/pocket-butler#readme",
     "dependencies": {
+        "@fullcalendar/core": "^5.3.1",
+        "@fullcalendar/daygrid": "^5.3.2",
         "express": "^4.17.1",
         "mysql2": "^2.2.5",
         "nodemailer": "^6.4.14",
