@@ -6,7 +6,7 @@ module.exports = function(sequelize, DataTypes) {
     Week.associate = function(models) {
       Week.hasMany(models.Day, {
         onDelete: "cascade"
-      });
+      }); 
     };
   
     return Week;
