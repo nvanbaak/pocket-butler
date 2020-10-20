@@ -3,11 +3,15 @@ body {
 }
 
 .dashboard {
-    background-color: salmon;
+    background-color: sienna;
+    background-image: url(public\assets\wood-background.jpg);
+    border-radius: 10px;
+    height: 80vh;
 }
 
 header {
     background-color: maroon;
+
 }
 
 .settings-icon {
