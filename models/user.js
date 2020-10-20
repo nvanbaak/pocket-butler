@@ -1,3 +1,5 @@
+const { Sequelize } = require(".");
+
 module.exports = function (sequelize, DataTypes) {
     var User = sequelize.define("User", {
         username: {
@@ -14,33 +16,24 @@ module.exports = function (sequelize, DataTypes) {
                 len: [1, 140]
             }
         },
-        //   might need to change to compare easier to calendar
-        deadline: {
-            type: DataTypes.STRING,
-            allowNull: false,
-            validate: {
-                len: [1, 140]
-            }
+        id: {
+            type: Sequelize.INTEGER,
+            autoIncrement: true,
+            primaryKey: true
         },
-        autoschedule: {
-            type: DataTypes.BOOLEAN,
-            allowNull: false
-        },
-        timeToComplete: {
-            type: DataTypes.DECIMAL(10, 2),
-            allowNull: true
-        },
-        //   might need to change to compare easier to calendar
-        startline: {
+        phone: {
             type: DataTypes.STRING,
             allowNull: true,
             validate: {
                 len: [1, 140]
             }
         },
-        complete: {
-            type: DataTypes.BOOLEAN,
-            defaultValue: false
+        email: {
+            type: DataTypes.STRING,
+            allowNull: true,
+            validate: {
+                len: [1, 140]
+            }
         }
     });
     return User;

@@ -43,5 +43,10 @@ module.exports = function (sequelize, DataTypes) {
             defaultValue: false
         }
     });
+
+    Task.associate = function(models){
+        // add associations here
+        // ex: Task.hasMany(models.BlogPost)
+    };
     return Task;
 };
