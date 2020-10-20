@@ -11,6 +11,8 @@ app.use(express.json)
 app.get('/', function(req,res){
     res.send("home page!")
 })
+require("./routes/api-routes");
+require("./routes/html-routes");
 
 db.sequelize.sync({force:true}).then(function(){
     app.listen(PORT, function(){
