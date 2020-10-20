@@ -1,40 +1,20 @@
-const { Sequelize } = require(".");
-
-module.exports = function (sequelize, DataTypes) {
-    var User = sequelize.define("User", {
-        username: {
+module.exports = function(sequelize, DataTypes) {
+    var User = sequelize.define('User', {
+        //add properties here
+        username: DataTypes.STRING,
+        password: DataTypes.STRING,
+        phone: DataTypes.STRING,
+        email:{
             type: DataTypes.STRING,
-            allowNull: false,
-            validate: {
-                len: [1, 140]
-            }
-        },
-        password: {
-            type: DataTypes.STRING,
-            allowNull: false,
-            validate: {
-                len: [1, 140]
-            }
-        },
-        id: {
-            type: Sequelize.INTEGER,
-            autoIncrement: true,
-            primaryKey: true
-        },
-        phone: {
-            type: DataTypes.STRING,
-            allowNull: true,
-            validate: {
-                len: [1, 140]
-            }
-        },
-        email: {
-            type: DataTypes.STRING,
-            allowNull: true,
-            validate: {
-                len: [1, 140]
-            }
+            unique:true
         }
+
+        //ex: name: DataTypes.STRING
     });
+
+    User.associate = function(models){
+        // add associations here
+        // ex: User.hasMany(models.BlogPost)
+    };
     return User;
-};
+}
