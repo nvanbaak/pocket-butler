@@ -25,6 +25,7 @@
 
         <main class="col xl12 l12 m12 s12 row dashboard">
             <h4 class="dashboard-welcome">Welcome {{User}}</h4>
+            <h2 class="currDay"></h2>
             <div class="row ">
                 <div class="col xl8 l8 m8 s7 offset-xl1 offset-l1 offset-m1 offset-s1 calendar">
                     {{Calendar}}
@@ -73,9 +74,9 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.19.1/moment.min.js">
             const m = moment();
-            let today = document.querySelector('#today');
-            $("today").append('Today is:' + m.toString());
-            console.log(today);
+            let today = document.querySelector('.currDay');
+            $("currDay").append('Today is:' + m.toString());
+            console.log(currDay);
         </script>
         <link rel="stylesheet" href="public/js/main.js">
 </body>
