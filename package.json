@@ -1,33 +1,32 @@
 {
-  "name": "pocket-butler",
-  "version": "1.0.0",
-  "description": "",
-  "main": "server.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/nvanbaak/pocket-butler.git"
-  },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/nvanbaak/pocket-butler/issues"
-  },
-  "homepage": "https://github.com/nvanbaak/pocket-butler#readme",
-  "dependencies": {
-    "@fullcalendar/core": "^5.3.1",
-    "@fullcalendar/daygrid": "^5.3.2",
-    "express": "^4.17.1",
-    "moment": "^2.29.1",
-    "mysql2": "^2.2.5",
-    "nodemailer": "^6.4.14",
-    "sequelize": "^6.3.5",
-    "twilio": "^3.50.0",
-    "websmscom": "^1.0.3"
-  },
-  "devDependencies": {},
-  "keywords": []
+    "name": "pocket-butler",
+    "version": "1.0.0",
+    "description": "",
+    "main": "server.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "start": "node server.js"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/nvanbaak/pocket-butler.git"
+    },
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/nvanbaak/pocket-butler/issues"
+    },
+    "homepage": "https://github.com/nvanbaak/pocket-butler#readme",
+    "dependencies": {
+        "@fullcalendar/core": "^5.3.1",
+        "@fullcalendar/daygrid": "^5.3.2",
+        "express": "^4.17.1",
+        "express-handlebars": "^5.1.0",
+        "moment": "^2.29.1",
+        "mysql2": "^2.2.5",
+        "nodemailer": "^6.4.14",
+        "sequelize": "^6.3.5",
+        "twilio": "^3.50.0",
+        "websmscom": "^1.0.3"
+    }
 }

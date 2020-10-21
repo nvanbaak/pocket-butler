@@ -1,9 +1,5 @@
 module.exports = function(sequelize, DataTypes) {
     var Task = sequelize.define("Task", {
-        userid: {
-            type: DataTypes.INTEGER,
-            allowNull: false
-        },
         title: {
             type: DataTypes.STRING,
             allowNull: false,
