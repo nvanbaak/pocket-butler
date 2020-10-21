@@ -32,6 +32,15 @@ header {
     background-color: #C99F3A;
 }
 
+.logo {
+    height: 50px;
+    width: 150;
+}
+
+.modal {
+    border-radius: 10px;
+}
+
 
 /* login elements */
 
@@ -164,6 +173,12 @@ header {
     cursor: pointer;
 }
 
+.checkboxes {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 
 /* Media Queries */
 
@@ -191,9 +206,5 @@ header {
     }
     .clock-time {
         font-size: 1rem;
-    }
-    .logo {
-        height: 50px;
-        width: 150;
     }
 }
