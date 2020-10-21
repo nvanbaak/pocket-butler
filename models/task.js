@@ -49,8 +49,11 @@ module.exports = function (sequelize, DataTypes) {
     });
 
     Task.associate = function (models) {
-        // add associations here
-        // ex: Task.hasMany(models.BlogPost)
+        Task.belongsTo(models.User, {
+            foreignKey: {
+              allowNull: false
+            }
+          });
     };
     return Task;
 };
