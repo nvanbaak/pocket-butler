@@ -1,22 +1,185 @@
 body {
-    background-color: whitesmoke;
-    color: whitesmoke;
-}
-
-.dashboard {
-    background-color: maroon;
-    border-radius: 10px;
-    height: 80vh;
-    padding: 10px;
+    width: 100vw;
+    height: 100vh;
+    background-color: #F7F7F7;
+    color: #000;
+    font-family: 'ubuntu', sans-serif;
 }
 
 header {
-    background-color: maroon;
-    max-height: 100px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 80px;
+}
+
+.blob {
+    position: fixed;
+    top: 0px;
+    right: 0px;
+    z-index: -2;
+}
+
+.btn {
+    background-color: #CC6600 !important;
+}
+
+.btn:hover {
+    background-color: #333300 !important;
+}
+
+.btn:active {
+    background-color: #C99F3A;
+}
+
+
+/* login elements */
+
+.hero-image-div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.login-box {
+    padding: 0px !important;
+    background-color: #ffffff;
+    height: 450px;
+    border-radius: 20px;
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.4);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.login-headline {
+    text-align: center;
+    margin: 50px 0 15px 0;
+}
+
+.sign-up {
+    margin-top: 30px;
+    text-align: center;
+    color: #333300;
+    cursor: pointer;
+}
+
+.sign-up:hover {
+    color: #751308;
+}
+
+.sign-up:active {
+    color: #C99F3A;
+}
+
+.material-icons {
+    font-size: 40px !important;
+}
+
+
+/* Sign Up elements */
+
+.signup-box {
+    padding: 0px !important;
+    background-color: #ffffff;
+    height: 525px;
+    border-radius: 20px;
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.4);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+/* Dashboard Element */
+
+.dashboard {
+    background-color: #fff;
+    height: 80vh;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.4);
+    z-index: -1;
+}
+
+.dashboard-welcome {
+    margin: 1rem;
+    padding: 1rem;
+}
+
+.calendar {
+    height: 60vh;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.4);
+}
+
+.clock {
+    margin-left: 10px !important;
+    height: 15vh;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.4);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.clock-time {
+    margin-top: 10px;
+    font-size: 2rem;
+}
+
+.upcoming-tasks {
+    margin-top: 10px;
+    margin-left: 10px !important;
+    height: 35vh;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.4);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.task {
+    height: 30px;
+    width: 100%;
+    margin-top: 4px;
+    border-radius: 4px;
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.new-task {
+    margin-top: 10px;
+    margin-left: 10px !important;
+    height: 7vh;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.4);
 }
 
 .settings-icon {
-    color: snow;
+    color: #F7F7F7;
+    cursor: pointer;
+}
+
+
+/* Media Queries */
+
+@media only screen and (max-width: 1200px) {
+    .blob {
+        right: -400px;
+    }
+    .login-box {
+        margin-top: 40px;
+    }
+}
+
+@media only screen and (max-width: 992px) {
+    .blob {
+        right: -300px;
+    }
 }
 
 .logo-img {
@@ -53,4 +216,20 @@ header {
     height: 50px;
     background-color: turquoise;
     border: 1px solid black;
+}
+
+@media only screen and (max-width: 600px) {
+    .blob {
+        right: -600px;
+    }
+    .settings-icon {
+        color: #333300;
+    }
+    .clock-time {
+        font-size: 1rem;
+    }
+    .logo {
+        height: 50px;
+        width: 150;
+    }
 }

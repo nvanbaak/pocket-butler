@@ -1,2 +1,2 @@
-DROP DATABASE IF EXISTS tasklist;
-CREATE DATABASE tasklist;
+DROP DATABASE IF EXISTS pocketbutler_db;
+CREATE DATABASE pocketbutler_db;
