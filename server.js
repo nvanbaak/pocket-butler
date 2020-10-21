@@ -16,13 +16,24 @@ app.engine("handlebars", exphbs({
 }));
 app.set("view engine", "handlebars");
 
-//var routes = require("./routes/api-routes");
-//app.use(routes);
-require("./routes/api-routes")(app);
-require("./routes/html-routes")(app);
+app.get('/', function(req, res) {
+    res.send("home page!")
+})
 
-db.sequelize.sync({ force: false }).then(function() {
+//var routes = require("./routes/api-routes");
+
+
+var htmlRoutes = require("./routes/html-routes.js");
+var taskRoutes = require("./routes/task-api-routes.js");
+var userRoutes = require("./routes/user-api-routes.js");
+
+app.use(htmlRoutes);
+app.use(taskRoutes);
+app.use(userRoutes);
+
+
+//db.sequelize.sync({ force: false }).then(function() {
     app.listen(PORT, function() {
         console.log('App listening on PORT http://localhost:' + PORT)
     })
-})
+//})
