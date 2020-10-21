@@ -27,29 +27,29 @@
     <img class="blob responsive-img" src="./public/assets/Blob.png" alt="blob">
     <div class="container">
         <header class="row">
-            <div class="col xl3">
+            <div class="col xl3 l3 m11">
                 <img class="logo" src="./public/assets/logo.png" alt="Pocket Butler Logo">
             </div>
-            <div class="col xl 1 offset-xl9 center-align ">
+            <div class="col xl l1 m1 s1 offset-xl9 offset-l7 offset-s1 center-align ">
                 <a href="#">
                     <i class="material-icons settings-icon">settings</i>
                 </a>
             </div>
         </header>
 
-        <main class="col xl12 row dashboard">
+        <main class="col xl12 l12 m12 s12 row dashboard">
             <h4 class="dashboard-welcome">Welcome {{User}}</h4>
-            <div class="row">
-                <div class="col xl8 offset-xl1 calendar">
+            <div class="row ">
+                <div class="col xl8 l8 m8 s7 offset-xl1 offset-l1 offset-m1 offset-s1 calendar">
                     {{Calendar}}
                 </div>
-                <div class="col xl2 clock">
+                <div class="col xl2 l2 m2 s3 clock">
                     <p>{{date}}</p>
                     <p class="clock-time">{{Clock}}</p>
 
 
                 </div>
-                <div class="col xl2 upcoming-tasks">
+                <div class="col xl2 l2 m2 s3 upcoming-tasks">
                     <h6 style="text-align: center;">Upcoming Tasks</h6>
                     <div class="task">
                         <p>{{Upcoming Tasks}}</p>
@@ -60,7 +60,7 @@
 
                 </div>
 
-                <button class="col xl2 new-task"><i class="small center-align material-icons">add_new</i</button>
+                <button class="col xl2 l2 m2 s3 new-task">Add</button>
             </div>
 
 
