@@ -1,57 +1,91 @@
-<!DOCTYPE html>
-<html lang="en">
+  <!-- CSS Reset -->
+  <link rel="stylesheet" href="public/css/reset.css">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pocket Butler</title>
 
-    <!-- CSS Reset -->
-    <link rel="stylesheet" href="public/css/reset.css">
 
-   
-    
-    <!-- Materialize CSS CDN -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <!-- Materialize CSS CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 
-    <!-- Materialize icons -->
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap" rel="stylesheet">
-
-    <!-- Custom styling -->
-    <link rel="stylesheet" href="public/css/main.css">
 
 </head>
 
 <body>
-    
-    <header class="row valign-wrapper">
-        <div class="col s2">
-            <img class="constrain-to-parent" src="./public/assets/Pocket Butler.png" alt="Pocket Butler Logo">
-        </div>
-        <div class="col s1 offset-s9 center-align ">
-            <a href="#">
-                <i class="medium material-icons settings-icon">settings</i>
-            </a>
-        </div>
-    </header>
+  <img class="blob responsive-img" src="./public/assets/Blob.png" alt="blob">
+  <div class="container">
+      <header class="row">
+          <div class="col xl3 l3 m11">
+              <img class="logo" src="./public/assets/logo.png" alt="Pocket Butler Logo">
+          </div>
+          <div class="col xl l1 m1 s1 offset-xl9 offset-l7 offset-s1 center-align ">
+              <a href="#">
+                  <i class="material-icons settings-icon">settings</i>
+              </a>
+          </div>
+      </header>
 
-    <div class="container dashboard">
+      <main class="col xl12 l12 m12 s12 row dashboard">
+          <h4 class="dashboard-welcome">Welcome {{User}}</h4>
+          <div class="row ">
+              <div class="col xl8 l8 m8 s7 offset-xl1 offset-l1 offset-m1 offset-s1 calendar">
+                  {{Calendar}}
+              </div>
+              <div class="col xl2 l2 m2 s3 clock">
+                  <p>{{date}}</p>
+                  <p class="clock-time">{{Clock}}</p>
 
-        <p id="today"></p>
-    </div>
-    <!-- Materialize JavaScript CDN -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src ="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.19.1/moment.min.js">   
-        const m = moment();
-        let today = document.querySelector('#today');
-        $("today").append('Today is:'+ m.toString());
-        console.log(today);
-    </script>
-    <link rel="stylesheet" href="public/js/main.js">
+
+              </div>
+              <div class="col xl2 l2 m2 s3 upcoming-tasks">
+                  <h6 style="text-align: center;">Upcoming Tasks</h6>
+                  <div class="task">
+                      <p>{{Upcoming Tasks}}</p>
+                  </div>
+                  <div class="task">
+                      <p>{{Upcoming Tasks}}</p>
+                  </div>
+
+              </div>
+
+              <button class="col xl2 l2 m2 s3 new-task">Add</button>
+          </div>
+
+
+
+
+
+
+
+      </main>
+
+
+
+
+  <header class="row valign-wrapper">
+      <div class="col s2">
+          <img class="constrain-to-parent" src="./public/assets/Pocket Butler.png" alt="Pocket Butler Logo">
+      </div>
+      <div class="col s1 offset-s9 center-align ">
+          <a href="#">
+              <i class="medium material-icons settings-icon">settings</i>
+          </a>
+      </div>
+  </header>
+
+  <div class="container dashboard">
+
+      <p id="today"></p>
+  </div>
+  <!-- Materialize JavaScript CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js "></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src ="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.19.1/moment.min.js">   
+      const m = moment();
+      let today = document.querySelector('#today');
+      $("today").append('Today is:'+ m.toString());
+      console.log(today);
+  </script>
+  <link rel="stylesheet" href="public/js/main.js">
 </body>
 
-</html>
+</html> 
