@@ -1,4 +1,4 @@
-module.exports = function (sequelize, DataTypes) {
+module.exports = function(sequelize, DataTypes) {
     var Task = sequelize.define("Task", {
         userid: {
             type: DataTypes.INTEGER,
@@ -56,4 +56,4 @@ module.exports = function (sequelize, DataTypes) {
           });
     };
     return Task;
-};
+  }

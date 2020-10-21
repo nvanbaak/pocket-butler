@@ -1,16 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
+<!-- CSS Reset -->
+<link rel="stylesheet" href="public/css/reset.css">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pocket Butler</title>
 
-    <!-- CSS Reset -->
-    <link rel="stylesheet" href="public/css/reset.css">
 
-    <!-- Materialize CSS CDN -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+<!-- Materialize CSS CDN -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
 
     <!-- Materialize icons -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -21,9 +16,11 @@
     <!-- Custom styling -->
     <link rel="stylesheet" href="public/css/main.css">
 
+    
 </head>
 
 <body>
+
     <img class="blob responsive-img" src="./public/assets/Blob.png" alt="blob">
     <div class="container">
         <header class="row">
@@ -39,6 +36,7 @@
 
         <main class="col xl12 l12 m12 s12 row dashboard">
             <h4 class="dashboard-welcome">Welcome {{User}}</h4>
+            <h2 class="currDay"></h2>
             <div class="row ">
                 <div class="col xl8 l8 m8 s7 offset-xl1 offset-l1 offset-m1 offset-s1 calendar">
                     {{Calendar}}
@@ -60,22 +58,13 @@
 
                 </div>
 
-                <button class="col xl2 l2 m2 s3 new-task">Add</button>
+                <button class="col xl2 l2 m2 s3 new-task id = " id ="add-button">Add</button>
             </div>
-
-
-
-
-
-
 
         </main>
 
 
 
-    </div>
-    <!-- Materialize JavaScript CDN -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js "></script>
 </body>
 
 </html>
