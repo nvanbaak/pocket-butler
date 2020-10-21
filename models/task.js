@@ -46,11 +46,14 @@ module.exports = function(sequelize, DataTypes) {
             type: DataTypes.BOOLEAN,
             defaultValue: false
         }
-      });
-      
-      Task.associate = function (models) {}
-        // add associations here
-        // ex: Task.hasMany(models.BlogPost)
-    
+    });
+
+    Task.associate = function (models) {
+        Task.belongsTo(models.User, {
+            foreignKey: {
+              allowNull: false
+            }
+          });
+    };
     return Task;
   }
