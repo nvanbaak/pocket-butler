@@ -4,7 +4,7 @@ module.exports = function(app) {
 
     app.get("/api/tasks", function(req, res) {
         db.Task.findAll({}).then(function(tasks) {
-            res.jason(tasks)
+            res.json(tasks)
         })
     })
 
