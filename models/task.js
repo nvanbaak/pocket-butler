@@ -1,5 +1,9 @@
 module.exports = function (sequelize, DataTypes) {
     var Task = sequelize.define("Task", {
+        userid: {
+            type: DataTypes.INTEGER,
+            allowNull: false
+        },
         title: {
             type: DataTypes.STRING,
             allowNull: false,
@@ -44,7 +48,7 @@ module.exports = function (sequelize, DataTypes) {
         }
     });
 
-    Task.associate = function(models){
+    Task.associate = function (models) {
         // add associations here
         // ex: Task.hasMany(models.BlogPost)
     };
