@@ -33,9 +33,24 @@ header {
     background-color: whitesmoke;
     border-radius: 10px;
     height: 100%;
-    overflow: hidden;
+    max-height: 50vh;
+    overflow-y: scroll;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+}
+
+.calendar .calRow {
+    display: flex;
+}
+
+.tasklist {
+    overflow: scroll;
+    height: 100%;
 }
 
 .calendar-box {
     height: 50px;
+    background-color: turquoise;
+    border: 1px solid black;
 }
