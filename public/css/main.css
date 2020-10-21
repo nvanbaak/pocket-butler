@@ -1,13 +1,13 @@
 body {
     background-color: whitesmoke;
+    color: whitesmoke;
 }
 
 .dashboard {
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-color: coral;
+    background-color: maroon;
     border-radius: 10px;
     height: 80vh;
+    padding: 10px;
 }
 
 header {
@@ -27,4 +27,15 @@ header {
     max-height: 100%;
     min-height: 100%;
     max-width: 100%;
+}
+
+.calendar {
+    background-color: whitesmoke;
+    border-radius: 10px;
+    height: 100%;
+    overflow: hidden;
+}
+
+.calendar-box {
+    height: 50px;
 }
