@@ -1,5 +1,4 @@
 const { Sequelize } = require(".");
-
 module.exports = function (sequelize, DataTypes) {
   var Day = sequelize.define("Day", {
     userid: {

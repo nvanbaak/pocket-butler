@@ -1,4 +1,4 @@
-module.exports = function (sequelize, DataTypes) {
+module.exports = function(sequelize, DataTypes) {
     var Task = sequelize.define("Task", {
         userid: {
             type: DataTypes.INTEGER,
@@ -46,11 +46,11 @@ module.exports = function (sequelize, DataTypes) {
             type: DataTypes.BOOLEAN,
             defaultValue: false
         }
-    });
-
-    Task.associate = function (models) {
+      });
+      
+      Task.associate = function (models) {}
         // add associations here
         // ex: Task.hasMany(models.BlogPost)
-    };
+    
     return Task;
-};
+  }
