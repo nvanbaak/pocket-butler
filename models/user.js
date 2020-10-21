@@ -18,9 +18,15 @@ module.exports = function(sequelize, DataTypes) {
 
     User.associate = function(models){
         // add associations here
-        User.hasMany(models.Day, models.Week, models.Task, {
+        User.hasMany(models.Day),{
             onDelete: "cascade"
-        })
+        },
+        User.hasMany( models.Week),{
+            onDelete: "cascade"
+        }
+        User.hasMany( models.Task),{
+            onDelete: "cascade"
+        }
         // ex: User.hasMany(models.BlogPost)
     };
     return User;
