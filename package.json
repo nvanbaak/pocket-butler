@@ -22,6 +22,7 @@
         "mysql2": "^2.2.5",
         "nodemailer": "^6.4.14",
         "sequelize": "^6.3.5",
+        "twilio": "^3.50.0",
         "websmscom": "^1.0.3"
     }
 }
