@@ -1,33 +1,5 @@
 const { Sequelize } = require(".");
 
-<<<<<<< HEAD
-module.exports = function(sequelize, DataTypes) {
-    var Day = sequelize.define("Day", {
-      name: {
-        type: DataTypes.STRING,
-        allowNull: false,
-        validate: {
-          len: [1]
-        }
-      },
-      hours: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-        len: [1]
-      }
-    });
-  
-    Day.associate = function(models) {
-      Day.belongsTo(models.Week, {
-        foreignKey: {
-          allowNull: false
-        }
-      });
-    };
-  
-    return Day;
-  };
-=======
 module.exports = function (sequelize, DataTypes) {
   var Day = sequelize.define("Day", {
     userid: {
@@ -61,4 +33,3 @@ module.exports = function (sequelize, DataTypes) {
 
   return Day;
 };
->>>>>>> dev
