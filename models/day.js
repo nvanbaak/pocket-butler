@@ -9,9 +9,8 @@ module.exports = function (sequelize, DataTypes) {
     //   autoIncrement: true,
     //   primaryKey: true
     // },
-    // Choose number 1-7. 1 is Sunday, 7 is Saturday. Used to identify day of week
     name: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
       allowNull: false,
     }
 
