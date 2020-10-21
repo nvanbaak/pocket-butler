@@ -9,6 +9,9 @@
     <!-- CSS Reset -->
     <link rel="stylesheet" href="public/css/reset.css">
 
+    <!-- Full Calendar Style -->
+    <link rel="stylesheet" href="/node_modules/fullcalendar/main.css">
+
     <!-- Materialize CSS CDN -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 
@@ -57,7 +60,7 @@
                                 <input placeholder="phone-number" id="phone-number" type="text" class="validate">
                                 <label for="phone-number">Phone Number</label>
                             </div>
-                            <button class="col xl4 l4 m4 s4 offset-xl4 offset-l4 offset-m4 offset-s4 btn modal-close" type="submit" name="action">Update</button>
+                            <button class="col xl2 l2 m2 s2 offset-xl5 offset-l5 offset-m5 offset-s5 btn modal-close" type="submit" name="action">Update</button>
                     </form>
                     </div>
 
@@ -67,12 +70,11 @@
         <main class="col xl12 l12 m12 s12 row dashboard">
             <h4 class="dashboard-welcome">Welcome {{User}}</h4>
             <div class="row ">
-                <div class="col xl8 l8 m8 s7 offset-xl1 offset-l1 offset-m1 offset-s1 calendar">
-                    {{Calendar}}
+                <div class="col xl8 l8 m8 s7 offset-xl1 offset-l1 offset-m1 offset-s1 calendar" id="calendar">
                 </div>
                 <div class="col xl2 l2 m2 s3 clock">
-                    <p>{{date}}</p>
-                    <p class="clock-time">{{Clock}}</p>
+                    <p id="date"></p>
+                    <p id="current-time" class="clock-time">{{Clock}}</p>
 
 
                 </div>
@@ -87,7 +89,7 @@
 
                 </div>
 
-                <button class="col xl2 l2 m2 s3 new-task modal-trigger" href="#modal2">Add</button>
+                <button class="col xl2 l2 m2 s3 new-task btn modal-trigger" href="#modal2">Add</button>
                 <!-- New task modal -->
                 <div id="modal2" class="modal">
                     <div class="modal-content">
@@ -141,8 +143,8 @@
                                         </label>
                                     </p>
                                 </div>
-
-                                <button class="col xl4 l4 m4 s4 offset-xl4 offset-l4 offset-m4 offset-s4 btn modal-close" type="submit" name="action">Add</button>
+                                <button class="col xl2 l2 m2 s2 offset-xl3 offset-l3 offset-m3 offset-s3 btn modal-close" type="submit" name="action">Add</button>
+                                <button class="col xl2 l2 m2 s2 offset-xl2 offset-l2 offset-m2 offset-s2 btn modal-close">Close</button>
                         </form>
                         </div>
 
@@ -152,8 +154,14 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
         <!-- Materialize JavaScript CDN -->
-
         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js "></script>
+
+        <!-- Moment Js -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+
+        <!-- Full Calendar Script -->
+        <script src='/node_modules/fullcalendar/main.js'></script>
+
 
         <!-- link to main.js  -->
         <script src="/public/js/main.js"></script>

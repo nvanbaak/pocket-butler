@@ -41,6 +41,10 @@ header {
     border-radius: 10px;
 }
 
+.modal-close {
+    margin: 20px 0 20px 0;
+}
+
 
 /* login elements */
 
@@ -133,7 +137,6 @@ header {
 }
 
 .clock-time {
-    margin-top: 10px;
     font-size: 2rem;
 }
 
@@ -171,6 +174,14 @@ header {
 .settings-icon {
     color: #F7F7F7;
     cursor: pointer;
+}
+
+.settings-icon:hover {
+    color: #333300;
+}
+
+.setting-icon:active {
+    color: #C99F3A;
 }
 
 .checkboxes {
