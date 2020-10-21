@@ -30,9 +30,11 @@ function updateTime() {
         hours -= 12;
     }
 
-    // 
+    // makes sure minutes and seconds stay two digits long
+    let minutes = retainTwoDigits(now.getMinutes());
+    let seconds = retainTwoDigits(now.getSeconds());
 
-    let clockString = `${hours}:${now.getMinutes()}:${now.getSeconds()}`;
+    let clockString = `${hours}:${minutes}:${seconds}`;
 
     clockDisplay.text(clockString);
 }
