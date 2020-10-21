@@ -19,7 +19,7 @@ function updateTime() {
     let now = new Date();
 
     // Parse time into "Day #, Year" format
-    let dateString = `${dayString(now.getDay())} ${now.getDate()}, ${now.getFullYear()}`;
+    let dateString = `${dayString(now.getDay())} ${monthString(now.getMonth())} ${now.getDate()}, ${now.getFullYear()}`;
 
     // update date display with parsed text
     dateDisplay.text(dateString);
@@ -55,6 +55,7 @@ function retainTwoDigits(num) {
     return outputString
 }
 
+// this function takes a month code and outputs a string
 function monthString(monthInt) {
 
     switch (monthInt) {
@@ -109,33 +110,32 @@ function monthString(monthInt) {
         default:
             return "This isn't a real month!";
             break;
-    
-
+    }
 }
 
 // This function takes the number output from getDay and replaces it with a string
 function dayString(dayInt) {
     switch (dayInt) {
         case 0:
-            return "Sunday";
+            return "Sun";
             break;
         case 1:
-            return "Monday";
+            return "Mon";
             break;
         case 2:
-            return "Tuesday";
+            return "Tues";
             break;
         case 3:
-            return "Wednesday";
+            return "Wed";
             break;
         case 4:
-            return "Thursday";
+            return "Thurs";
             break;
         case 5:
-            return "Friday";
+            return "Fri";
             break;
         case 6:
-            return "Saturday";
+            return "Sat";
             break;
         default:
             return "Not a day, how did this happen?"
