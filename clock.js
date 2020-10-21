@@ -34,20 +34,23 @@ function updateTime() {
     let minutes = retainTwoDigits(now.getMinutes());
     let seconds = retainTwoDigits(now.getSeconds());
 
+    // Define clock string and update display
     let clockString = `${hours}:${minutes}:${seconds}`;
-
     clockDisplay.text(clockString);
 }
 
 // This function puts a 0 in front of one-digit numbers for clock purposes
 function retainTwoDigits(num) {
 
+    // Define our output
     let outputString = "";
 
+    // If the number is one digit, add a 0
     if (num < 10) {
         outputString += "0";
     }
 
+    // Ship it back
     outputString += num;
     return outputString
 }
