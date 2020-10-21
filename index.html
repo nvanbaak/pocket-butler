@@ -33,7 +33,7 @@
             <div class="col xl3 l3 m11">
                 <img class="logo" src="./public/assets/logo.png" alt="Pocket Butler Logo">
             </div>
-            <div class="col xl l1 m1 s1 offset-xl9 offset-l7 offset-s1 center-align ">
+            <div class="col xl l1 m1 s1 offset-xl9 offset-l7 offset-s2 center-align ">
                 <a class="waves-effect waves-light modal-trigger" href="#modal1">
                     <i class="material-icons settings-icon">settings</i>
                 </a>
@@ -67,18 +67,15 @@
                 </div>
         </header>
 
-        <main class="col xl12 l12 m12 s12 row dashboard">
+        <main class="row dashboard">
             <h4 class="dashboard-welcome">Welcome {{User}}</h4>
-            <div class="row ">
-                <div class="col xl8 l8 m8 s7 offset-xl1 offset-l1 offset-m1 offset-s1 calendar" id="calendar">
-                </div>
-                <div class="col xl2 l2 m2 s3 clock">
+            <div class="row dashboard-top ">
+                <button class="col xl2 l2 m2 s6 new-task btn modal-trigger" href="#modal2">Add</button>
+                <div class="col xl3 l3 m3 s6 clock">
                     <p id="date"></p>
-                    <p id="current-time" class="clock-time">{{Clock}}</p>
-
-
+                    <p id="current-time" class="clock-time"></p>
                 </div>
-                <div class="col xl2 l2 m2 s3 upcoming-tasks">
+                <div class="col xl6 l6 m6 s0 upcoming-tasks">
                     <h6 style="text-align: center;">Upcoming Tasks</h6>
                     <div class="task">
                         <p>{{Upcoming Tasks}}</p>
@@ -86,26 +83,32 @@
                     <div class="task">
                         <p>{{Upcoming Tasks}}</p>
                     </div>
-
                 </div>
+            </div>
 
-                <button class="col xl2 l2 m2 s3 new-task btn modal-trigger" href="#modal2">Add</button>
-                <!-- New task modal -->
-                <div id="modal2" class="modal">
-                    <div class="modal-content">
-                        <h5 style="text-align: center;">New Task</h5>
-                        <form class="col xl12 l12">
-                            <div class="row">
-                                <div class="input-field col xl10 l10 m12 s12 offset-xl1 offset-l1">
-                                    <input placeholder="Task Title" id="task-title" type="text" class="validate">
-                                    <label for="task-title">Task</label>
-                                </div>
-                                <div class="input-field col xl10 l10 m12 s12 offset-xl1 offset-l1">
-                                    <textarea placeholder="Details" id="textarea1" class="materialize-textarea"></textarea>
-                                    <label for="textarea1">Details</label>
-                                </div>
-                                <div class="input-field browser-default col xl10 l10 m12 s12 offset-xl1 offset-l1">
-                                    <select>
+            <div class="row">
+                <div class="col xl12 l12 m12 s12 calendar" id="calendar">
+                </div>
+            </div>
+
+
+
+            <!-- New task modal -->
+            <div id="modal2" class="modal">
+                <div class="modal-content">
+                    <h5 style="text-align: center;">New Task</h5>
+                    <form class="col xl12 l12">
+                        <div class="row">
+                            <div class="input-field col xl10 l10 m12 s12 offset-xl1 offset-l1">
+                                <input placeholder="Task Title" id="task-title" type="text" class="validate">
+                                <label for="task-title">Task</label>
+                            </div>
+                            <div class="input-field col xl10 l10 m12 s12 offset-xl1 offset-l1">
+                                <textarea placeholder="Details" id="textarea1" class="materialize-textarea"></textarea>
+                                <label for="textarea1">Details</label>
+                            </div>
+                            <div class="input-field browser-default col xl10 l10 m12 s12 offset-xl1 offset-l1">
+                                <select>
                                         <option value="" disabled selected>Choose your length</option>
                                         <option value="1">15 min</option>
                                         <option value="2">30 min</option>
@@ -114,39 +117,38 @@
                                         <option value="5">1:30</option>
                                         <option value="6">2:00</option>
                                       </select>
-                                    <label>How Long</label>
-                                </div>
+                                <label>How Long</label>
+                            </div>
 
-                                <div class="input-field col xl10 l10 m12 s12 offset-xl1 offset-l1">
-                                    <input type="text" class="datepicker">
-                                    <label for="datepicker">Date</label>
-                                </div>
-
-
-                                <div class="input-field col xl10 l10 m12 s12 offset-xl1 offset-l1">
-                                    <input type="text" class="timepicker">
-                                    <label for="timepicker">Time</label>
-                                </div>
+                            <div class="input-field col xl10 l10 m12 s12 offset-xl1 offset-l1">
+                                <input type="text" class="datepicker">
+                                <label for="datepicker">Date</label>
+                            </div>
 
 
-                                <div class="checkboxes col xl10 l10 m12 s12 offset-xl1 offset-l1">
-                                    <p>
-                                        <label>
+                            <div class="input-field col xl10 l10 m12 s12 offset-xl1 offset-l1">
+                                <input type="text" class="timepicker">
+                                <label for="timepicker">Time</label>
+                            </div>
+
+
+                            <div class="checkboxes col xl10 l10 m12 s12 offset-xl1 offset-l1">
+                                <p>
+                                    <label>
                                           <input id="reoccurring" for="reoccurring" type="checkbox" class="filled-in" checked="checked" />
                                           <span>Make Re-occurring</span>
                                         </label>
-                                    </p>
-                                    <p>
-                                        <label>
+                                </p>
+                                <p>
+                                    <label>
                                           <input id="auto-schedule" for="auto-schedule" type="checkbox" class="filled-in" checked="checked" />
                                           <span>Auto-Schedule</span>
                                         </label>
-                                    </p>
-                                </div>
-                                <button class="col xl2 l2 m2 s2 offset-xl3 offset-l3 offset-m3 offset-s3 btn modal-close" type="submit" name="action">Add</button>
-                                <button class="col xl2 l2 m2 s2 offset-xl2 offset-l2 offset-m2 offset-s2 btn modal-close">Close</button>
-                        </form>
-                        </div>
+                                </p>
+                            </div>
+                            <button class="col xl2 l2 m2 s2 offset-xl3 offset-l3 offset-m3 offset-s3 btn modal-close" type="submit" name="action">Add</button>
+                            <button class="col xl2 l2 m2 s2 offset-xl2 offset-l2 offset-m2 offset-s2 btn modal-close">Close</button>
+                    </form>
 
         </main>
         </div>
