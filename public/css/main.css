@@ -72,7 +72,7 @@ header {
     color: #C99F3A;
 }
 
-i {
+.material-icons {
     font-size: 40px !important;
 }
 
@@ -185,5 +185,15 @@ i {
 @media only screen and (max-width: 600px) {
     .blob {
         right: -600px;
+    }
+    .settings-icon {
+        color: #333300;
+    }
+    .clock-time {
+        font-size: 1rem;
+    }
+    .logo {
+        height: 50px;
+        width: 150;
     }
 }
