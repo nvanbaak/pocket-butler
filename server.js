@@ -11,7 +11,7 @@ app.use(express.json)
 app.get('/', function(req, res) {
     res.send("home page!")
 })
-require("./routes/api-routes");
+require("./routes/task-api-routes");
 
 
 db.sequelize.sync({ force: false }).then(function() {
