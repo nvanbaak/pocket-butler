@@ -10,36 +10,45 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-top: 80px;
+    margin-top: 40px;
 }
 
 .blob {
     position: fixed;
     top: 0px;
-    right: 0px;
+    right: -800px;
     z-index: -2;
 }
 
 .btn {
-    background-color: #CC6600 !important;
+    background-color: #2C3E50 !important;
+    height: 50px;
+    border-radius: 20px;
 }
 
 .btn:hover {
-    background-color: #333300 !important;
+    background-color: #5222D0 !important;
 }
 
 .btn:active {
-    background-color: #C99F3A;
+    background-color: #ede7f6;
+}
+
+.logo {
+    height: 50px;
+    width: 150;
+}
+
+.modal {
+    border-radius: 10px;
+}
+
+.modal-close {
+    margin: 20px 0 20px 0;
 }
 
 
 /* login elements */
-
-.hero-image-div {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
 
 .login-box {
     padding: 0px !important;
@@ -60,16 +69,16 @@ header {
 .sign-up {
     margin-top: 30px;
     text-align: center;
-    color: #333300;
+    color: #00838f;
     cursor: pointer;
 }
 
 .sign-up:hover {
-    color: #751308;
+    color: #9c27b0;
 }
 
 .sign-up:active {
-    color: #C99F3A;
+    color: #5222D0;
 }
 
 .material-icons {
@@ -77,28 +86,20 @@ header {
 }
 
 
-/* Sign Up elements */
-
-.signup-box {
-    padding: 0px !important;
-    background-color: #ffffff;
-    height: 525px;
-    border-radius: 20px;
-    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.4);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-
 /* Dashboard Element */
 
 .dashboard {
     background-color: #fff;
-    height: 80vh;
+    height: 760px;
     border-radius: 10px;
     box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.4);
     z-index: -1;
+}
+
+.dashboard-top {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .dashboard-welcome {
@@ -107,15 +108,17 @@ header {
 }
 
 .calendar {
-    height: 60vh;
+    padding: 0 10px 0 10px !important;
+    height: 500px;
     border-radius: 10px;
     box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.4);
 }
 
 .clock {
-    margin-left: 10px !important;
-    height: 15vh;
+    margin: 0 0 0 10px !important;
+    height: 100px;
     border-radius: 10px;
+    font-size: 12px;
     box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.4);
     display: flex;
     flex-direction: column;
@@ -124,19 +127,18 @@ header {
 }
 
 .clock-time {
-    margin-top: 10px;
     font-size: 2rem;
 }
 
 .upcoming-tasks {
-    margin-top: 10px;
-    margin-left: 10px !important;
-    height: 35vh;
+    margin: 0 0 0 10px !important;
+    height: 100px;
     border-radius: 10px;
     box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.4);
     display: flex;
     flex-direction: column;
     align-items: center;
+    overflow: scroll;
 }
 
 .task {
@@ -145,6 +147,7 @@ header {
     margin-top: 4px;
     border-radius: 4px;
     box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.2);
+    font-size: 12px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -152,9 +155,8 @@ header {
 }
 
 .new-task {
-    margin-top: 10px;
-    margin-left: 10px !important;
-    height: 7vh;
+    margin-left: 0px !important;
+    height: 100px;
     border-radius: 10px;
     box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.4);
 }
@@ -162,6 +164,20 @@ header {
 .settings-icon {
     color: #F7F7F7;
     cursor: pointer;
+}
+
+.settings-icon:hover {
+    color: #333300;
+}
+
+.setting-icon:active {
+    color: #C99F3A;
+}
+
+.checkboxes {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 
@@ -174,62 +190,66 @@ header {
     .login-box {
         margin-top: 40px;
     }
+    .dashboard {
+        height: 740px;
+    }
 }
 
 @media only screen and (max-width: 992px) {
     .blob {
         right: -300px;
     }
+    .logo-img {
+        max-height: 75px;
+    }
+    .calendar {
+        background-color: whitesmoke;
+        border-radius: 10px;
+        max-height: 500px;
+        overflow-y: scroll;
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 10px;
+    }
+    .dashboard {
+        height: 680px;
+    }
 }
 
-.logo-img {
-    max-height: 75px;
-}
 
-.constrain-to-parent {
-    max-height: 100%;
-    min-height: 100%;
-    max-width: 100%;
-}
-
-.calendar {
-    background-color: whitesmoke;
-    border-radius: 10px;
-    height: 100%;
-    max-height: 50vh;
-    overflow-y: scroll;
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 10px;
-}
-
-.calendar .calRow {
-    display: flex;
-}
-
-.tasklist {
-    overflow: scroll;
-    height: 100%;
-}
-
-.calendar-box {
-    height: 50px;
-    background-color: turquoise;
-    border: 1px solid black;
-}
+/* Mobile */
 
 @media only screen and (max-width: 600px) {
     .blob {
-        right: -600px;
+        right: -175px;
     }
-    .settings-icon {
-        color: #333300;
+    .clock {
+        height: 60px;
+        text-align: center;
+        padding: 4px 4px 4px 4px !important;
+        margin: 0 0 0 10px !important;
+    }
+    .new-task {
+        margin: 0 0 0 30px !important;
+        height: 60px;
     }
     .clock-time {
         font-size: 1rem;
     }
-    .logo {
-        height: 50px;
-        width: 150;
+    .upcoming-tasks {
+        visibility: hidden !important;
+        width: 0vw !important;
+        height: 0vh !important;
+    }
+    .dashboard {
+        height: 600px;
+    }
+    .dashboard-welcome {
+        font-size: 2rem;
+        margin-bottom: 0;
+    }
+    .hero-image {
+        height: 0px;
+        width: 0px;
     }
 }

@@ -1,32 +1,63 @@
-// Global variables
-const calendar = $(".calendar");
 
-// ===============================================
-//              Populate calendar
-// ===============================================
 
-// There are eight columns (label + 7 days) and 24 rows.
-for (let i = 0; i < 24; i++) {
+// init page 
+$(document).ready(function() {
 
-    // Make the row
-    let newRow = $("<div>");
-    newRow.addClass(`calRow`);
-    newRow.addClass(`s1`);
+    // Materialize init 
+    // ******************************
+    $('.modal').modal();
+    $('.timepicker').timepicker();
+    $('.datepicker').datepicker();
+    $('select').formSelect();
+    // ******************************
 
-    // add columns
-    for (let j = 0; j < 8; j++) {
 
-        // Make the column
-        let newBox = $("<div></div>");
-        newBox.addClass(`calendar-box`);
-        newBox.addClass(`data-row-${i}`);
-        newBox.addClass(`data-col-${j}`);
-        newBox.text(`row ${i} col ${j}`);
 
-        // Append column to row
-        newRow.append(newBox);
-    }
+    // Sign up script 
+    $('#sign-up').click(event => {
+        event.preventDefault();
+        const newSignUp = {
+            username: $('#user-name').val().trim(),
+            password: $('#user-password').val().trim(),
+            email: $('#email').val().trim(),
+            phone: $('#phone-number').val().trim()
+        }
+        console.log(newSignUp);
 
-    // Append row to calendar
-    calendar.append(newRow);
-}
+        $.ajax("/api/users",{
+            type: "POST",
+            data: newSignUp,
+        }).then(function(data){
+            console.log(data)
+        })
+
+    })
+        
+    
+
+
+
+
+
+
+
+    // add task script
+    $('#add-task').click(event => {
+        event.preventDefault();
+        // Values retrieved from page: 
+
+        const newTask = {
+            title: $('#task-title').val().trim(),
+            details: $('#details').val().trim(),
+            length: $('#length').val(),
+            startDate: $('.datepicker').val(),
+            time: $('.timepicker').val()
+        }
+
+        console.log(newTask);
+
+    })
+
+
+
+});
