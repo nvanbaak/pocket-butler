@@ -31,6 +31,42 @@ $(document).ready(function() {
 
     })
 
+    $('#update-user').click(event => {
+        event.preventDefault();
+        const updatedUser = {
+            username: $('#user-name1').val().trim(),
+            password: $('#user-password1').val().trim(),
+            email: $('#email1').val().trim(),
+            phone: $('#phone-number1').val().trim()
+        }
+        console.log(updatedUser);
+
+        $.ajax("/api/users/:id", {
+            type: "PUT",
+            data: updatedUser,
+        }).then(function(data) {
+            console.log(data)
+        })
+
+    })
+
+    $('#delete-user').click(event => {
+        event.preventDefault();
+        $.ajax("/api/users", {
+            type: "DELETE",
+        })
+    })
+
+
+
+
+
+
+
+
+
+
+
 
     // add task script
     $('#add-task').click(event => {
