@@ -339,6 +339,7 @@ When it's NOT activated, the fc-button classes won't even be in the DOM.
 .fc .fc-toolbar-title {
     font-size: 1.75em;
     margin: 0;
+    text-align: center;
 }
 
 .fc-direction-ltr .fc-toolbar>*> :not(:first-child) {

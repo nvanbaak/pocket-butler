@@ -1,37 +1,41 @@
-// init modals 
+// init page 
 $(document).ready(function() {
+
+    // Materialize init 
+    // ******************************
     $('.modal').modal();
     $('.timepicker').timepicker();
     $('.datepicker').datepicker();
     $('select').formSelect();
-});
+    // ******************************
 
-// Full Calendar Render
-document.addEventListener('DOMContentLoaded', function() {
-    const calendarEl = document.getElementById('calendar');
-    const calendar = new FullCalendar.Calendar(calendarEl, {
-        initialView: 'dayGridMonth',
-        headerToolbar: {
-            left: 'prev,next',
-            center: 'title',
-            right: 'dayGridMonth,timeGridDay'
-        },
-        events: [{
-                title: 'Example sAll Day Event',
-                start: '2020-10-01'
-            },
-            {
-                title: 'Example Long Event',
-                start: '2020-10-07',
-                end: '2020-10-10'
-            },
-            {
-                groupId: '999',
-                title: 'Example Repeating Event',
-                start: '2020-10-09T16:00:00'
-            },
-        ]
-    });
 
-    calendar.render();
+
+    // Sign up script 
+    $('#sign-up').click(event => {
+        event.preventDefault();
+
+    })
+
+
+
+    // add task script
+    $('#add-task').click(event => {
+        event.preventDefault();
+        // Values retrieved from page: 
+
+        const newTask = {
+            title: $('#task-title').val().trim(),
+            details: $('#details').val().trim(),
+            length: $('#length').val(),
+            startDate: $('.datepicker').val(),
+            time: $('.timepicker').val()
+        }
+
+        console.log(newTask);
+
+    })
+
+
+
 });
