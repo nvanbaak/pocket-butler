@@ -1,3 +1,5 @@
+// TODO: Not fully functioning, needs additional features
+
 var db = require("../models");
 
 module.exports = function(app) {

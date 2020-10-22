@@ -1,22 +1,17 @@
 module.exports = function(sequelize, DataTypes) {
-    var User = sequelize.define('User', {
+    const User = sequelize.define('User', {
         //add properties here
-        // id: {
-        //     type: DataTypes.INTEGER,
-        //     autoIncrement: true,
-        //     primaryKey: true
-        //   },
         username: DataTypes.STRING,
         password: DataTypes.STRING,
         phone: DataTypes.STRING,
-        email:{
+        email: {
             type: DataTypes.STRING,
-            unique:true
+            unique: true
         }
 
     });
 
-    User.associate = function(models){
+    User.associate = function(models) {
         // add associations here
         User.hasMany(models.Day, {
             onDelete: "cascade"
