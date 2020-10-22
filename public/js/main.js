@@ -1,3 +1,5 @@
+
+
 // init page 
 $(document).ready(function() {
 
@@ -14,8 +16,28 @@ $(document).ready(function() {
     // Sign up script 
     $('#sign-up').click(event => {
         event.preventDefault();
+        const newSignUp = {
+            username: $('#user-name').val().trim(),
+            password: $('#user-password').val().trim(),
+            email: $('#email').val().trim(),
+            phone: $('#phone-number').val().trim()
+        }
+        console.log(newSignUp);
+
+        $.ajax("/api/users",{
+            type: "POST",
+            data: newSignUp,
+        }).then(function(data){
+            console.log(data)
+        })
 
     })
+        
+    
+
+
+
+
 
 
 
