@@ -1,4 +1,4 @@
-// init modals 
+// init materialize
 $(document).ready(function() {
     $('.modal').modal();
     $('.timepicker').timepicker();
@@ -28,6 +28,7 @@ document.addEventListener('DOMContentLoaded', function() {
             {
                 groupId: '999',
                 title: 'Example Repeating Event',
+                url: 'http://google.com/',
                 start: '2020-10-09T16:00:00'
             },
         ]
