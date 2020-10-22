@@ -25,15 +25,9 @@ app.set("view engine", "handlebars");
 
 // Routes
 
-
-
 require("./routes/html-routes.js")(app);
 require("./routes/task-api-routes.js")(app);
 require("./routes/user-api-routes.js")(app);
-//require("./sendText.js")(app);
-//require("./sendEmail.js")(app);
-
-
 
 
 // Syncing our sequelize models and then starting our Express app
