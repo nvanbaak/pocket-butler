@@ -191,7 +191,7 @@ header {
         margin-top: 40px;
     }
     .dashboard {
-        height: 680px;
+        height: 740px;
     }
 }
 
@@ -230,10 +230,12 @@ header {
     }
     .clock {
         height: 7vh;
+        text-align: center;
         padding: 4px 4px 4px 4px !important;
-        margin: 0 0 0 0px !important;
+        margin: 0 0 0 10px !important;
     }
     .new-task {
+        margin: 0 0 0 30px !important;
         height: 7vh;
     }
     .clock-time {
