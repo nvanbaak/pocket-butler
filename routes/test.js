@@ -62,3 +62,4 @@ function findFit(newTask) {
 ​
         currentStart = findNextAvailableStart(potentialEnd)
     }
+}
