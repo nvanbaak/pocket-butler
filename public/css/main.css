@@ -109,14 +109,14 @@ header {
 
 .calendar {
     padding: 0 10px 0 10px !important;
-    height: 60vh;
+    height: 500px;
     border-radius: 10px;
     box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.4);
 }
 
 .clock {
     margin: 0 0 0 10px !important;
-    height: 15vh;
+    height: 100px;
     border-radius: 10px;
     font-size: 12px;
     box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.4);
@@ -132,7 +132,7 @@ header {
 
 .upcoming-tasks {
     margin: 0 0 0 10px !important;
-    height: 15vh;
+    height: 100px;
     border-radius: 10px;
     box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.4);
     display: flex;
@@ -156,7 +156,7 @@ header {
 
 .new-task {
     margin-left: 0px !important;
-    height: 15vh;
+    height: 100px;
     border-radius: 10px;
     box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.4);
 }
@@ -191,7 +191,7 @@ header {
         margin-top: 40px;
     }
     .dashboard {
-        height: 680px;
+        height: 740px;
     }
 }
 
@@ -202,15 +202,10 @@ header {
     .logo-img {
         max-height: 75px;
     }
-    .constrain-to-parent {
-        max-height: 100%;
-        min-height: 100%;
-        max-width: 100%;
-    }
     .calendar {
         background-color: whitesmoke;
         border-radius: 10px;
-        max-height: 60vh;
+        max-height: 500px;
         overflow-y: scroll;
         display: flex;
         flex-direction: column;
@@ -229,12 +224,14 @@ header {
         right: -175px;
     }
     .clock {
-        height: 7vh;
+        height: 60px;
+        text-align: center;
         padding: 4px 4px 4px 4px !important;
-        margin: 0 0 0 0px !important;
+        margin: 0 0 0 10px !important;
     }
     .new-task {
-        height: 7vh;
+        margin: 0 0 0 30px !important;
+        height: 60px;
     }
     .clock-time {
         font-size: 1rem;
