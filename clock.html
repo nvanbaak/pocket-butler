@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pocket Butler</title>
+    <title>clock</title>
 
     <!-- CSS Reset -->
     <link rel="stylesheet" href="public/css/reset.css">
@@ -16,17 +16,19 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 
     <!-- Materialize icons -->
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons&family=Ubuntu:wght@300;400;500;700&display=swap" rel="stylesheet">
 
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <!-- Google Fonts - commented out until I'm sure the aboce import works and it can be deleted for real-->
+    <!-- <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap" rel="stylesheet"> -->
 
     <!-- Custom styling -->
     <link rel="stylesheet" href="public/css/main.css">
 
+
 </head>
 
 <body>
+
     <img class="blob responsive-img" src="./public/assets/Blob.png" alt="blob">
     <div class="container">
         <header class="row">
@@ -78,10 +80,9 @@
                 <div class="col xl6 l6 m6 s0 upcoming-tasks">
                     <h6 style="text-align: center;">Upcoming Tasks</h6>
                     <div class="task">
-                        <p>{{Upcoming Tasks}}</p>
-                    </div>
-                    <div class="task">
-                        <p>{{Upcoming Tasks}}</p>
+                        {{#each}}
+                        <p>{{this.name}}</p>
+                        {{/each}}
                     </div>
                 </div>
             </div>
@@ -160,13 +161,22 @@
 
         <!-- Moment Js -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+        </main>
+        </div>
 
         <!-- Full Calendar Script -->
         <script src='/node_modules/fullcalendar/main.js'></script>
 
 
-        <!-- link to main.js  -->
-        <script src="/public/js/main.js"></script>
+
+
+        <!-- jQuery -->
+        <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+
+        <!-- Materialize JavaScript CDN -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js "></script>
+
+        <script src="./clock.js"></script>
 </body>
 
 </html>
