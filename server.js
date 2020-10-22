@@ -29,9 +29,9 @@ app.get('/', function(req, res) {
     res.render("index");
 
 })
-app.get('/login', function(req, res) {
+app.get('/tasklist', function(req, res) {
     console.log("This finally works!")
-    res.render("login");
+    res.render("tasklist");
 
 })
 
