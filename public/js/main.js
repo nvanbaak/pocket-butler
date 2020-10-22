@@ -14,26 +14,22 @@ $(document).ready(function() {
     // Sign up script 
     $('#sign-up').click(event => {
         event.preventDefault();
-        // new user object
-        const newUser = {
+        const newSignUp = {
             username: $('#user-name').val().trim(),
             password: $('#user-password').val().trim(),
             email: $('#email').val().trim(),
-            phone: $('#phone-number').val().trim(),
-        };
+            phone: $('#phone-number').val().trim()
+        }
+        console.log(newSignUp);
 
         $.ajax("/api/users", {
             type: "POST",
-            data: newUser
-        }).then(
-            function() {
-                console.log('success')
-                    // Reload the page to get the updated list
-                    // location.reload();
-            }
-        );
-    });
+            data: newSignUp,
+        }).then(function(data) {
+            console.log(data)
+        })
 
+    })
 
 
     // add task script

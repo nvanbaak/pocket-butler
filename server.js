@@ -24,16 +24,6 @@ app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 
 // Routes
-app.get('/', function(req, res) {
-    console.log("This finally works!")
-    res.render("index");
-
-})
-app.get('/tasklist', function(req, res) {
-    console.log("This finally works!")
-    res.render("tasklist");
-
-})
 
 require("./routes/html-routes.js")(app);
 require("./routes/task-api-routes.js")(app);
