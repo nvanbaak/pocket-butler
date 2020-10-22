@@ -1,3 +1,5 @@
+const db = require(".");
+
 module.exports = function (sequelize, DataTypes) {
   const Week = sequelize.define("Week", {
     date: {
@@ -21,3 +23,17 @@ module.exports = function (sequelize, DataTypes) {
 
   return Week;
 };
+
+// let days=[{hours:[]},{}]
+
+// weekToSave={
+//   date://$("elemntid or class").val(),
+//   days://stringifyed of the array of all days with hours arrays
+// }
+
+
+// db.Week.fineOne({
+//   where: {id:req.params.id}
+// }).then(data=>{
+//   let myweek=JSON.parse( data.days)
+// })
