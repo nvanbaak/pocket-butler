@@ -26,7 +26,7 @@ app.set("view engine", "handlebars");
 // Routes
 app.get('/', function(req, res) {
     console.log("This finally works!")
-    res.render("login");
+    res.render("index");
 
 })
 

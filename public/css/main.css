@@ -21,13 +21,13 @@ header {
 }
 
 .btn {
-    background-color: #5222D0 !important;
+    background-color: #2C3E50 !important;
     height: 50px;
     border-radius: 20px;
 }
 
 .btn:hover {
-    background-color: #00838f !important;
+    background-color: #5222D0 !important;
 }
 
 .btn:active {
@@ -49,13 +49,6 @@ header {
 
 
 /* login elements */
-
-
-/* .hero-image-div {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-} */
 
 .login-box {
     padding: 0px !important;
@@ -93,25 +86,11 @@ header {
 }
 
 
-/* Sign Up elements */
-
-.signup-box {
-    padding: 0px !important;
-    background-color: #ffffff;
-    height: 525px;
-    border-radius: 20px;
-    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.4);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-
 /* Dashboard Element */
 
 .dashboard {
     background-color: #fff;
-    height: 88vh;
+    height: 760px;
     border-radius: 10px;
     box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.4);
     z-index: -1;
@@ -119,7 +98,8 @@ header {
 
 .dashboard-top {
     display: flex;
-    justify-content: space-evenly;
+    justify-content: center;
+    align-items: center;
 }
 
 .dashboard-welcome {
@@ -128,13 +108,14 @@ header {
 }
 
 .calendar {
+    padding: 0 10px 0 10px !important;
     height: 60vh;
     border-radius: 10px;
     box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.4);
 }
 
 .clock {
-    margin-left: 10px !important;
+    margin: 0 0 0 10px !important;
     height: 15vh;
     border-radius: 10px;
     font-size: 12px;
@@ -150,13 +131,14 @@ header {
 }
 
 .upcoming-tasks {
-    margin: 0 10px 0 10px !important;
+    margin: 0 0 0 10px !important;
     height: 15vh;
     border-radius: 10px;
     box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.4);
     display: flex;
     flex-direction: column;
     align-items: center;
+    overflow: scroll;
 }
 
 .task {
@@ -173,7 +155,7 @@ header {
 }
 
 .new-task {
-    margin-left: 10px !important;
+    margin-left: 0px !important;
     height: 15vh;
     border-radius: 10px;
     box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.4);
@@ -208,48 +190,35 @@ header {
     .login-box {
         margin-top: 40px;
     }
+    .dashboard {
+        height: 680px;
+    }
 }
 
 @media only screen and (max-width: 992px) {
     .blob {
         right: -300px;
     }
-}
-
-.logo-img {
-    max-height: 75px;
-}
-
-.constrain-to-parent {
-    max-height: 100%;
-    min-height: 100%;
-    max-width: 100%;
-}
-
-.calendar {
-    background-color: whitesmoke;
-    border-radius: 10px;
-    height: 100%;
-    max-height: 50vh;
-    overflow-y: scroll;
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 10px;
-}
-
-.calendar .calRow {
-    display: flex;
-}
-
-.tasklist {
-    overflow: scroll;
-    height: 100%;
-}
-
-.calendar-box {
-    height: 50px;
-    background-color: turquoise;
-    border: 1px solid black;
+    .logo-img {
+        max-height: 75px;
+    }
+    .constrain-to-parent {
+        max-height: 100%;
+        min-height: 100%;
+        max-width: 100%;
+    }
+    .calendar {
+        background-color: whitesmoke;
+        border-radius: 10px;
+        max-height: 60vh;
+        overflow-y: scroll;
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 10px;
+    }
+    .dashboard {
+        height: 680px;
+    }
 }
 
 
@@ -261,19 +230,22 @@ header {
     }
     .clock {
         height: 7vh;
+        padding: 4px 4px 4px 4px !important;
+        margin: 0 0 0 0px !important;
     }
     .new-task {
-        margin-left: 40px !important;
         height: 7vh;
     }
     .clock-time {
-        font-size: 1.5rem;
+        font-size: 1rem;
     }
     .upcoming-tasks {
-        visibility: hidden;
-        width: 0vw;
-        height: 0vh;
-        overflow: scroll;
+        visibility: hidden !important;
+        width: 0vw !important;
+        height: 0vh !important;
+    }
+    .dashboard {
+        height: 600px;
     }
     .dashboard-welcome {
         font-size: 2rem;
