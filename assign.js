@@ -1,3 +1,5 @@
+const { table } = require("console");
+
 // Dependencies
 fs = require("fs");
 
@@ -108,47 +110,48 @@ function wageSlave() {
     return schedule;
 }
 
-// function to count how much time is available in each category
+// returns a list of arrays containing references to each block by category
 function getAllCategoryTimes(weekObj) {
 
     // set up output list
-    // This list will contain objects with a "name" property and a "count" property
+    // This list will contain objects with a "name" property and a "reference" property
+    // "reference" will be a list of indices that will point to blocks in the original week
     let catList = [];
 
     // Run through the week object by days
-    for (let i = 0; i < weekObj.length; i++) {
+    for (let day = 0; day < weekObj.length; day++) {
 
         // For each day, run through the hours
-        for (let j = 0; j < weekObj[i].length; j++) {
+        for (let hour = 0; hour < weekObj[day].length; hour++) {
 
             // Locate the index for that category in the list, if any
             // Start with an index at -1
             let catIndex = -1;
 
             // Run through the list of categories
-            for (let k = 0; k < catList.length; k++) {
+            for (let i = 0; i < catList.length; i++) {
 
                 // This statement requires some explanation:
-                // For each index in the category list, we get the name of that category
+                // For each object in the category list, we get the name of that category
                 // Then we check it against the string in the week object, which should also be a category string
-                if (catList[k].name === weekObj[i][j]) {
+                if (catList[i].name === weekObj[day][hour]) {
 
                     // If they're the same, reset the index
-                    catIndex = k; 
+                    catIndex = i; 
                     
-                    // then increment the count and break the loop
-                    catList[k].count++;
+                    // then push and break the loop
+                    catList[i].reference.push([day, hour]);
                     break;
                 }
             }
 
             // if the category we want isn't in the list...
-            if (catIndex > -1) {
+            if (catIndex === -1) {
 
                 // push a new category object to the list
                 catList.push({
-                    "name":weekObj[i][j],
-                    "count":1
+                    "name":weekObj[day][hour],
+                    "reference":[[day,hour]] // We gotta format it this way or it'll put the values in separately
                 });
             }
         }
@@ -156,7 +159,6 @@ function getAllCategoryTimes(weekObj) {
 
     // Having walked through the whole week, return the list
     return catList;
-
 }
 
 
@@ -164,3 +166,7 @@ function getAllCategoryTimes(weekObj) {
 newWeek = new Week(wageSlave(), 1);
 
 console.table(newWeek.getDays()[0]);
+
+let timeBlocks = getAllCategoryTimes(newWeek.getDays())
+
+console.table(timeBlocks);
