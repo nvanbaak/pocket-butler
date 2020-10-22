@@ -9,7 +9,7 @@ const client = require('twilio')(accountSid, authToken)
 client.messages.create({
         body: 'This is a test text message!!',
         from: '+12186667109',
-        to: '+12063076075'
+        to: ''
     }).then(message => console.log(message))
     .catch((err) => console.log(err))
-//}
+    //}
