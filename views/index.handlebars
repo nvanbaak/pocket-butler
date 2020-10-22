@@ -44,8 +44,8 @@
                 <div class="col xl8 l8 m8 s7 offset-xl1 offset-l1 offset-m1 offset-s1 calendar">
                 </div>
                 <div class="col xl2 l2 m2 s3 clock">
-                    <p>{{date}}</p>
-                    <p class="clock-time">{{Clock}}</p>
+                    <p class="date-disp"></p>
+                    <p class="clock-time"></p>
 
                 </div>
                 <div class="col xl2 l2 m2 s3 upcoming-tasks">
@@ -55,7 +55,6 @@
                         <p>{{this.name}}</p>
                         {{/each}}
                     </div>
-
                 </div>
 
                 <button class="col xl2 l2 m2 s3 new-task">Add</button>
@@ -65,3 +64,6 @@
 
     <!-- page script -->
     <script src="./public/js/main.js"></script>
+
+    <!-- script for clock widget -->
+    <script src="./public/js/clock.js"></script>

@@ -10,26 +10,28 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-top: 80px;
+    margin-top: 40px;
 }
 
 .blob {
     position: fixed;
     top: 0px;
-    right: 0px;
+    right: -800px;
     z-index: -2;
 }
 
 .btn {
-    background-color: #CC6600 !important;
+    background-color: #5222D0 !important;
+    height: 50px;
+    border-radius: 20px;
 }
 
 .btn:hover {
-    background-color: #333300 !important;
+    background-color: #00838f !important;
 }
 
 .btn:active {
-    background-color: #C99F3A;
+    background-color: #ede7f6;
 }
 
 .logo {
@@ -48,11 +50,12 @@ header {
 
 /* login elements */
 
-.hero-image-div {
+
+/* .hero-image-div {
     display: flex;
     flex-direction: column;
     align-items: center;
-}
+} */
 
 .login-box {
     padding: 0px !important;
@@ -73,16 +76,16 @@ header {
 .sign-up {
     margin-top: 30px;
     text-align: center;
-    color: #333300;
+    color: #00838f;
     cursor: pointer;
 }
 
 .sign-up:hover {
-    color: #751308;
+    color: #9c27b0;
 }
 
 .sign-up:active {
-    color: #C99F3A;
+    color: #5222D0;
 }
 
 .material-icons {
@@ -249,6 +252,9 @@ header {
     border: 1px solid black;
 }
 
+
+/* Mobile */
+
 @media only screen and (max-width: 600px) {
     .blob {
         right: -175px;
@@ -272,5 +278,9 @@ header {
     .dashboard-welcome {
         font-size: 2rem;
         margin-bottom: 0;
+    }
+    .hero-image {
+        height: 0px;
+        width: 0px;
     }
 }

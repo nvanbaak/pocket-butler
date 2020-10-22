@@ -1,9 +1,5 @@
 module.exports = function(sequelize, DataTypes) {
-    var Task = sequelize.define("Task", {
-        userid: {
-            type: DataTypes.INTEGER,
-            allowNull: false
-        },
+    const Task = sequelize.define("Task", {
         title: {
             type: DataTypes.STRING,
             allowNull: false,
@@ -48,12 +44,12 @@ module.exports = function(sequelize, DataTypes) {
         }
     });
 
-    Task.associate = function (models) {
+    Task.associate = function(models) {
         Task.belongsTo(models.User, {
             foreignKey: {
-              allowNull: false
+                allowNull: false
             }
-          });
+        });
     };
     return Task;
-  }
+}
