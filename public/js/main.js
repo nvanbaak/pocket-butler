@@ -35,3 +35,14 @@ document.addEventListener('DOMContentLoaded', function() {
 
     calendar.render();
 });
+
+$('#signup').on('click', function(event){
+    event.preventDefault()
+
+    var username = $('#username').val().trim()
+    var email = $('#email').val().trim()
+    var password = $('#password').val().trim()
+    var phoneNumber = $('#phone-number').val().trim()
+    console.log(username,email,password,phoneNumber)
+
+})

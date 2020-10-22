@@ -29,10 +29,22 @@ app.get('/', function(req, res) {
     res.render("index");
 
 })
+app.get('/login', function(req,res){
+    console.log("This is the login page")
+    res.render("login");
+})
+
+
+
+
 
 require("./routes/html-routes.js")(app);
 require("./routes/task-api-routes.js")(app);
 require("./routes/user-api-routes.js")(app);
+//require("./sendText.js")(app);
+//require("./sendEmail.js")(app);
+
+
 
 
 // Syncing our sequelize models and then starting our Express app
