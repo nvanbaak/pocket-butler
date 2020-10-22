@@ -1,5 +1,7 @@
+// Dependencies
 fs = require("fs");
 
+// Classes
 class Week {
     constructor(dayArr, startDate) {
         this.days = dayArr;
@@ -16,6 +18,48 @@ class Week {
 
     getDate() {
         return this.startDate;
+    }
+}
+
+class User {
+    constructor(weekTemplate) {
+        this.tasks = [];
+        this.template = weekTemplate;
+        this.schedule = [];
+    }
+
+    getTasks() {
+        return this.tasks;
+    }
+
+    addTask(task) {
+        this.tasks.push(task);
+    }
+
+    getTemplate() {
+        return this.template;
+    }
+
+    setTemplate(weekObj) {
+        this.template = weekObj;
+    }
+
+    getSchedule() {
+        return this.schedule;
+    }
+
+    addToSchedule(weekObj) {
+        this.schedule.push(weekObj);
+    }
+}
+
+
+function newTask(name, category, time, deadline) {
+    return {
+        "name":name,
+        "category":category,
+        "time":time,
+        "deadline":deadline
     }
 }
 
@@ -49,7 +93,7 @@ function wageSlave() {
             day.push(category);
         }
 
-        // 
+        // Put the day in the schedule
         schedule.push(day);
     }
 
