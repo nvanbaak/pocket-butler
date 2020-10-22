@@ -29,6 +29,11 @@ app.get('/', function(req, res) {
     res.render("index");
 
 })
+app.get('/login', function(req, res) {
+    console.log("This finally works!")
+    res.render("login");
+
+})
 
 require("./routes/html-routes.js")(app);
 require("./routes/task-api-routes.js")(app);

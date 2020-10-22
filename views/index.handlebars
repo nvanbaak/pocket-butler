@@ -73,11 +73,11 @@
                                 <label for="task-title">Task</label>
                             </div>
                             <div class="input-field col xl10 l10 m12 s12 offset-xl1 offset-l1">
-                                <textarea placeholder="Details" id="textarea1" class="materialize-textarea"></textarea>
-                                <label for="textarea1">Details</label>
+                                <textarea placeholder="Details" id="details" class="materialize-textarea"></textarea>
+                                <label for="details">Details</label>
                             </div>
                             <div class="input-field browser-default col xl10 l10 m12 s12 offset-xl1 offset-l1">
-                                <select>
+                                <select id="length">
                                         <option value="" disabled selected>Choose your length</option>
                                         <option value="1">15 min</option>
                                         <option value="2">30 min</option>
@@ -115,14 +115,22 @@
                                         </label>
                                 </p>
                             </div>
-                            <button class="col xl2 l2 m2 s4 offset-xl3 offset-l3 offset-m3 offset-s1 btn modal-close" type="submit" name="action">Add</button>
+                            <button id="add-task" class="col xl2 l2 m2 s4 offset-xl3 offset-l3 offset-m3 offset-s1 btn modal-close">Add</button>
                             <button class="col xl2 l2 m2 s4 offset-xl2 offset-l2 offset-m2 offset-s2 btn modal-close">Close</button>
                     </form>
 
         </main>
         </div>
+    <!-- Full Calendar Script -->
+    <script src='./js/fullcal-main.js'></script>
+
+      <!-- Render Calendar script -->
+    <script src="./js/fullcal-render.js"></script>
+
+
     <!-- page script -->
     <script src="./js/main.js"></script>
 
     <!-- script for clock widget -->
     <script src="./js/clock.js"></script>
+

@@ -2711,7 +2711,7 @@ ul:not(.browser-default)>li {
 }
 
 a {
-    color: #039be5;
+    color: #00331B;
     text-decoration: none;
     -webkit-tap-highlight-color: transparent;
 }
@@ -7284,8 +7284,8 @@ textarea.materialize-textarea {
     top: 0;
     width: 20px;
     height: 20px;
-    border: 2px solid #26a69a;
-    background-color: #26a69a;
+    border: 2px solid #00331B;
+    background-color: #00331B;
     z-index: 0;
 }
 
@@ -9148,7 +9148,7 @@ input[type=range]::-ms-thumb {
 .datepicker-clear,
 .datepicker-today,
 .datepicker-done {
-    color: #26a69a;
+    color: #00331B;
     padding: 0 1rem;
 }
 
@@ -9382,7 +9382,7 @@ input[type=range]::-ms-thumb {
 }
 
 .timepicker-close {
-    color: #26a69a;
+    color: #00331B;
 }
 
 .timepicker-clear,
