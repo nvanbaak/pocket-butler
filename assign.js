@@ -73,7 +73,7 @@ function newTask(name, category, time, deadline) {
     }
 }
 
-// function to generate dummy schedule
+// generates and returns a dummy schedule
 function wageSlave() {
 
     let schedule = [];
@@ -160,8 +160,6 @@ function getAllCategoryTimes(weekObj) {
     // Having walked through the whole week, return the list
     return catList;
 }
-
-
 
 newWeek = new Week(wageSlave(), 1);
 
