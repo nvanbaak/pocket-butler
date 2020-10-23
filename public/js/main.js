@@ -1,5 +1,3 @@
-
-
 // init page 
 $(document).ready(function() {
 
@@ -30,10 +28,11 @@ $(document).ready(function() {
         })
 
     })
-        
+    
     // add task script
     $('#add-task').click(event => {
         event.preventDefault();
+
         // Values retrieved from page: 
 
         // Materialize outputs checkbox output as "on" and "off", so this code converts it to true/false
@@ -45,7 +44,7 @@ $(document).ready(function() {
             description: $('#details').val().trim(),
             deadline: $('.duedatepicker').val(),
             autoschedule: autoSch,
-            reoccuring: recur,
+            // reoccuring: recur,
             length: $('#length').val(),
             startDate: $('.datepicker').val(),
             time: $('.timepicker').val(),
