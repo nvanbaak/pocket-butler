@@ -26,10 +26,11 @@ module.exports = function(sequelize, DataTypes) {
             type: DataTypes.BOOLEAN,
             allowNull: false
         },
-        // reoccuring: {
-        //     type: DataTypes.BOOLEAN,
-        //     allowNull: true
-        // },
+        reoccuring: {
+            type: DataTypes.BOOLEAN,
+            allowNull: true,
+            defaultValue: false
+        },
         timeToComplete: {
             type: DataTypes.DECIMAL(10, 2),
             allowNull: true

@@ -72,11 +72,13 @@ $(document).ready(function() {
     $('#add-task').click(event => {
         event.preventDefault();
 
-        // Values retrieved from page: 
+        let id = $('#add-task').attr("data-id")
+
+        // // Values retrieved from page: 
         let reoccurring = $('#reoccurring').val();
         let autoSchedule = $('#auto-schedule').val();
 
-        // changing default values to true/false
+        // // changing default values to true/false
         if (reoccurring === 'on') reoccurring = true;
         reoccurring = false;
         if (autoSchedule === 'on') autoSchedule = true;
@@ -84,18 +86,20 @@ $(document).ready(function() {
 
         // Materialize outputs checkbox output as "on" and "off", so this code converts it to true/false
         let autoSch = ($("#auto-schedule").val() === "on");
-        let recur = ($("#reoccuring").val() === "on");
+        let recur = ($("#reoccurring").val() === "on");
+
+
 
         const newTask = {
             title: $('#task-title').val().trim(),
             description: $('#details').val().trim(),
             deadline: $('.duedatepicker').val(),
             autoschedule: autoSch,
-            // reoccuring: recur,
+            reoccuring: recur,
             length: $('#length').val(),
             startDate: $('.datepicker').val(),
             time: $('.timepicker').val(),
-            UserId: 0
+            UserId: id
         }
 
         $.ajax("/api/tasks", {
