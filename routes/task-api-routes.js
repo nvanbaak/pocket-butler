@@ -8,10 +8,10 @@ module.exports = function(app) {
         })
     })
 
-    app.get("/api/tasks/:id", function(req, res) {
-        db.Task.findOne({
+    app.get("/api/tasks/id", function(req, res) {
+        db.Task.findAll({
             where: {
-                id: req.params.id
+                id: req.session.user.id
             }
         }).then(function(tasks) {
             res.json(tasks)

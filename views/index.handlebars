@@ -51,9 +51,11 @@
                 <div class="col xl5 l5 m6 s12 upcoming-tasks">
                     <h6 style="text-align: center;">Upcoming Tasks</h6>
                     <div class="task">
-                        {{!-- {{#each}} --}}
-                        <p>{{this.name}}</p>
-                        {{!-- {{/each}} --}}
+                        <ul>
+                            {{#each this.task}}
+                                <li>{{this.task}}</li>
+                            {{/each}}
+                        </ul>
                     </div>
                 </div>
             </div>
@@ -80,12 +82,12 @@
                             <div class="input-field browser-default col xl10 l10 m12 s12 offset-xl1 offset-l1">
                                 <select id="length">
                                         <option value="" disabled selected>Choose a length</option>
-                                        <option value="1">15 min</option>
-                                        <option value="2">30 min</option>
-                                        <option value="3">45 min</option>
-                                        <option value="4">1:00</option>
-                                        <option value="5">1:30</option>
-                                        <option value="6">2:00</option>
+                                        <option value="0:15">15 min</option>
+                                        <option value="0:30">30 min</option>
+                                        <option value="0:45">45 min</option>
+                                        <option value="1:00">1:00</option>
+                                        <option value="1:30">1:30</option>
+                                        <option value="2:00">2:00</option>
                                       </select>
                                 <label>Estimated time to complete:</label>
                             </div>
@@ -127,6 +129,10 @@
                             <button id="add-task" data-id="{{this.id}}" class="col xl2 l2 m2 s4 offset-xl3 offset-l3 offset-m3 offset-s1 btn modal-close">Add</button>
                             <button class="col xl2 l2 m2 s4 offset-xl2 offset-l2 offset-m2 offset-s2 btn modal-close">Close</button>
                     </form>
+            </div>
+
+            
+
 
         </main>
         </div>

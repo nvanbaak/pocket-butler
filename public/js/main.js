@@ -5,7 +5,9 @@ $(document).ready(function() {
     // ******************************
     $('.modal').modal();
     $('.timepicker').timepicker();
-    $('.datepicker').datepicker();
+    $('.datepicker').datepicker({
+        format: 'yyyy-mm-dd'
+    });
     $('select').formSelect();
     // ******************************
 
@@ -74,36 +76,35 @@ $(document).ready(function() {
 
 
         // // Values retrieved from page: 
-        let reoccurring = $('#reoccurring').val();
-        let autoSchedule = $('#auto-schedule').val();
+        let recur = $('#reoccurring').val();
+        let autoSch = $('#auto-schedule').val();
 
         // // changing default values to true/false
-        if (reoccurring === 'on') reoccurring = true;
-        reoccurring = false;
-        if (autoSchedule === 'on') autoSchedule = true;
-        autoSchedule = false;
+        if (recur === 'on') recur = true;
+        recur = false;
+        if (autoSch === 'on') autoSch = true;
+        autoSch = false;
 
         // Materialize outputs checkbox output as "on" and "off", so this code converts it to true/false
-        let autoSch = ($("#auto-schedule").val() === "on");
-        let recur = ($("#reoccurring").val() === "on");
+        // let autoSch = ($("#auto-schedule").val() === "on");
+        // let recur = ($("#reoccurring").val() === "on");
 
 
 
         const newTask = {
             title: $('#task-title').val().trim(),
             description: $('#details').val().trim(),
-            deadline: $('.duedatepicker').val(),
+            endDate: `${$('.duedatepicker').val()} ${$('.timeduepicker').val()}`,
+            startDate: `${$('.datepicker').val()} ${$('.timepicker').val()}`,
+            timeToComplete: $('#length').val(),
             autoschedule: autoSch,
             reoccurring: recur,
-            length: $('#length').val(),
-            startDate: $('.datepicker').val(),
-            time: $('.timepicker').val(),
             UserId: $("#add-task").attr("data-id")
         }
 
         $.ajax("/api/tasks", {
             type: "POST",
             data: newTask
-        });
+        }).then(data => { location.reload(); });
     });
 });

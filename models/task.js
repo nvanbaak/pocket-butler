@@ -15,8 +15,15 @@ module.exports = function(sequelize, DataTypes) {
             }
         },
         //   might need to change to compare easier to calendar
-        deadline: {
-            type: DataTypes.STRING,
+        endDate: {
+            type: DataTypes.DATE,
+            allowNull: true,
+            validate: {
+                len: [1, 140]
+            }
+        },
+        startDate: {
+            type: DataTypes.DATE,
             allowNull: true,
             validate: {
                 len: [1, 140]
@@ -24,24 +31,20 @@ module.exports = function(sequelize, DataTypes) {
         },
         autoschedule: {
             type: DataTypes.BOOLEAN,
-            allowNull: false
+            allowNull: false,
+            defaultValue: false
         },
         reoccurring: {
             type: DataTypes.BOOLEAN,
-            allowNull: true
+            allowNull: true,
+            defaultValue: false
         },
         timeToComplete: {
             type: DataTypes.DECIMAL(10, 2),
             allowNull: true
         },
         //   might need to change to compare easier to calendar
-        startline: {
-            type: DataTypes.STRING,
-            allowNull: true,
-            validate: {
-                len: [1, 140]
-            }
-        },
+
         complete: {
             type: DataTypes.BOOLEAN,
             defaultValue: false
