@@ -17,23 +17,70 @@ $(document).ready(function() {
             password: $('#user-password').val().trim(),
             email: $('#email').val().trim(),
             phone: $('#phone-number').val().trim()
-        }
-        console.log(newSignUp);
+        };
 
-        $.ajax("/api/users",{
+        $.ajax("/signup", {
             type: "POST",
             data: newSignUp,
-        }).then(function(data){
-            console.log(data)
-        })
+        }).then(data => {});
 
-    })
-    
+    });
+
+    // login script 
+    $('#login').click(event => {
+        event.preventDefault();
+        const loginUser = {
+            username: $('#username').val().trim(),
+            password: $('#password').val().trim(),
+        };
+        $.ajax("/login", {
+            type: "POST",
+            data: loginUser,
+        }).then(data => { location.replace("/dashboard") });
+    });
+
+    // Update User
+    $('#update-user').click(event => {
+        event.preventDefault();
+        let id = $('#update-user').attr("data-id")
+
+        const updatedUser = {
+            username: $('#user-name1').val().trim(),
+            password: $('#user-password1').val().trim(),
+            email: $('#email1').val().trim(),
+            phone: $('#phone-number1').val().trim()
+        };
+
+        $.ajax("/users/" + id, {
+            type: "PUT",
+            data: updatedUser,
+        }).then(data => {});
+    });
+
+    // delete user script 
+    $('#delete-user').click(event => {
+        event.preventDefault();
+        alert("Are you Sure?");
+        let id = $('#delete-user').attr("data-id");
+
+        $.ajax("/users/" + id, {
+            type: "DELETE",
+        }).then((data) => { location.replace("/logout") });
+    });
+
     // add task script
     $('#add-task').click(event => {
         event.preventDefault();
 
         // Values retrieved from page: 
+        let reoccurring = $('#reoccurring').val();
+        let autoSchedule = $('#auto-schedule').val();
+
+        // changing default values to true/false
+        if (reoccurring === 'on') reoccurring = true;
+        reoccurring = false;
+        if (autoSchedule === 'on') autoSchedule = true;
+        autoSchedule = false;
 
         // Materialize outputs checkbox output as "on" and "off", so this code converts it to true/false
         let autoSch = ($("#auto-schedule").val() === "on");
@@ -55,9 +102,5 @@ $(document).ready(function() {
             type: "POST",
             data: newTask
         });
-
-    })
-
-
-
+    });
 });
