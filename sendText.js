@@ -1,4 +1,3 @@
-module.exports = function (app) {
 require('dotenv').config()
 
 const accountSid = process.env.TWILIO_ACCOUNT_SID
@@ -13,4 +12,4 @@ client.messages.create({
         to: ''
     }).then(message => console.log(message))
     .catch((err) => console.log(err))
-}
+    //}
