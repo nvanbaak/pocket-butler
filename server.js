@@ -24,10 +24,12 @@ app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 
 // Routes
-
+require("./routes/authentication-routes.js")(app);
+require("./routes/user-api-routes.js")(app);
 require("./routes/html-routes.js")(app);
 require("./routes/task-api-routes.js")(app);
-require("./routes/user-api-routes.js")(app);
+
+
 
 
 // Syncing our sequelize models and then starting our Express app
