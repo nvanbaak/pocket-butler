@@ -95,7 +95,7 @@ $(document).ready(function() {
             length: $('#length').val(),
             startDate: $('.datepicker').val(),
             time: $('.timepicker').val(),
-            UserId: 0
+            UserId: $("#add-task").attr("data-id")
         }
 
         $.ajax("/api/tasks", {
