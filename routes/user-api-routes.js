@@ -1,39 +1,40 @@
-var db = require("../models");
+const db = require("../models");
 
 module.exports = function(app) {
-  app.get("/api/users", function(req, res) {
-    db.User.findAll({
-      include: [db.Task]
-    }).then(function(dbUser) {
-      res.json(dbUser);
+    // update user
+    app.put("/users/:id", (req, res) => {
+        if (req.session.user) {
+            db.User.findOne({
+                where: {
+                    id: req.params.id
+                }
+            }).then(user => {
+                if (!user) {
+                    return res.status(404).send('no such user')
+                } else {
+                    db.User.update({
+                        username: req.body.username,
+                        password: req.body.password,
+                        email: req.body.email,
+                        phone: req.body.phone
+                    }, {
+                        where: {
+                            id: req.params.id
+                        }
+                    }).then(editUser => {
+                        res.json(editUser)
+                    });
+                };
+            });
+        };
     });
-  });
 
-  app.get("/api/users/:id", function(req, res) {
-    db.User.findOne({
-      where: {
-        id: req.params.id
-      },
-      include: [db.Task]
-    }).then(function(dbUser) {
-      res.json(dbUser);
+    // delete user 
+    app.delete("/users/:id", function(req, res) {
+        db.User.destroy({
+            where: { id: req.params.id }
+        }).then(function(dbUser) {
+            // console.log('deleted')
+        });
     });
-  });
-
-  app.post("/api/users", function(req, res) {
-    db.User.create(req.body).then(function(dbUser) {
-      res.json(dbUser);
-    });
-  });
-
-  app.delete("/api/users/:id", function(req, res) {
-    db.User.destroy({
-      where: {
-        id: req.params.id
-      }
-    }).then(function(dbUser) {
-      res.json(dbUser);
-    });
-  });
-
 };
