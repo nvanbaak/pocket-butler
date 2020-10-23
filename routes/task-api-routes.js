@@ -20,7 +20,6 @@ module.exports = function(app) {
 
     app.post("/api/tasks", function(req, res) {
         db.Task.create(req.body).then(function(newTask) {
-            console.log(req.body);
             res.json(newTask);
         })
     });
