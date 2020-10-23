@@ -7,7 +7,7 @@ module.exports = function(app) {
     const bcrypt = require('bcrypt');
 
     // setting up session
-    app.set('trust proxy', 1) //trust first proxy
+    // app.set('trust proxy', 1) //trust first proxy
     app.use(session({
         secret: process.env.SESSION_SECRET,
         resave: false,
