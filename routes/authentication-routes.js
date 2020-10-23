@@ -45,8 +45,7 @@ module.exports = function(app) {
                     username: user.username,
                     id: user.id
                 }
-                res.redirect("/dashboard")
-                    // return res.status(200).json("login ok");
+                return res.status(200).json("login ok");
             } else {
                 req.session.destroy;
                 return res.status(401).send("Incorrect Username or Password");
