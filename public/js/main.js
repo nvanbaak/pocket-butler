@@ -98,7 +98,7 @@ $(document).ready(function() {
             UserId: 0
         }
 
-        $.ajax("/api/tasks",{
+        $.ajax("/api/tasks", {
             type: "POST",
             data: newTask
         });
