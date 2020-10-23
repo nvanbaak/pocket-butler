@@ -91,7 +91,7 @@ $(document).ready(function() {
             description: $('#details').val().trim(),
             deadline: $('.duedatepicker').val(),
             autoschedule: autoSch,
-            // reoccuring: recur,
+            // reoccurring: recur,
             length: $('#length').val(),
             startDate: $('.datepicker').val(),
             time: $('.timepicker').val(),
