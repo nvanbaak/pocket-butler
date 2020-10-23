@@ -107,7 +107,8 @@ header {
     padding: 1rem;
 }
 
-.calendar {
+.calendar,
+.task-page {
     padding: 0 10px 0 10px !important;
     height: 500px;
     border-radius: 10px;
@@ -202,7 +203,8 @@ header {
     .logo-img {
         max-height: 75px;
     }
-    .calendar {
+    .calendar,
+    .task-page {
         background-color: whitesmoke;
         border-radius: 10px;
         max-height: 500px;
