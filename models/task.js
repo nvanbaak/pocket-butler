@@ -17,7 +17,7 @@ module.exports = function(sequelize, DataTypes) {
         //   might need to change to compare easier to calendar
         deadline: {
             type: DataTypes.STRING,
-            allowNull: false,
+            allowNull: true,
             validate: {
                 len: [1, 140]
             }
@@ -26,10 +26,10 @@ module.exports = function(sequelize, DataTypes) {
             type: DataTypes.BOOLEAN,
             allowNull: false
         },
-        reoccuring: {
-            type: DataTypes.BOOLEAN,
-            allowNull: false
-        },
+        // reoccuring: {
+        //     type: DataTypes.BOOLEAN,
+        //     allowNull: true
+        // },
         timeToComplete: {
             type: DataTypes.DECIMAL(10, 2),
             allowNull: true

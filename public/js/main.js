@@ -11,8 +11,6 @@ $(document).ready(function() {
     $('select').formSelect();
     // ******************************
 
-
-
     // Sign up script 
     $('#sign-up').click(event => {
         event.preventDefault();
@@ -33,28 +31,31 @@ $(document).ready(function() {
 
     })
         
-    
-
-
-
-
-
-
-
     // add task script
     $('#add-task').click(event => {
         event.preventDefault();
         // Values retrieved from page: 
 
+        // Materialize outputs checkbox output as "on" and "off", so this code converts it to true/false
+        let autoSch = ($("#auto-schedule").val() === "on");
+        let recur = ($("#reoccuring").val() === "on");
+
         const newTask = {
             title: $('#task-title').val().trim(),
-            details: $('#details').val().trim(),
+            description: $('#details').val().trim(),
+            deadline: $('.duedatepicker').val(),
+            autoschedule: autoSch,
+            reoccuring: recur,
             length: $('#length').val(),
             startDate: $('.datepicker').val(),
-            time: $('.timepicker').val()
+            time: $('.timepicker').val(),
+            UserId: 0
         }
 
-        console.log(newTask);
+        $.ajax("/api/tasks",{
+            type: "POST",
+            data: newTask
+        });
 
     })
 
