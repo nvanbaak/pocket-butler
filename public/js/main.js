@@ -72,7 +72,6 @@ $(document).ready(function() {
     $('#add-task').click(event => {
         event.preventDefault();
 
-        let id = $('#add-task').attr("data-id")
 
         // // Values retrieved from page: 
         let reoccurring = $('#reoccurring').val();
@@ -95,11 +94,11 @@ $(document).ready(function() {
             description: $('#details').val().trim(),
             deadline: $('.duedatepicker').val(),
             autoschedule: autoSch,
-            reoccuring: recur,
+            reoccurring: recur,
             length: $('#length').val(),
             startDate: $('.datepicker').val(),
             time: $('.timepicker').val(),
-            UserId: id
+            UserId: $("#add-task").attr("data-id")
         }
 
         $.ajax("/api/tasks", {
