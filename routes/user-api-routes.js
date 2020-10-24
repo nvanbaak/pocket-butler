@@ -33,7 +33,7 @@ module.exports = function(app) {
     app.delete("/users/:id", function(req, res) {
         db.User.destroy({
             where: { id: req.params.id }
-        }).then(function(dbUser) {
+        }).then(dbUser => {
             // console.log('deleted')
         });
     });

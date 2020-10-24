@@ -5,6 +5,12 @@ $(document).ready(function() {
     // ******************************
     $('.modal').modal();
     $('.timepicker').timepicker();
+    // For adding seconds (00)
+    $('.timepicker').on('change', function() {
+        let receivedVal = $(this).val();
+        $(this).val(receivedVal + ":00");
+    });
+
     $('.datepicker').datepicker({
         format: 'yyyy-mm-dd'
     });
@@ -73,29 +79,22 @@ $(document).ready(function() {
     // add task script
     $('#add-task').click(event => {
         event.preventDefault();
-
-
         // // Values retrieved from page: 
         let recur = $('#reoccurring').val();
         let autoSch = $('#auto-schedule').val();
-
         // // changing default values to true/false
         if (recur === 'on') recur = true;
         recur = false;
         if (autoSch === 'on') autoSch = true;
         autoSch = false;
 
-        // Materialize outputs checkbox output as "on" and "off", so this code converts it to true/false
-        // let autoSch = ($("#auto-schedule").val() === "on");
-        // let recur = ($("#reoccurring").val() === "on");
-
-
-
         const newTask = {
             title: $('#task-title').val().trim(),
             description: $('#details').val().trim(),
-            endDate: `${$('.duedatepicker').val()} ${$('.timeduepicker').val()}`,
-            startDate: `${$('.datepicker').val()} ${$('.timepicker').val()}`,
+            endDate: $('.duedatepicker').val(),
+            endTime: $('.timeduepicker').val(),
+            startDate: $('.datepicker').val(),
+            startTime: $('.timepicker').val(),
             timeToComplete: $('#length').val(),
             autoschedule: autoSch,
             reoccurring: recur,
@@ -107,4 +106,14 @@ $(document).ready(function() {
             data: newTask
         }).then(data => { location.reload(); });
     });
+
+    $(".task").click(event => {
+        event.preventDefault();
+
+    })
+
+
+
+
+
 });

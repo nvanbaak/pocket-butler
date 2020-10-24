@@ -7,10 +7,12 @@ function getData() {
         let fullCallObjArr = [];
         for (let i = 0; i < data.length; i++) {
             const element = data[i];
+            let newStartDate = element.startDate.replace(/T.*$/g, "").trim();
+            let newEndDate = element.endDate.replace(/T.*$/g, "").trim();
             const fullCallObj = {
                 title: element.title,
-                start: element.startDate,
-                end: element.endDate,
+                start: `${newStartDate}T${element.startTime}`,
+                end: `${newEndDate}T${element.endTime}`,
                 extendedProps: {
                     description: element.description
                 }
@@ -18,7 +20,6 @@ function getData() {
 
             fullCallObjArr.push(fullCallObj);
         }
-
 
         const calendarEl = document.getElementById('calendar');
         const calendar = new FullCalendar.Calendar(calendarEl, {
@@ -30,21 +31,17 @@ function getData() {
             },
             events: fullCallObjArr,
 
+
             eventClick: function(info) {
-                $('#modalTitle').html(info.event.title);
-                $('#modalBody').html(info.event.extendedProps.description);
-                $('#fullCalModal').modal();
-            },
-            // eventClick: function(info) {
 
-            //     $("<div>").dialog({ modal: true, title: info.event.title, width: 350 });
-            //     alert('Event: ' + info.event.title);
-            //     alert('Coordinates: ' + info.jsEvent.pageX + ',' + info.jsEvent.pageY);
-            //     alert('View: ' + info.event.extendedProps.description);
 
-            //     // change the border color just for fun
-            //     info.el.style.borderColor = 'red';
-            // }
+                alert('Event: ' + info.event.title);
+                alert('Coordinates: ' + info.jsEvent.pageX + ',' + info.jsEvent.pageY);
+                alert('View: ' + info.event.extendedProps.description);
+
+                // change the border color just for fun
+                info.el.style.borderColor = 'red';
+            }
 
 
         });

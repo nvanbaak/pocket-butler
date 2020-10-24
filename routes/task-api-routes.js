@@ -1,17 +1,13 @@
-var db = require("../models");
+const db = require("../models");
 
 module.exports = function(app) {
 
-    app.get("/api/tasks", function(req, res) {
-        db.Task.findAll({}).then(function(tasks) {
-            res.json(tasks)
-        })
-    })
 
+    // this is getting all of the users tasks for the calendar 
     app.get("/api/tasks/id", function(req, res) {
         db.Task.findAll({
             where: {
-                id: req.session.user.id
+                UserId: req.session.user.id
             }
         }).then(function(tasks) {
             res.json(tasks)
@@ -36,7 +32,7 @@ module.exports = function(app) {
         })
     });
 
-    app.put("/api/tasks", function(req, res) {
+    app.put("/api/tasks/:id", function(req, res) {
         db.Task.update({
                 text: req.body.text,
                 complete: req.body.complete

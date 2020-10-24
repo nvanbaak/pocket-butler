@@ -14,7 +14,6 @@ module.exports = function(sequelize, DataTypes) {
                 len: [1, 140]
             }
         },
-        //   might need to change to compare easier to calendar
         endDate: {
             type: DataTypes.DATE,
             allowNull: true,
@@ -22,8 +21,22 @@ module.exports = function(sequelize, DataTypes) {
                 len: [1, 140]
             }
         },
+        endTime: {
+            type: DataTypes.TIME,
+            allowNull: true,
+            validate: {
+                len: [1, 140]
+            }
+        },
         startDate: {
             type: DataTypes.DATE,
+            allowNull: true,
+            validate: {
+                len: [1, 140]
+            }
+        },
+        startTime: {
+            type: DataTypes.TIME,
             allowNull: true,
             validate: {
                 len: [1, 140]
