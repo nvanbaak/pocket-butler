@@ -22,7 +22,7 @@ module.exports = function(app) {
                             id: req.params.id
                         }
                     }).then(editUser => {
-                        res.json(editUser)
+                        res.status(200).json(editUser)
                     });
                 };
             });
@@ -33,8 +33,8 @@ module.exports = function(app) {
     app.delete("/users/:id", function(req, res) {
         db.User.destroy({
             where: { id: req.params.id }
-        }).then(dbUser => {
-            // console.log('deleted')
+        }).then(deleteUser => {
+            res.status(200)
         });
     });
 };

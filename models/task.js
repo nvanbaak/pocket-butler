@@ -17,37 +17,25 @@ module.exports = function(sequelize, DataTypes) {
         endDate: {
             type: DataTypes.DATE,
             allowNull: true,
-            validate: {
-                len: [1, 140]
-            }
         },
         endTime: {
             type: DataTypes.TIME,
             allowNull: true,
-            validate: {
-                len: [1, 140]
-            }
         },
         startDate: {
             type: DataTypes.DATE,
             allowNull: true,
-            validate: {
-                len: [1, 140]
-            }
         },
         startTime: {
             type: DataTypes.TIME,
             allowNull: true,
-            validate: {
-                len: [1, 140]
-            }
         },
-        autoschedule: {
+        is_autoSchedule: {
             type: DataTypes.BOOLEAN,
             allowNull: false,
             defaultValue: false
         },
-        reoccurring: {
+        is_reoccurring: {
             type: DataTypes.BOOLEAN,
             allowNull: true,
             defaultValue: false

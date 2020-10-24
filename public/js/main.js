@@ -3,14 +3,19 @@ $(document).ready(function() {
 
     // Materialize init 
     // ******************************
+    // init Modals
     $('.modal').modal();
+
+    // init timepicker
     $('.timepicker').timepicker();
+
     // For adding seconds (00)
     $('.timepicker').on('change', function() {
         let receivedVal = $(this).val();
         $(this).val(receivedVal + ":00");
     });
 
+    // init datepicker
     $('.datepicker').datepicker({
         format: 'yyyy-mm-dd'
     });
@@ -30,7 +35,7 @@ $(document).ready(function() {
         $.ajax("/signup", {
             type: "POST",
             data: newSignUp,
-        }).then(data => {});
+        }).then(newSignUpData => {});
 
     });
 
@@ -44,7 +49,7 @@ $(document).ready(function() {
         $.ajax("/login", {
             type: "POST",
             data: loginUser,
-        }).then(data => { location.replace("/dashboard") });
+        }).then(loginUserData => { location.replace("/dashboard") });
     });
 
     // Update User
@@ -62,7 +67,7 @@ $(document).ready(function() {
         $.ajax("/users/" + id, {
             type: "PUT",
             data: updatedUser,
-        }).then(data => {});
+        }).then(updatedUseData => {});
     });
 
     // delete user script 
@@ -73,20 +78,20 @@ $(document).ready(function() {
 
         $.ajax("/users/" + id, {
             type: "DELETE",
-        }).then((data) => { location.replace("/logout") });
+        }).then((deletedUserData) => { location.replace("/logout") });
     });
 
     // add task script
     $('#add-task').click(event => {
         event.preventDefault();
         // // Values retrieved from page: 
-        let recur = $('#reoccurring').val();
-        let autoSch = $('#auto-schedule').val();
+        let is_reoccurring = $('#reoccurring').val();
+        let is_autoSchedule = $('#auto-schedule').val();
         // // changing default values to true/false
-        if (recur === 'on') recur = true;
-        recur = false;
-        if (autoSch === 'on') autoSch = true;
-        autoSch = false;
+        if (is_reoccurring === 'on') is_reoccurring = true;
+        is_reoccurring = false;
+        if (is_autoSchedule === 'on') is_autoSchedule = true;
+        is_autoSchedule = false;
 
         const newTask = {
             title: $('#task-title').val().trim(),
@@ -96,19 +101,20 @@ $(document).ready(function() {
             startDate: $('.datepicker').val(),
             startTime: $('.timepicker').val(),
             timeToComplete: $('#length').val(),
-            autoschedule: autoSch,
-            reoccurring: recur,
+            is_autoSchedule: is_autoSchedule,
+            is_reoccurring: is_reoccurring,
             UserId: $("#add-task").attr("data-id")
         }
 
         $.ajax("/api/tasks", {
             type: "POST",
             data: newTask
-        }).then(data => { location.reload(); });
+        }).then(newTaskData => { location.reload(); });
     });
 
     $(".task").click(event => {
         event.preventDefault();
+        console.log($('.task').attr("data-id"))
 
     })
 

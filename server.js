@@ -10,7 +10,7 @@ const app = express();
 app.use(express.static("public"));
 
 // Requiring our models for syncing
-const db = require('./models')
+const db = require('./models');
 
 // Parse application body
 app.use(express.urlencoded({ extended: true }));
@@ -28,14 +28,12 @@ require("./routes/authentication-routes.js")(app);
 require("./routes/user-api-routes.js")(app);
 require("./routes/html-routes.js")(app);
 require("./routes/task-api-routes.js")(app);
-//require("./sendEmail")(app)
-//require("./sendText")(app)
-
-
+//require("./sendEmail")(app);
+//require("./sendText")(app);
 
 // Syncing our sequelize models and then starting our Express app
-db.sequelize.sync({ force: false }).then(function() {
-    app.listen(PORT, function() {
-        console.log('App listening on PORT http://localhost:' + PORT)
-    })
-})
+db.sequelize.sync({ force: false }).then(() => {
+    app.listen(PORT, () => {
+        console.log('App listening on PORT http://localhost:' + PORT);
+    });
+});

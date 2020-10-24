@@ -71,8 +71,7 @@ module.exports = function(app) {
                 include: [db.Task]
             }).then(function(dbUser) {
                 const userObj = dbUser.toJSON();
-                    
-                    res.render("index", userObj);
+                res.render("index", userObj);
 
             });
         } else {
