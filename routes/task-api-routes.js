@@ -52,4 +52,23 @@ module.exports = function(app) {
             res.send("DELETED")
         })
     });
+
+    app.put("/api/tasks", function(req, res) {
+        db.Task.update({
+                title: req.body.title,
+                description: req.body.description,
+                deadline: req.body.deadline,
+                autoschedule: req.body.autoschedule,
+                reoccuring: req.body.reoccuring,
+                timeToComplete: req.body.length,
+                startline: req.body.startline
+            }, {
+                where: {
+                    id: req.body.id
+                }
+            })
+            .then(function(tasks) {
+                res.json(tasks);
+            });
+    });
 }

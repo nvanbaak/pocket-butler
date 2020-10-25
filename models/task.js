@@ -45,7 +45,6 @@ module.exports = function(sequelize, DataTypes) {
             allowNull: true
         },
         //   might need to change to compare easier to calendar
-
         complete: {
             type: DataTypes.BOOLEAN,
             defaultValue: false
