@@ -9,7 +9,7 @@
                 <i class="material-icons settings-icon">settings</i>
             </a>
         </div>
-        <!-- Settings Modal -->
+        <!-- Account Settings Modal -->
         <div id="modal1" class="modal">
             <div class="modal-content">
                 <h5 style="text-align: center;">Settings</h5>
@@ -35,10 +35,13 @@
                         </div>
                         <input type="hidden" class="user_id" type="text" value={{this.id}}>
                         <button id="update-user" data-id="{{this.id}}"
-                            class="col xl2 l2 m2 s4 offset-xl3 offset-l3 offset-m3 offset-s1 btn modal-close"
+                            class="col xl2 l2 m2 s3 offset-xl1 offset-l1 offset-m1 btn modal-close"
                             type="submit" name="action">Update</button>
+                        <button id="close-settings" data-id="{{this.id}}"
+                            class="col xl2 l2 m2 s3 offset-xl2 offset-l2 offset-m2 offset-s1 btn modal-close"
+                            name="action">Close</button>
                         <button id="delete-user" data-id="{{this.id}}"
-                            class="col xl2 l2 m2 s4 offset-xl2 offset-l2 offset-m2 offset-s2 btn modal-close"
+                            class="col xl2 l2 m2 s3 offset-xl2 offset-l2 offset-m2 offset-s1 btn modal-close"
                             type="submit" name="action">Delete</button>
                 </form>
             </div>
