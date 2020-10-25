@@ -140,7 +140,6 @@ header {
     flex-direction: column;
     align-items: center;
     overflow: scroll;
-    cursor: pointer;
 }
 
 .task {
@@ -153,6 +152,10 @@ header {
     box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.2) !important;
     font-size: 14px;
     text-align: center;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
 }
 
 .task:hover {

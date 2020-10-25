@@ -72,7 +72,6 @@ module.exports = function(app) {
             }).then(function(dbUser) {
                 const userObj = dbUser.toJSON();
                 res.render("index", userObj);
-
             });
         } else {
             res.render("login");

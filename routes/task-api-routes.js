@@ -16,7 +16,6 @@ module.exports = function(app) {
     app.post("/api/tasks", (req, res) => {
         db.Task.create(req.body).then((newTask) => {
             res.json(newTask);
-            res.redirect("/dashboard");
         })
     });
 

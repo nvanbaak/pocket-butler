@@ -112,11 +112,25 @@ $(document).ready(function() {
         }).then(newTaskData => { location.reload(); });
     });
 
-    $(".task").click(event => {
-        event.preventDefault();
-        console.log($('.task').attr("data-id"))
 
-    })
+    // delete task script
+    $("#delete-task").click(function(event) {
+        event.preventDefault()
+            // Get the ID from the button.
+        let taskId = $(this).attr("data-id");
+
+        // Send the DELETE request.
+        $.ajax("/api/tasks/" + taskId, {
+            type: "DELETE"
+        }).then(
+            function() {
+                // Reload the page to get the updated list
+                location.reload();
+            }
+        );
+    });
+
+
 
 
 

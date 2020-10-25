@@ -42,7 +42,7 @@
         </header>
 
         <main class="row s12 dashboard">
-            <h4 class="dashboard-welcome">Welcome {{this.username}}</h4>
+            <h4 class="dashboard-welcome">Welcome {{username}}</h4>
             <div class="row col s12 dashboard-top ">
                 <button class="col xl2 l2 m3 s6 new-task btn modal-trigger" href="#modal2">Add</button>
                 <div class="col xl3 l3 m3 s6 clock">
@@ -54,12 +54,79 @@
                     
                       {{#each Tasks}}
 
-                    <div data-id={{title}} class="task">
-                        {{title}} {{id}}
+                    <div data-id={{id}} class="task modal-trigger" href="#modal{{id}}">
+                        {{title}} {{description}}
                     </div>
                     <!-- Update/delete task modal -->
+                    <!-- Update/delete task modal -->
+                <div id="modal{{id}}" class="modal">
+                <div class="modal-content">
+                    <h5 style="text-align: center;">Update Task</h5>
+                    <form class="col xl12 l12">
+                        <div class="row">
+                            <div class="input-field col xl10 l10 m12 s12 offset-xl1 offset-l1">
+                                <input placeholder="Task Title" type="text" class="validate update-title" value="{{title}}">
+                                <label for="task-title">Task</label>
+                            </div>
+                            <div class="input-field col xl10 l10 m12 s12 offset-xl1 offset-l1">
+                                <textarea placeholder="Details" class="materialize-textarea update-details" >{{this.description}}</textarea>
+                                <label for="details">Details</label>
+                            </div>
+                            <div class="input-field browser-default col xl10 l10 m12 s12 offset-xl1 offset-l1">
+                                <select class="update-length" value="{{this.timeToComplete}}">
+                                        <option value="0" disabled selected>Choose a length</option>
+                                        <option value="0.15">15 min</option>
+                                        <option value="0.30">30 min</option>
+                                        <option value="0.45">45 min</option>
+                                        <option value="1.00">1:00</option>
+                                        <option value="1.30">1:30</option>
+                                        <option value="2.00">2:00</option>
+                                      </select>
+                                <label>Estimated time to complete:</label>
+                            </div>
+
+                            <div class="input-field col xl10 l10 m12 s12 offset-xl1 offset-l1">
+                                <input type="text" class="datepicker" value="{{this.startDate}}">
+                                <label for="datepicker">Start Date</label>
+                            </div>
+
+                            <div class="input-field col xl10 l10 m12 s12 offset-xl1 offset-l1">
+                                <input type="text" class="timepicker" value="{{this.startTime}}">
+                                <label for="timepicker">Start Time</label>
+                            </div>
+
+                            <div class="input-field col xl10 l10 m12 s12 offset-xl1 offset-l1">
+                                <input type="text" class="datepicker duedatepicker" value="{{this.endDate}}">
+                                <label for="duedatepicker">Deadline Date</label>
+                            </div>
+
+                            <div class="input-field col xl10 l10 m12 s12 offset-xl1 offset-l1">
+                                <input type="text" class="timepicker timeduepicker" value="{{this.endTime}}">
+                                <label for="timeduepicker">Deadline Time</label>
+                            </div>
+
+                            <div class="checkboxes col xl10 l10 m12 s12 offset-xl1 offset-l1">
+                                <p>
+                                    <label>
+                                          <input class="update-reoccurring" for="reoccurring" type="checkbox" class="filled-in" checked="checked" />
+                                          <span>This is a recurring event</span>
+                                        </label>
+                                </p>
+                                <p>
+                                    <label>
+                                          <input class="update-auto-schedule" for="auto-schedule" type="checkbox" class="filled-in" checked="checked" />
+                                          <span>Schedule this for me</span>
+                                        </label>
+                                </p>
+                            </div>
+                            <button  data-id="{{this.id}}" class="col xl2 l2 m2 s4 offset-xl3 offset-l3 offset-m3 offset-s1 btn modal-close update-task">Update</button>
+                            <button  data-id="{{this.id}}"class="col xl2 l2 m2 s4 offset-xl2 offset-l2 offset-m2 offset-s2 btn modal-close delete-task">Delete</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
                      {{/each}}
-                     </ul>
+                     
                 </div>
             </div>
 
@@ -83,7 +150,7 @@
                             </div>
                             <div class="input-field browser-default col xl10 l10 m12 s12 offset-xl1 offset-l1">
                                 <select id="length">
-                                        <option value="" disabled selected>Choose a length</option>
+                                        <option value="0" disabled selected>Choose a length</option>
                                         <option value="0.15">15 min</option>
                                         <option value="0.30">30 min</option>
                                         <option value="0.45">45 min</option>
@@ -134,12 +201,6 @@
                     </form>
                 </div>
             </div>
-
-
-
-             
-
-
         </main>
     </div>
     <!-- Full Calendar Script -->
