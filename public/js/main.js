@@ -83,7 +83,7 @@ $(document).ready(function() {
             autoschedule: autoSch,
             reoccurring: recur,
             length: $('#length').val(),
-            startDate: $('.starttime').val(),
+            startline: $('.starttime').val(),
             time: $('.starttime').val(),
             UserId: $("#add-task").attr("data-id")
         }
@@ -158,7 +158,7 @@ $(document).ready(function() {
             autoschedule: autoSch,
             reoccurring: recur,
             length: $('#length2').val(),
-            startDate: $('.startdate2').val(),
+            startline: $('.startdate2').val(),
             time: $('.starttime2').val(),
             id:taskID
         }

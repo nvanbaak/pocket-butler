@@ -43,7 +43,7 @@ module.exports = function(app) {
                 autoschedule:req.body.autoschedule,
                 reoccuring: req.body.reoccuring,
                 timeToComplete: req.body.length,
-                startline: req.body.startDate
+                startline: req.body.startline
             }, {
                 where: {
                     id: req.body.id
