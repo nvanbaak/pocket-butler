@@ -9,10 +9,7 @@ module.exports = function(sequelize, DataTypes) {
         },
         description: {
             type: DataTypes.STRING,
-            allowNull: false,
-            validate: {
-                len: [1, 140]
-            }
+            allowNull: true,
         },
         endDate: {
             type: DataTypes.DATE,

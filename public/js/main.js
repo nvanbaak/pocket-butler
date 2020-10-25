@@ -96,15 +96,17 @@ $(document).ready(function() {
         const newTask = {
             title: $('#task-title').val().trim(),
             description: $('#details').val().trim(),
-            endDate: $('.duedatepicker').val(),
-            endTime: $('.timeduepicker').val(),
-            startDate: $('.datepicker').val(),
-            startTime: $('.timepicker').val(),
+            endDate: $('#duedatepicker').val(),
+            endTime: $('#timeduepicker').val(),
+            startDate: $('#datepicker').val(),
+            startTime: $('#timepicker').val(),
             timeToComplete: $('#length').val(),
             is_autoSchedule: is_autoSchedule,
             is_reoccurring: is_reoccurring,
             UserId: $("#add-task").attr("data-id")
         }
+
+        console.log(newTask)
 
         $.ajax("/api/tasks", {
             type: "POST",
@@ -126,19 +128,21 @@ $(document).ready(function() {
         is_autoSchedule = false;
 
         const updatedTaskObj = {
-            title: $('.update-title').val().trim(),
-            description: $('.update-details').val().trim(),
-            endDate: $('.duedatepicker').val(),
-            endTime: $('.timeduepicker').val(),
-            startDate: $('.datepicker').val(),
-            startTime: $('.timepicker').val(),
-            timeToComplete: $('.update-length').val(),
+            title: $(`#title${taskId}`).val().trim(),
+            description: $(`#details${taskId}`).val().trim(),
+            endDate: $(`#duedatepicker${taskId}`).val(),
+            endTime: $(`#timeduepicker${taskId}`).val(),
+            startDate: $(`#datepicker${taskId}`).val(),
+            startTime: $(`#timepicker${taskId}`).val(),
+            timeToComplete: $(`#length${taskId}`).val(),
             is_autoSchedule: is_autoSchedule,
             is_reoccurring: is_reoccurring,
 
         }
 
-        $.ajax("/api/tasks" + taskId, {
+        console.log(updatedTaskObj)
+
+        $.ajax("/api/tasks/" + taskId, {
             type: "PUT",
             data: updatedTaskObj
         }).then(() => {
@@ -167,11 +171,6 @@ $(document).ready(function() {
             }
         );
     });
-
-
-
-
-
 
 
 });

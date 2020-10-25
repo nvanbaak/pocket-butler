@@ -55,9 +55,10 @@
                       {{#each Tasks}}
 
                     <div data-id={{id}} class="task modal-trigger" href="#modal{{id}}">
-                        {{title}} {{description}}
+                        <p>{{title}}</p>
+                      
                     </div>
-                    <!-- Update/delete task modal -->
+                    
                     <!-- Update/delete task modal -->
                 <div id="modal{{id}}" class="modal">
                 <div class="modal-content">
@@ -65,16 +66,15 @@
                     <form class="col xl12 l12">
                         <div class="row">
                             <div class="input-field col xl10 l10 m12 s12 offset-xl1 offset-l1">
-                                <input placeholder="Task Title" type="text" class="validate update-title" value="{{title}}">
+                                <input id="title{{id}}" placeholder="Task Title" type="text" class="validate" value="{{title}}">
                                 <label for="task-title">Task</label>
                             </div>
                             <div class="input-field col xl10 l10 m12 s12 offset-xl1 offset-l1">
-                                <textarea placeholder="Details" class="materialize-textarea update-details" >{{this.description}}</textarea>
+                                <textarea id="details{{id}}" placeholder="Details" class="materialize-textarea " >{{this.description}}</textarea>
                                 <label for="details">Details</label>
                             </div>
                             <div class="input-field browser-default col xl10 l10 m12 s12 offset-xl1 offset-l1">
-                                <select class="update-length" value="{{this.timeToComplete}}">
-                                        <option value="0.00" disabled selected>Choose a length</option>
+                                <select id="length{{id}}" value="{{this.timeToComplete}}">
                                         <option value="0.15">15 min</option>
                                         <option value="0.30">30 min</option>
                                         <option value="0.45">45 min</option>
@@ -86,22 +86,22 @@
                             </div>
 
                             <div class="input-field col xl10 l10 m12 s12 offset-xl1 offset-l1">
-                                <input type="text" class="datepicker" value="{{this.startDate}}">
+                                <input id="datepicker{{id}}" type="text" class="datepicker" value="{{this.startDate}}">
                                 <label for="datepicker">Start Date</label>
                             </div>
 
                             <div class="input-field col xl10 l10 m12 s12 offset-xl1 offset-l1">
-                                <input type="text" class="timepicker" value="{{this.startTime}}">
+                                <input id="timepicker{{id}}" type="text" class="timepicker" value="{{this.startTime}}">
                                 <label for="timepicker">Start Time</label>
                             </div>
 
                             <div class="input-field col xl10 l10 m12 s12 offset-xl1 offset-l1">
-                                <input type="text" class="datepicker duedatepicker" value="{{this.endDate}}">
+                                <input id="duedatepicker{{id}}" type="text" class="datepicker duedatepicker" value="{{this.endDate}}">
                                 <label for="duedatepicker">Deadline Date</label>
                             </div>
 
                             <div class="input-field col xl10 l10 m12 s12 offset-xl1 offset-l1">
-                                <input type="text" class="timepicker timeduepicker" value="{{this.endTime}}">
+                                <input id="timeduepicker{{id}}" type="text" class="timepicker timeduepicker" value="{{this.endTime}}">
                                 <label for="timeduepicker">Deadline Time</label>
                             </div>
 
@@ -124,15 +124,25 @@
                         </div>
                     </form>
                 </div>
-            </div>
-                     {{/each}}
-                     
+                </div>
+                     {{/each}}   
                 </div>
             </div>
 
             <div class="row">
                 <div class="col xl10 l10 m12 s12 offset-xl1 offset-l1 calendar" id="calendar"></div>
             </div>
+
+<!-- event modal -->
+    <div id="modalA" class="modal">
+    <div class="modal-content">
+      <h4>Modal Header</h4>
+      <p>A bunch of text</p>
+    </div>
+    <div class="modal-footer">
+      <button class="modal-close waves-effect waves-green btn">close</button>
+    </div>
+  </div>
 
 <!-- New task modal -->
             <div id="modal2" class="modal">
@@ -150,7 +160,6 @@
                             </div>
                             <div class="input-field browser-default col xl10 l10 m12 s12 offset-xl1 offset-l1">
                                 <select id="length">
-                                        <option value="0.00" disabled selected>Choose a length</option>
                                         <option value="0.15">15 min</option>
                                         <option value="0.30">30 min</option>
                                         <option value="0.45">45 min</option>
@@ -162,22 +171,22 @@
                             </div>
 
                             <div class="input-field col xl10 l10 m12 s12 offset-xl1 offset-l1">
-                                <input type="text" class="datepicker">
+                                <input id="datepicker"type="text" class="datepicker">
                                 <label for="datepicker">Start Date</label>
                             </div>
 
                             <div class="input-field col xl10 l10 m12 s12 offset-xl1 offset-l1">
-                                <input type="text" class="timepicker">
+                                <input id ="timepicker" type="text" class="timepicker">
                                 <label for="timepicker">Start Time</label>
                             </div>
 
                             <div class="input-field col xl10 l10 m12 s12 offset-xl1 offset-l1">
-                                <input type="text" class="datepicker duedatepicker">
+                                <input id="duedatepicker" type="text" class="datepicker duedatepicker">
                                 <label for="duedatepicker">Deadline Date</label>
                             </div>
 
                             <div class="input-field col xl10 l10 m12 s12 offset-xl1 offset-l1">
-                                <input type="text" class="timepicker timeduepicker">
+                                <input id= "timeduepicker" type="text" class="timepicker timeduepicker">
                                 <label for="timeduepicker">Deadline Time</label>
                             </div>
 
