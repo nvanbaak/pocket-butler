@@ -20,8 +20,7 @@ module.exports = function(app) {
 
     app.post("/api/tasks", function(req, res) {
         db.Task.create(req.body).then(function(newTask) {
-            // res.json(newTask);
-            res.redirect("/dashboard");
+            res.json(newTask);
         })
     });
 
@@ -42,7 +41,7 @@ module.exports = function(app) {
                 description: req.body.description,
                 deadline:req.body.deadline,
                 autoschedule:req.body.autoschedule,
-                // reoccuring: req.body.reoccuring,
+                reoccuring: req.body.reoccuring,
                 timeToComplete: req.body.length,
                 startline: req.body.startDate
             }, {
