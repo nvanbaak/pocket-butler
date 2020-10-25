@@ -1,39 +1,25 @@
 const db = require(".");
 
-module.exports = function (sequelize, DataTypes) {
-  const Week = sequelize.define("Week", {
-    date: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    days: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    }
+module.exports = function(sequelize, DataTypes) {
+    const Week = sequelize.define("Week", {
+        date: {
+            type: DataTypes.STRING,
+            allowNull: false,
+        },
+        days: {
+            type: DataTypes.STRING,
+            allowNull: false,
+        }
 
-  });
-
-  Week.associate = function (models) {
-    Week.belongsTo(models.User, {
-      foreignKey: {
-        allowNull: false
-      }
     });
-  };
 
-  return Week;
+    Week.associate = function(models) {
+        Week.belongsTo(models.User, {
+            foreignKey: {
+                allowNull: false
+            }
+        });
+    };
+
+    return Week;
 };
-
-// let days=[{hours:[]},{}]
-
-// weekToSave={
-//   date://$("elemntid or class").val(),
-//   days://stringifyed of the array of all days with hours arrays
-// }
-
-
-// db.Week.fineOne({
-//   where: {id:req.params.id}
-// }).then(data=>{
-//   let myweek=JSON.parse( data.days)
-// })

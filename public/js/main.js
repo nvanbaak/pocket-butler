@@ -3,9 +3,22 @@ $(document).ready(function() {
 
     // Materialize init 
     // ******************************
+    // init Modals
     $('.modal').modal();
+
+    // init timepicker
     $('.timepicker').timepicker();
-    $('.datepicker').datepicker();
+
+    // For adding seconds (00)
+    $('.timepicker').on('change', function() {
+        let receivedVal = $(this).val();
+        $(this).val(receivedVal + ":00");
+    });
+
+    // init datepicker
+    $('.datepicker').datepicker({
+        format: 'yyyy-mm-dd'
+    });
     $('select').formSelect();
     // ******************************
 
@@ -22,7 +35,7 @@ $(document).ready(function() {
         $.ajax("/signup", {
             type: "POST",
             data: newSignUp,
-        }).then(data => {});
+        }).then(newSignUpData => {});
 
     });
 
@@ -36,7 +49,7 @@ $(document).ready(function() {
         $.ajax("/login", {
             type: "POST",
             data: loginUser,
-        }).then(data => { location.replace("/dashboard") });
+        }).then(loginUserData => { location.replace("/dashboard") });
     });
 
     // Update User
@@ -54,7 +67,7 @@ $(document).ready(function() {
         $.ajax("/users/" + id, {
             type: "PUT",
             data: updatedUser,
-        }).then(data => {});
+        }).then(updatedUseData => {});
     });
 
     // delete user script 
@@ -65,112 +78,99 @@ $(document).ready(function() {
 
         $.ajax("/users/" + id, {
             type: "DELETE",
-        }).then((data) => { location.replace("/logout") });
+        }).then((deletedUserData) => { location.replace("/logout") });
     });
 
     // add task script
     $('#add-task').click(event => {
         event.preventDefault();
-
-        // Materialize outputs checkbox output as "on" and "off", so this code converts it to true/false
-        let autoSch = ($("#auto-schedule").val() === "on");
-        let recur = ($("#reoccuring").val() === "on");
+        // // Values retrieved from page: 
+        let is_reoccurring = $('#reoccurring').val();
+        let is_autoSchedule = $('#auto-schedule').val();
+        // // changing default values to true/false
+        if (is_reoccurring === 'on') is_reoccurring = true;
+        is_reoccurring = false;
+        if (is_autoSchedule === 'on') is_autoSchedule = true;
+        is_autoSchedule = false;
 
         const newTask = {
             title: $('#task-title').val().trim(),
             description: $('#details').val().trim(),
-            deadline: $('.enddate').val(),
-            autoschedule: autoSch,
-            reoccurring: recur,
-            length: $('#length').val(),
-            startline: $('.starttime').val(),
-            time: $('.starttime').val(),
+            endDate: $('#duedatepicker').val(),
+            endTime: $('#timeduepicker').val(),
+            startDate: $('#datepicker').val(),
+            startTime: $('#timepicker').val(),
+            timeToComplete: $('#length').val(),
+            is_autoSchedule: is_autoSchedule,
+            is_reoccurring: is_reoccurring,
             UserId: $("#add-task").attr("data-id")
         }
+
+        console.log(newTask)
 
         $.ajax("/api/tasks", {
             type: "POST",
             data: newTask
-        }).then( () => {
-            location.reload();
-        });
+        }).then(newTaskData => { location.reload(); });
     });
 
-    // Script to open update modal
-    $(".task").click(event => {
+    $(".update-task").click(function(event) {
         event.preventDefault();
-        
-        // Grab the task id out of the selected element
-        const taskId = event.target.dataset.taskid;
-        
-        // Add it to the update button
-        $("#update-task").attr("data-taskid",taskId);
-        
-        // Get the data for the selected task
-        $.ajax(`api/tasks/${taskId}`, {
-            type: "GET"
-        }).then(taskData => {
-            console.log(taskData);
+        let taskId = $(this).attr("data-id");
 
-            // Set the modal fields using the task data
-            $('#task-title2').val(taskData.title);
-            $('#details2').val(taskData.description);
-            $('.enddate2').val(taskData.deadline);
-            $('#length2').val(taskData.timeToComplete);
-            $('.startdate2').val(taskData.startline);
+        // // Values retrieved from page: 
+        let is_reoccurring = $('#reoccurring').val();
+        let is_autoSchedule = $('#auto-schedule').val();
+        // // changing default values to true/false
+        if (is_reoccurring === 'on') is_reoccurring = true;
+        is_reoccurring = false;
+        if (is_autoSchedule === 'on') is_autoSchedule = true;
+        is_autoSchedule = false;
 
-            // Set checkboxes
-            if (taskData.autoSchedule) {
-                $("#auto-schedule2").val("on");
-            } else {
-                $("#auto-schedule2").val("off");
-            }
-            if (taskData.reoccuring) {
-                $("reoccuring2").val("on");
-            } else {
-                $("reoccuring2").val("off");
-            }
+        const updatedTaskObj = {
+            title: $(`#title${taskId}`).val().trim(),
+            description: $(`#details${taskId}`).val().trim(),
+            endDate: $(`#duedatepicker${taskId}`).val(),
+            endTime: $(`#timeduepicker${taskId}`).val(),
+            startDate: $(`#datepicker${taskId}`).val(),
+            startTime: $(`#timepicker${taskId}`).val(),
+            timeToComplete: $(`#length${taskId}`).val(),
+            is_autoSchedule: is_autoSchedule,
+            is_reoccurring: is_reoccurring,
 
-            // Once the data's set, open the update modal
-            $("#modal3").modal('open');
-        })
-
-        
-    });
-
-
-    // Update task
-    $("#update-task").click(event=> {
-        event.preventDefault();
-
-        // Get id for task
-        let taskID = $("#update-task").attr("data-taskid");
-        
-        // Materialize outputs checkbox output as "on" and "off", so this code converts it to true/false
-        let autoSch = ($("#auto-schedule2").val() === "on");
-        let recur = ($("#reoccuring2").val() === "on");
-
-        
-        const updateTask = {
-            title: $('#task-title2').val().trim(),
-            description: $('#details2').val().trim(),
-            deadline: $('.enddate2').val(),
-            autoschedule: autoSch,
-            reoccurring: recur,
-            length: $('#length2').val(),
-            startline: $('.startdate2').val(),
-            time: $('.starttime2').val(),
-            id:taskID
         }
-        
-        console.log(updateTask);
-        
-        $.ajax(`/api/tasks/`, {
+
+        console.log(updatedTaskObj)
+
+        $.ajax("/api/tasks/" + taskId, {
             type: "PUT",
-            data: updateTask
-        }).then( () => {
+            data: updatedTaskObj
+        }).then(() => {
             location.reload();
-        });;
+        })
     })
+
+
+
+
+
+
+    // delete task script
+    $(".delete-task").click(function(event) {
+        event.preventDefault()
+            // Get the ID from the button.
+        let taskId = $(this).attr("data-id");
+
+        // Send the DELETE request.
+        $.ajax("/api/tasks/" + taskId, {
+            type: "DELETE"
+        }).then(
+            function() {
+                // Reload the page to get the updated list
+                location.reload();
+            }
+        );
+    });
+
 
 });
