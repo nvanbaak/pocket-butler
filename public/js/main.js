@@ -129,10 +129,11 @@ $(document).ready(function() {
             length: $('#length2').val(),
             startDate: $('.starttime2').val(),
             time: $('.starttime2').val(),
-            UserId: $("#update-task").attr("data-id")
+            UserId: $("#update-task").attr("data-id"),
+            id:taskID
         }
 
-        $.ajax(`/api/tasks/${taskID}`, {
+        $.ajax(`/api/tasks/`, {
             type: "PUT",
             data: updateTask
         });

@@ -38,8 +38,13 @@ module.exports = function(app) {
 
     app.put("/api/tasks", function(req, res) {
         db.Task.update({
-                text: req.body.text,
-                complete: req.body.complete
+                title: req.body.title,
+                description: req.body.description,
+                deadline:req.body.deadline,
+                autoschedule:req.body.autoschedule,
+                // reoccuring: req.body.reoccuring,
+                timeToComplete: req.body.length,
+                startline: req.body.startDate
             }, {
                 where: {
                     id: req.body.id
