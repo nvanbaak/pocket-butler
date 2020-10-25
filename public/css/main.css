@@ -138,17 +138,16 @@ header {
     box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.4);
     flex-direction: column;
     align-items: center;
-    overflow: scroll;
+    overflow-y: scroll;
 }
 
 .task {
-    height: 30px;
+    height: 100%;
     width: 100%;
     margin-top: 4px;
     border-radius: 4px;
     box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.2);
     font-size: 12px;
-    display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
@@ -178,6 +177,10 @@ header {
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+.flex {
+    display: flexbox;
 }
 
 

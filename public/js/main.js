@@ -89,12 +89,12 @@ $(document).ready(function() {
         const newTask = {
             title: $('#task-title').val().trim(),
             description: $('#details').val().trim(),
-            deadline: $('.duedatepicker').val(),
+            deadline: $('.enddate').val(),
             autoschedule: autoSch,
             reoccurring: recur,
             length: $('#length').val(),
-            startDate: $('.datepicker').val(),
-            time: $('.timepicker').val(),
+            startDate: $('.starttime').val(),
+            time: $('.starttime').val(),
             UserId: $("#add-task").attr("data-id")
         }
 
@@ -102,5 +102,15 @@ $(document).ready(function() {
             type: "POST",
             data: newTask
         });
+    });
+
+    // Click behavior for task list
+    $(".task").click(event => {
+
+        // Grab the id out of the selected element
+        const taskId = event.target.dataset.taskid;
+
+        
+
     });
 });
