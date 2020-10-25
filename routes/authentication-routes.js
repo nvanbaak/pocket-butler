@@ -1,3 +1,4 @@
+const { TaskList } = require("twilio/lib/rest/autopilot/v1/assistant/task");
 const db = require("../models");
 require("dotenv").config();
 
@@ -71,9 +72,7 @@ module.exports = function(app) {
                 include: [db.Task]
             }).then(function(dbUser) {
                 const userObj = dbUser.toJSON();
-                    
-                    res.render("index", userObj);
-
+                res.render("index", userObj);
             });
         } else {
             res.render("login");
