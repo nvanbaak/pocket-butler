@@ -112,9 +112,47 @@ $(document).ready(function() {
         }).then(newTaskData => { location.reload(); });
     });
 
+    $(".update-task").click(function(event) {
+        event.preventDefault();
+        let taskId = $(this).attr("data-id");
+
+        // // Values retrieved from page: 
+        let is_reoccurring = $('#reoccurring').val();
+        let is_autoSchedule = $('#auto-schedule').val();
+        // // changing default values to true/false
+        if (is_reoccurring === 'on') is_reoccurring = true;
+        is_reoccurring = false;
+        if (is_autoSchedule === 'on') is_autoSchedule = true;
+        is_autoSchedule = false;
+
+        const updatedTaskObj = {
+            title: $('.update-title').val().trim(),
+            description: $('.update-details').val().trim(),
+            endDate: $('.duedatepicker').val(),
+            endTime: $('.timeduepicker').val(),
+            startDate: $('.datepicker').val(),
+            startTime: $('.timepicker').val(),
+            timeToComplete: $('.update-length').val(),
+            is_autoSchedule: is_autoSchedule,
+            is_reoccurring: is_reoccurring,
+
+        }
+
+        $.ajax("/api/tasks" + taskId, {
+            type: "PUT",
+            data: updatedTaskObj
+        }).then(() => {
+            location.reload();
+        })
+    })
+
+
+
+
+
 
     // delete task script
-    $("#delete-task").click(function(event) {
+    $(".delete-task").click(function(event) {
         event.preventDefault()
             // Get the ID from the button.
         let taskId = $(this).attr("data-id");
