@@ -72,16 +72,6 @@ $(document).ready(function() {
     $('#add-task').click(event => {
         event.preventDefault();
 
-        // Values retrieved from page: 
-        let reoccurring = $('#reoccurring').val();
-        let autoSchedule = $('#auto-schedule').val();
-
-        // changing default values to true/false
-        if (reoccurring === 'on') reoccurring = true;
-        reoccurring = false;
-        if (autoSchedule === 'on') autoSchedule = true;
-        autoSchedule = false;
-
         // Materialize outputs checkbox output as "on" and "off", so this code converts it to true/false
         let autoSch = ($("#auto-schedule").val() === "on");
         let recur = ($("#reoccuring").val() === "on");
@@ -106,11 +96,34 @@ $(document).ready(function() {
 
     // Click behavior for task list
     $(".task").click(event => {
+        event.preventDefault();
 
         // Grab the id out of the selected element
         const taskId = event.target.dataset.taskid;
 
-        
+        // Materialize outputs checkbox output as "on" and "off", so this code converts it to true/false
+        let autoSch = ($("#auto-schedule2").val() === "on");
+        let recur = ($("#reoccuring2").val() === "on");
+
+        let taskID = $("#update-task").attr("data-id");
+
+        const updateTask = {
+            title: $('#task-title2').val().trim(),
+            description: $('#details2').val().trim(),
+            deadline: $('.enddate2').val(),
+            autoschedule: autoSch,
+            reoccurring: recur,
+            length: $('#length2').val(),
+            startDate: $('.starttime2').val(),
+            time: $('.starttime2').val(),
+            UserId: taskID
+        }
+
+        $.ajax(`/api/tasks/${taskID}`, {
+            type: "PUT",
+            data: updateTask
+        });
+
 
     });
 });

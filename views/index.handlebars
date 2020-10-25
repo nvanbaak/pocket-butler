@@ -134,10 +134,84 @@
                     </form>
                 </div>
             </div>
+
+<!-- Update task modal -->
+            <div id="modal3" class="modal">
+                <div class="modal-content">
+                    <h5 style="text-align: center;">Update Task</h5>
+                    <form class="col xl12 l12">
+                        <div class="row">
+                            <div class="input-field col xl10 l10 m12 s12 offset-xl1 offset-l1">
+                                <input placeholder="Task Title" id="task-title2" type="text" class="validate">
+                                <label for="task-title2">Task</label>
+                            </div>
+                            <div class="input-field col xl10 l10 m12 s12 offset-xl1 offset-l1">
+                                <textarea placeholder="Details" id="details2" class="materialize-textarea"></textarea>
+                                <label for="details2">Details</label>
+                            </div>
+                            <div class="input-field browser-default col xl10 l10 m12 s12 offset-xl1 offset-l1">
+                                <select id="length2">
+                                        <option value="" disabled selected>Choose a length</option>
+                                        <option value="1">0:15 min</option>
+                                        <option value="2">0:30 min</option>
+                                        <option value="3">0:45 min</option>
+                                        <option value="4">1:00</option>
+                                        <option value="5">1:30</option>
+                                        <option value="6">2:00</option>
+                                      </select>
+                                <label>Estimated time to complete:</label>
+                            </div>
+
+                            <div class="row">
+
+                                <div class="input-field col xl5 l1 m6 s6 offset-xl1 offset-l1">
+                                    <input type="text" class="datepicker startdate2">
+                                    <label for="startdate2">Start Date</label>
+                                </div>
+
+                                <div class="input-field col xl5 l5 m6 s6 offset-xl1 offset-l1">
+                                    <input type="text" class="timepicker starttime2">
+                                    <label for="starttime2">Start Time</label>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="input-field col xl5 l5 m6 s6 offset-xl1 offset-l1">
+                                    <input type="text" class="datepicker enddate2">
+                                    <label for="enddate2">Deadline Date</label>
+                                </div>
+
+                                <div class="input-field col xl5 l5 m6 s6 offset-xl1 offset-l1">
+                                    <input type="text" class="timepicker endtime2">
+                                    <label for="endtime2">Deadline Time</label>
+                                </div>
+                            </div>
+
+                            <div class="checkboxes col xl10 l10 m12 s12 offset-xl1 offset-l1">
+                                <p>
+                                    <label>
+                                          <input id="reoccurring2" for="reoccurring2" type="checkbox" class="filled-in" checked="checked" />
+                                          <span>This is a recurring event</span>
+                                        </label>
+                                </p>
+                                <p>
+                                    <label>
+                                          <input id="auto-schedule2" for="auto-schedule2" type="checkbox" class="filled-in" checked="checked" />
+                                          <span>Schedule this for me</span>
+                                        </label>
+                                </p>
+                            </div>
+                            <button id="update-task" data-id="{{id}}" class="col xl2 l2 m2 s4 offset-xl3 offset-l3 offset-m3 offset-s1 btn modal-close">Update</button>
+                            <button class="col xl2 l2 m2 s4 offset-xl2 offset-l2 offset-m2 offset-s2 btn modal-close">Close</button>
+                    </form>
+                </div>
+            </div>
+
+
         </main>
 
 
-        
+
     <!-- Full Calendar Script -->
     <script src='./js/fullcal-main.js'></script>
 
