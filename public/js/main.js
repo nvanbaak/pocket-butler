@@ -94,18 +94,31 @@ $(document).ready(function() {
         });
     });
 
-    // Click behavior for task list
+    // Script to open update modal
     $(".task").click(event => {
         event.preventDefault();
-
+        
         // Grab the id out of the selected element
         const taskId = event.target.dataset.taskid;
+        
+        // Add it to the update button
+        $("#update-task").attr("data-taskid",taskId);
+        
+        // Open the update modal
+        $("#modal3").modal('open');
+    });
 
+
+    // Update task
+    $("#update-task").click(event=> {
+        event.preventDefault();
+
+        // Get id for task
+        let taskID = $("#update-task").attr("data-taskid");
+        
         // Materialize outputs checkbox output as "on" and "off", so this code converts it to true/false
         let autoSch = ($("#auto-schedule2").val() === "on");
         let recur = ($("#reoccuring2").val() === "on");
-
-        let taskID = $("#update-task").attr("data-id");
 
         const updateTask = {
             title: $('#task-title2').val().trim(),
@@ -116,14 +129,13 @@ $(document).ready(function() {
             length: $('#length2').val(),
             startDate: $('.starttime2').val(),
             time: $('.starttime2').val(),
-            UserId: taskID
+            UserId: $("#update-task").attr("data-id")
         }
 
         $.ajax(`/api/tasks/${taskID}`, {
             type: "PUT",
             data: updateTask
         });
+    })
 
-
-    });
 });
