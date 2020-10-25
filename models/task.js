@@ -16,7 +16,7 @@ module.exports = function(sequelize, DataTypes) {
         },
         //   might need to change to compare easier to calendar
         deadline: {
-            type: DataTypes.STRING,
+            type: DataTypes.DATE,
             allowNull: true,
             validate: {
                 len: [1, 140]
@@ -36,7 +36,7 @@ module.exports = function(sequelize, DataTypes) {
         },
         //   might need to change to compare easier to calendar
         startline: {
-            type: DataTypes.STRING,
+            type: DataTypes.DATE,
             allowNull: true,
             validate: {
                 len: [1, 140]
