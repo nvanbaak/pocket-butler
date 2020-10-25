@@ -52,8 +52,7 @@
                     <h6 style="text-align: center;">Upcoming Tasks</h6>
                     <div class="task">
                         {{#each Tasks}}
-                        <p>{{title}}</p>
-                        <br>
+                        <p data-taskid={{id}}>{{title}}</p>
                         {{/each}}
                     </div>
                 </div>
