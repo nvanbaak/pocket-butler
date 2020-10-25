@@ -84,14 +84,9 @@ $(document).ready(function() {
     // add task script
     $('#add-task').click(event => {
         event.preventDefault();
-        // // Values retrieved from page: 
-        let is_reoccurring = $('#reoccurring').val();
-        let is_autoSchedule = $('#auto-schedule').val();
-        // // changing default values to true/false
-        if (is_reoccurring === 'on') is_reoccurring = true;
-        is_reoccurring = false;
-        if (is_autoSchedule === 'on') is_autoSchedule = true;
-        is_autoSchedule = false;
+        // Convert checkboxes to true/false
+        let is_reoccurring = ( $('#reoccurring').val() === "on");
+        let is_autoSchedule = ( $('#auto-schedule').val() === "on");
 
         const newTask = {
             title: $('#task-title').val().trim(),
@@ -118,14 +113,9 @@ $(document).ready(function() {
         event.preventDefault();
         let taskId = $(this).attr("data-id");
 
-        // // Values retrieved from page: 
-        let is_reoccurring = $('#reoccurring').val();
-        let is_autoSchedule = $('#auto-schedule').val();
-        // // changing default values to true/false
-        if (is_reoccurring === 'on') is_reoccurring = true;
-        is_reoccurring = false;
-        if (is_autoSchedule === 'on') is_autoSchedule = true;
-        is_autoSchedule = false;
+        // Convert checkboxes to true/false
+        let is_reoccurring = ( $('#reoccurring').val() === "on" );
+        let is_autoSchedule = ( $('#auto-schedule').val() === "on" );
 
         const updatedTaskObj = {
             title: $(`#title${taskId}`).val().trim(),
@@ -150,11 +140,6 @@ $(document).ready(function() {
         })
     })
 
-
-
-
-
-
     // delete task script
     $(".delete-task").click(function(event) {
         event.preventDefault()
@@ -171,6 +156,5 @@ $(document).ready(function() {
             }
         );
     });
-
 
 });
