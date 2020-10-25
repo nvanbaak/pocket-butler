@@ -5,23 +5,23 @@
             <img class="logo" src="./assets/logo.png" alt="Pocket Butler Logo">
         </div>
         <div class="col xl l1 m1 s1 offset-xl7 offset-l5 center-align ">
-            <a class="waves-effect waves-light modal-trigger" href="#modal2">
+            <a class="waves-effect waves-light modal-trigger" href="#newtask-modal">
                 <i class="material-icons settings-icon">add_box</i>
             </a>
         </div>
         <div class="col xl l1 m1 s1 center-align ">
-            <a class="waves-effect waves-light modal-trigger" href="#modal4">
+            <a class="waves-effect waves-light modal-trigger" href="#schedule-modal">
                 <i class="material-icons settings-icon">date_range</i>
             </a>
         </div>
         <div class="col xl l1 m1 s1 center-align ">
-            <a class="waves-effect waves-light modal-trigger" href="#modal1">
+            <a class="waves-effect waves-light modal-trigger" href="#user-modal">
                 <i class="material-icons settings-icon">settings</i>
             </a>
         </div>
 
         <!-- Schedule Settings Modal -->
-        <div id="modal4" class="modal">
+        <div id="schedule-modal" class="modal">
             <div class="modal-content">
                 <h5 style="text-align: center;">Schedule Settings</h5>
                 <form class="col xl12 l12">
@@ -41,7 +41,7 @@
         </div>
 
         <!-- Account Settings Modal -->
-        <div id="modal1" class="modal">
+        <div id="user-modal" class="modal">
             <div class="modal-content">
                 <h5 style="text-align: center;">Account Settings</h5>
                 <form class="col xl12 l12">
@@ -83,7 +83,7 @@
     <main class="row s12 dashboard">
         <h4 class="dashboard-welcome">Welcome {{username}}</h4>
         <div class="row col s12 dashboard-top ">
-            <button class="col xl2 l2 m3 s6 new-task btn modal-trigger" href="#modal2">Add</button>
+            <button class="col xl2 l2 m3 s6 new-task btn modal-trigger" href="#newtask-modal">Add</button>
             <div class="col xl3 l3 m3 s6 clock">
                 <p class="date-disp"></p>
                 <p class="clock-time"></p>
@@ -201,7 +201,7 @@
         </div>
 
         <!-- New task modal -->
-        <div id="modal2" class="modal">
+        <div id="newtask-modal" class="modal">
             <div class="modal-content">
                 <h5 style="text-align: center;">New Task</h5>
                 <form class="col xl12 l12">
