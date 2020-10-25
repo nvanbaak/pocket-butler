@@ -91,8 +91,7 @@ $(document).ready(function() {
         $.ajax("/api/tasks", {
             type: "POST",
             data: newTask
-        }).then(function() => {
-
+        }).then( () => {
             location.reload();
         });
     });
