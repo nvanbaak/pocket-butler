@@ -30,6 +30,10 @@ header {
     background-color: #572121 !important;
 }
 
+.delete-task {
+    background-color: #572121 !important;
+}
+
 .btn:hover {
     background-color: #5222D0 !important;
 }
@@ -186,7 +190,7 @@ header {
 }
 
 .settings-icon:hover {
-    color: #333300;
+    color: #faf8a5;
 }
 
 .setting-icon:active {
