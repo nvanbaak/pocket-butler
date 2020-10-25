@@ -4,15 +4,26 @@
         <div class="col xl3 l3 m11">
             <img class="logo" src="./assets/logo.png" alt="Pocket Butler Logo">
         </div>
-        <div class="col xl l1 m1 s1 offset-xl9 offset-l7 offset-s2 center-align ">
+        <div class="col xl l1 m1 s1 offset-xl7 offset-l5 center-align ">
+            <a class="waves-effect waves-light modal-trigger" href="#modal2">
+                <i class="material-icons settings-icon">add_box</i>
+            </a>
+        </div>
+        <div class="col xl l1 m1 s1 center-align ">
+            <a class="waves-effect waves-light modal-trigger" href="#modal1">
+                <i class="material-icons settings-icon">date_range</i>
+            </a>
+        </div>
+        <div class="col xl l1 m1 s1 center-align ">
             <a class="waves-effect waves-light modal-trigger" href="#modal1">
                 <i class="material-icons settings-icon">settings</i>
             </a>
         </div>
+
         <!-- Account Settings Modal -->
         <div id="modal1" class="modal">
             <div class="modal-content">
-                <h5 style="text-align: center;">Settings</h5>
+                <h5 style="text-align: center;">Account Settings</h5>
                 <form class="col xl12 l12">
                     <div class="row">
                         <div class="input-field col xl10 l10 m12 s12 offset-xl1 offset-l1">
@@ -43,9 +54,9 @@
                         <button id="delete-user" data-id="{{this.id}}"
                             class="col xl2 l2 m2 s3 offset-xl2 offset-l2 offset-m2 offset-s1 btn modal-close"
                             type="submit" name="action">Delete</button>
+                    </div>
                 </form>
             </div>
-
         </div>
     </header>
 
@@ -224,8 +235,6 @@
                 </form>
             </div>
         </div>
-
-
     </main>
 
 
