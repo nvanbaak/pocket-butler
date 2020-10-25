@@ -168,7 +168,9 @@ $(document).ready(function() {
         $.ajax(`/api/tasks/`, {
             type: "PUT",
             data: updateTask
-        });
+        }).then( () => {
+            location.reload();
+        });;
     })
 
 });
