@@ -201,7 +201,9 @@ $(document).ready(function () {
                 timeToComplete: $('#length').val(),
                 is_autoSchedule: is_autoSchedule,
                 is_reoccurring: is_reoccurring,
-                UserId: $("#add-task").attr("data-id")
+                UserId: $("#add-task").attr("data-id"),
+                userName: $("#add-task").attr("data-name"),
+                userEmail: $("#add-task").attr("data-email")
             }
 
             $.ajax("/api/tasks", {
@@ -248,7 +250,6 @@ $(document).ready(function () {
             timeToComplete: $('#length').val(),
             is_autoSchedule: is_autoSchedule,
             is_reoccurring: is_reoccurring,
-
         }
 
         $.ajax("/api/tasks/" + taskId, {
