@@ -29,12 +29,8 @@
 
                     </div>
                     <div class="row">
-                        <button id="set-schedule" data-id="{{this.id}}"
-                            class="col xl2 l2 m2 s5 offset-xl3 offset-l3 offset-m3 offset-s1 btn modal-close"
-                            type="submit" name="action">Accept</button>
-                        <button data-id="{{this.id}}"
-                            class="col xl2 l2 m2 s5 offset-xl2 offset-l2 offset-m2 offset-s2 btn modal-close"
-                            name="action">Close</button>
+                        <button id="set-schedule" data-id="{{this.id}}" class="col xl2 l2 m2 s5 offset-xl3 offset-l3 offset-m3 offset-s1 btn modal-close" type="submit" name="action">Accept</button>
+                        <button data-id="{{this.id}}" class="col xl2 l2 m2 s5 offset-xl2 offset-l2 offset-m2 offset-s2 btn modal-close" name="action">Close</button>
                     </div>
                 </form>
             </div>
@@ -47,8 +43,7 @@
                 <form class="col xl12 l12">
                     <div class="row">
                         <div class="input-field col xl10 l10 m12 s12 offset-xl1 offset-l1">
-                            <input placeholder="Username" id="user-name1" type="text" class="validate"
-                                value="{{this.username}}">
+                            <input placeholder="Username" id="user-name1" type="text" class="validate" value="{{this.username}}">
                             <label for="username">Username</label>
                         </div>
                         <div class="input-field col xl10 l10 m12 s12 offset-xl1 offset-l1">
@@ -60,20 +55,13 @@
                             <label for="email">Email</label>
                         </div>
                         <div class="input-field col xl10 l10 m12 s12 offset-xl1 offset-l1">
-                            <input placeholder="phone-number" id="phone-number1" type="text" class="validate"
-                                value="{{this.phone}}">
+                            <input placeholder="phone-number" id="phone-number1" type="text" class="validate" value="{{this.phone}}">
                             <label for="phone-number">Phone Number</label>
                         </div>
                         <input type="hidden" class="user_id" type="text" value={{this.id}}>
-                        <button id="update-user" data-id="{{this.id}}"
-                            class="col xl2 l2 m2 s3 offset-xl1 offset-l1 offset-m1 btn modal-close" type="submit"
-                            name="action">Update</button>
-                        <button id="close-settings" data-id="{{this.id}}"
-                            class="col xl2 l2 m2 s3 offset-xl2 offset-l2 offset-m2 offset-s1 btn modal-close"
-                            name="action">Close</button>
-                        <button id="delete-user" data-id="{{this.id}}"
-                            class="col xl2 l2 m2 s3 offset-xl2 offset-l2 offset-m2 offset-s1 btn modal-close"
-                            type="submit" name="action">Delete</button>
+                        <button id="update-user" data-id="{{this.id}}" class="col xl2 l2 m2 s3 offset-xl1 offset-l1 offset-m1 btn modal-close" type="submit" name="action">Update</button>
+                        <button id="close-settings" data-id="{{this.id}}" class="col xl2 l2 m2 s3 offset-xl2 offset-l2 offset-m2 offset-s1 btn modal-close" name="action">Close</button>
+                        <button id="delete-user" data-id="{{this.id}}" class="col xl2 l2 m2 s3 offset-xl2 offset-l2 offset-m2 offset-s1 btn modal-close" type="submit" name="action">Delete</button>
                     </div>
                 </form>
             </div>
@@ -105,13 +93,11 @@
                         <form class="col xl12 l12">
                             <div class="row">
                                 <div class="input-field col xl10 l10 m12 s12 offset-xl1 offset-l1">
-                                    <input id="title{{id}}" placeholder="Task Title" type="text" class="validate"
-                                        value="{{title}}">
+                                    <input id="title{{id}}" placeholder="Task Title" type="text" class="validate" value="{{title}}">
                                     <label for="task-title">Task</label>
                                 </div>
                                 <div class="input-field col xl10 l10 m12 s12 offset-xl1 offset-l1">
-                                    <textarea id="details{{id}}" placeholder="Details"
-                                        class="materialize-textarea ">{{this.description}}</textarea>
+                                    <textarea id="details{{id}}" placeholder="Details" class="materialize-textarea ">{{this.description}}</textarea>
                                     <label for="details">Details</label>
                                 </div>
                                 <div class="input-field browser-default col xl10 l10 m12 s12 offset-xl1 offset-l1">
@@ -125,59 +111,52 @@
                                     </select>
                                     <label>Estimated time to complete (hours:minutes):</label>
                                 </div>
-
-                                <div class="row">
-                                    <div class="input-field col xl5 l5 m6 s6 offset-xl1 offset-l1">
-                                        <input id="datepicker{{id}}" type="text" class="datepicker"
-                                            value="{{this.startDate}}">
-                                        <label for="datepicker">Start Date</label>
-                                    </div>
-
-                                    <div class="input-field col xl5 l5 m6 s6">
-                                        <input id="timepicker{{id}}" type="text" class="timepicker"
-                                            value="{{this.startTime}}">
-                                        <label for="timepicker">Start Time</label>
-                                    </div>
+                            </div>
+                            <div class="row">
+                                <div class="input-field col xl5 l5 m6 s6 offset-xl1 offset-l1">
+                                    <input id="datepicker{{id}}" type="text" class="datepicker" value="{{this.startDate}}">
+                                    <label for="datepicker">Start Date</label>
                                 </div>
 
-                                <div class="row">
+                                <div class="input-field col xl5 l5 m6 s6">
+                                    <input id="timepicker{{id}}" type="text" class="timepicker" value="{{this.startTime}}">
+                                    <label for="timepicker">Start Time</label>
+                                </div>
+                            </div>
 
-                                    <div class="input-field col xl5 l5 m6 s6 offset-xl1 offset-l1">
-                                        <input id="duedatepicker{{id}}" type="text" class="datepicker duedatepicker"
-                                            value="{{this.endDate}}">
-                                        <label for="duedatepicker">Deadline Date</label>
-                                    </div>
+                            <div class="row">
 
-                                    <div class="input-field col xl5 l5 m6 s6">
-                                        <input id="timeduepicker{{id}}" type="text" class="timepicker timeduepicker"
-                                            value="{{this.endTime}}">
-                                        <label for="timeduepicker">Deadline Time</label>
-                                    </div>
+                                <div class="input-field col xl5 l5 m6 s6 offset-xl1 offset-l1">
+                                    <input id="duedatepicker{{id}}" type="text" class="datepicker duedatepicker" value="{{this.endDate}}">
+                                    <label for="duedatepicker">Deadline Date</label>
                                 </div>
 
-                                <div class="checkboxes col xl10 l10 m12 s12 offset-xl1 offset-l1">
-                                    <p>
-                                        <label>
+                                <div class="input-field col xl5 l5 m6 s6">
+                                    <input id="timeduepicker{{id}}" type="text" class="timepicker timeduepicker" value="{{this.endTime}}">
+                                    <label for="timeduepicker">Deadline Time</label>
+                                </div>
+                            </div>
+
+                            <div class="checkboxes col xl10 l10 m12 s12 offset-xl1 offset-l1">
+                                <p>
+                                    <label>
                                             <input class="update-reoccurring" for="reoccurring" type="checkbox"
-                                                class="filled-in" checked="checked" />
+                                                 checked="checked" />
                                             <span>This is a recurring event</span>
                                         </label>
-                                    </p>
-                                    <p>
-                                        <label>
+                                </p>
+                                <p>
+                                    <label>
                                             <input class="update-auto-schedule" for="auto-schedule" type="checkbox"
-                                                class="filled-in" checked="checked" />
+                                                checked="checked" />
                                             <span>Schedule this for me</span>
                                         </label>
-                                    </p>
-                                </div>
-                                <button data-id="{{this.id}}"
-                                    class="col xl2 l2 m2 s4 offset-xl1 offset-l1 offset-m1 offset-s1 btn modal-close update-task">Update</button>
-                                <button
-                                    class="col xl2 l2 m2 s4 offset-xl2 offset-l2 offset-m2 offset-s2 btn modal-close">Close</button>
-                                <button data-id="{{this.id}}"
-                                    class="col xl2 l2 m2 s4 offset-xl2 offset-l2 offset-m2 offset-s2 btn modal-close delete-task">Delete</button>
+                                </p>
                             </div>
+                            <button data-id="{{this.id}}" class="col xl2 l2 m2 s4 offset-xl1 offset-l1 offset-m1 offset-s1 btn modal-close update-task">Update</button>
+                            <button class="col xl2 l2 m2 s4 offset-xl2 offset-l2 offset-m2 offset-s2 btn modal-close">Close</button>
+                            <button data-id="{{this.id}}" class="col xl2 l2 m2 s4 offset-xl2 offset-l2 offset-m2 offset-s2 btn modal-close delete-task">Delete</button>
+
                         </form>
                     </div>
                 </div>
@@ -189,16 +168,6 @@
             <div class="col xl10 l10 m12 s12 offset-xl1 offset-l1 calendar" id="calendar"></div>
         </div>
 
-        <!-- event modal -->
-        <div id="modalA" class="modal">
-            <div class="modal-content">
-                <h4>Modal Header</h4>
-                <p>A bunch of text</p>
-            </div>
-            <div class="modal-footer">
-                <button class="modal-close waves-effect waves-green btn">close</button>
-            </div>
-        </div>
 
         <!-- New task modal -->
         <div id="newtask-modal" class="modal">
@@ -253,23 +222,21 @@
                         <div class="checkboxes col xl10 l10 m12 s12 offset-xl1 offset-l1">
                             <p>
                                 <label>
-                                    <input id="reoccurring" for="reoccurring" type="checkbox" class="filled-in"
-                                        checked="checked" />
+                                    <input id="reoccurring" for="reoccurring" type="checkbox" 
+                                        checked="checked"/>
                                     <span>This is a recurring event</span>
                                 </label>
                             </p>
                             <p>
                                 <label>
-                                    <input id="auto-schedule" for="auto-schedule" type="checkbox" class="filled-in"
+                                    <input id="auto-schedule" for="auto-schedule" type="checkbox" 
                                         checked="checked" />
                                     <span>Schedule this for me</span>
                                 </label>
                             </p>
                         </div>
-                        <button id="add-task" data-id="{{id}}"
-                            class="col xl2 l2 m2 s4 offset-xl3 offset-l3 offset-m3 offset-s1 btn modal-close">Add</button>
-                        <button
-                            class="col xl2 l2 m2 s4 offset-xl2 offset-l2 offset-m2 offset-s2 btn modal-close">Close</button>
+                        <button id="add-task" data-id="{{id}}" class="col xl2 l2 m2 s4 offset-xl3 offset-l3 offset-m3 offset-s1 btn modal-close">Add</button>
+                        <button class="col xl2 l2 m2 s4 offset-xl2 offset-l2 offset-m2 offset-s2 btn modal-close">Close</button>
                     </div>
                 </form>
             </div>
