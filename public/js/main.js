@@ -160,6 +160,29 @@ $(document).ready(function() {
     // Set up calendar on weekly schedule
     const weekcolumns = ["timecol","sun","mon","tues","wed","thur","fri","sat"];
 
+    const schedule = [];
+    weekcolumns.forEach(dayName => {
+        let day = [];
+        for (let time = 0; time < 24; time++) {
+            if (time < 8) {
+                day.push("sleep");
+            } else if (time === 9) {
+                day.push("~");
+            } else if (time < 12) {
+                day.push("work");
+            } else if (time === 12 || time === 18) {
+                day.push("meal");
+            } else if (time < 18) {
+                day.push("work");
+            } else if (time < 22) {
+                day.push("personal");
+            } else {
+                day.push("sleep");
+            }
+        }
+        schedule.push(day);
+    });
+
     // for each day of the week,
     weekcolumns.forEach(col => {
 
@@ -252,8 +275,9 @@ $(document).ready(function() {
                 // Give it a unique identifier
                 newCell.data("ref", `${col}${i}`);
                 
-                // Set text
-                newCell.text(`${col}${i}`);
+                // Set text equal to schedule of that day
+                newCell.text(schedule[weekcolumns.indexOf(col)][i]);
+                // newCell.text("~");
 
                 // Identify it as a cell for styling
                 newCell.addClass("week-cell");
@@ -265,7 +289,7 @@ $(document).ready(function() {
     })
 
     // Add list of categories
-    const timeCategories = ["sleep", "work", "personal", "chores"];
+    const timeCategories = ["sleep", "work", "meal", "personal", "chores"];
     
     // For each category of time...
     timeCategories.forEach(thisCat => {
@@ -281,6 +305,40 @@ $(document).ready(function() {
 
     });
 
+    // Script to set time as active
+    $(".category-list").click(event => {
+
+        const selected = event.target;
+
+        // first remove selected class from everything
+        if (selected.className.includes("sched-cat")) {
+
+            // get everything on the list
+            const divList = $(".category-list").children();
+
+            // Set to unselected
+            for (let divEl = 0; divEl < divList.length; divEl++) {
+                divList[divEl].classList.remove("sched-cat-sel");
+                divList[divEl].classList.add("sched-cat-unsel");
+            }
+
+            // Remove unsel from selected div and add sel
+            selected.classList.remove("sched-cat-unsel");
+            selected.classList.add("sched-cat-sel");
+        }
+    })
+
     // Once calendar is populated, add calendar behavior
+    $(".week-cal").click(event => {
+        event.preventDefault();
+        
+        // Get selected element
+        const timeEl = event.target
+
+        // Once they click on a week cell
+        if (timeEl.class === "week-cell") {
+            console.log("this is a week!");
+        }
+    })
 
 });
