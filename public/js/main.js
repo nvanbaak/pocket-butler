@@ -511,7 +511,7 @@ $(document).ready(function () {
             for (let time = 0; time < 24; time++) {
                 if (time < 8) {
                     day.push("sleep");
-                } else if (time === 9) {
+                } else if (time === 8) {
                     day.push("~");
                 } else if (time < 12) {
                     day.push("work");
@@ -530,4 +530,42 @@ $(document).ready(function () {
 
 
     }
+
+    // ===============================================
+    //          AUTOSCHEDULER FUNCTIONALITY
+    // ===============================================
+
+    // Given a week object (seven arrays of 24 hours), returns the indices of each instance of "work"
+    function findAvailableTimes(weekObj) {
+
+        // set up output object
+        // This list will contain paired values representing week and hour indices
+        const outputArr = {
+            work: [],
+            personal: []
+        };
+
+        // iterate through days
+        for (let day = 0; day < weekObj.length; day++) {
+
+            // iterate through hours
+            for (let hour = 0; hour < weekObj[day].length; hour ++) {
+
+                // If the hour stores "work", store the ref
+                if (weekObj[day][hour] === "work") {
+                    outputArr.work.push([day,hour]);
+                }
+
+                // If the hour stores "personal", store the ref
+                if (weekObj[day][hour] === "personal") {
+                    outputArr.personal.push([day,hour]);
+                }
+            }
+        }
+
+
+    }
+
+
+
 });
