@@ -103,7 +103,7 @@ $(document).ready(function() {
             userEmail: $("#add-task").attr("data-email")
         }
 
-        console.log(newTask)
+
 
         $.ajax("/api/tasks", {
             type: "POST",
@@ -131,8 +131,6 @@ $(document).ready(function() {
             is_reoccurring: is_reoccurring,
 
         }
-
-        console.log(updatedTaskObj)
 
         $.ajax("/api/tasks/" + taskId, {
             type: "PUT",

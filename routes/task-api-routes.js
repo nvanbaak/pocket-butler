@@ -32,9 +32,6 @@ module.exports = function(app) {
     });
 
 
-
-
-
     // creating new task
     app.post("/api/tasks", (req, res) => {
         db.Task.create(req.body).then((newTask) => {
