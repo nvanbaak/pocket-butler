@@ -26,6 +26,14 @@ header {
     border-radius: 20px;
 }
 
+#delete-user {
+    background-color: #572121 !important;
+}
+
+.delete-task {
+    background-color: #572121 !important;
+}
+
 .btn:hover {
     background-color: #5222D0 !important;
 }
@@ -136,22 +144,36 @@ header {
     height: 100px;
     border-radius: 10px;
     box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.4);
+    display: flex;
     flex-direction: column;
     align-items: center;
-    overflow: scroll;
+    overflow-y: scroll;
 }
 
 .task {
-    height: 30px;
+    background-color: #fff;
+    border-width: 0px !important;
+    height: 40px !important;
     width: 100%;
     margin-top: 4px;
     border-radius: 4px;
-    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.2);
-    font-size: 12px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.2) !important;
+    font-size: 14px;
     text-align: center;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.task:hover {
+    background-color: #2C3E50;
+    color: #fff;
+}
+
+.task:active {
+    background-color: #5222D0;
+    color: #fff;
 }
 
 .new-task {
@@ -167,7 +189,7 @@ header {
 }
 
 .settings-icon:hover {
-    color: #333300;
+    color: #faf8a5;
 }
 
 .setting-icon:active {
