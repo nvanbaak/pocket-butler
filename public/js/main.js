@@ -108,7 +108,7 @@ $(document).ready(function() {
         $.ajax("/api/tasks", {
             type: "POST",
             data: newTask
-        }).then(newTaskData => {});
+        }).then(newTaskData => { location.reload(); });
     });
 
     $(".update-task").click(function(event) {
