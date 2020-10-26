@@ -1,5 +1,5 @@
 // init page 
-$(document).ready(function() {
+$(document).ready(function () {
 
     // Materialize init 
     // ******************************
@@ -10,7 +10,7 @@ $(document).ready(function() {
     $('.timepicker').timepicker();
 
     // For adding seconds (00)
-    $('.timepicker').on('change', function() {
+    $('.timepicker').on('change', function () {
         let receivedVal = $(this).val();
         $(this).val(receivedVal + ":00");
     });
@@ -25,31 +25,64 @@ $(document).ready(function() {
     // Sign up script 
     $('#sign-up').click(event => {
         event.preventDefault();
-        const newSignUp = {
-            username: $('#user-name').val().trim(),
-            password: $('#user-password').val().trim(),
-            email: $('#email').val().trim(),
-            phone: $('#phone-number').val().trim()
-        };
+        const username = $('#user-name').val().trim();
+        const password = $('#user-password').val().trim();
+        const email = $('#email').val().trim();
+        const phone = $('#phone-number').val().trim();
 
-        $.ajax("/signup", {
-            type: "POST",
-            data: newSignUp,
-        }).then(newSignUpData => {});
+        const validEmail = email.includes("@");
+        const validPhone = parseInt(phone);
+
+        if (!username || !password || !email) {
+            // TODO:
+            alert("Need to fill in")
+        }
+        else if (!validEmail) {
+            // TODO:
+            alert("Not valid email")
+        }
+        else if (phone.length > 0) {
+            if (phone.length != 10 || validPhone === NaN) {
+                alert("not valid phone");
+            }
+            else {
+                const newSignUp = {
+                    username: username,
+                    password: password,
+                    email: email,
+                    phone: phone
+                };
+    
+                $.ajax("/signup", {
+                    type: "POST",
+                    data: newSignUp,
+                }).then(newSignUpData => { });
+            }
+        }
 
     });
 
     // login script 
     $('#login').click(event => {
         event.preventDefault();
-        const loginUser = {
-            username: $('#username').val().trim(),
-            password: $('#password').val().trim(),
-        };
-        $.ajax("/login", {
-            type: "POST",
-            data: loginUser,
-        }).then(loginUserData => { location.replace("/dashboard") });
+
+        const username = $('#username').val().trim();
+        const password = $('#password').val().trim();
+
+        if (!username || !password) {
+            // TODO:
+            alert("Please enter both a username and password")
+        }
+        else {
+            const loginUser = {
+                username: username,
+                password: password,
+            };
+            $.ajax("/login", {
+                type: "POST",
+                data: loginUser,
+            }).then(loginUserData => { location.replace("/dashboard") });
+        }
     });
 
     // Update User
@@ -57,17 +90,42 @@ $(document).ready(function() {
         event.preventDefault();
         let id = $('#update-user').attr("data-id")
 
-        const updatedUser = {
-            username: $('#user-name1').val().trim(),
-            password: $('#user-password1').val().trim(),
-            email: $('#email1').val().trim(),
-            phone: $('#phone-number1').val().trim()
-        };
+        const username = $('#user-name1').val().trim();
+        const password = $('#user-password1').val().trim();
+        const email = $('#email1').val().trim();
+        const phone = $('#phone-number1').val().trim();
+        const validEmail = email.includes("@");
+        const validPhone = parseInt(phone);
 
-        $.ajax("/users/" + id, {
-            type: "PUT",
-            data: updatedUser,
-        }).then(updatedUseData => {});
+        if (!username || !email) {
+            // TODO:
+            alert("Need to fill in. Did not update")
+            location.reload();
+        }
+        else if (!validEmail) {
+            // TODO:
+            alert("Not valid email. Did not update")
+            location.reload();
+        }
+        else if (phone.length > 0) {
+            if (phone.length != 10 || validPhone === NaN) {
+                alert("not valid phone. Did not update");
+                location.reload();
+            }
+            else {
+                const updatedUser = {
+                    username: username,
+                    password: password,
+                    email: email,
+                    phone: phone
+                };
+        
+                $.ajax("/users/" + id, {
+                    type: "PUT",
+                    data: updatedUser,
+                }).then(updatedUseData => {location.reload()});
+            }
+        }
     });
 
     // delete user script 
@@ -85,8 +143,8 @@ $(document).ready(function() {
     $('#add-task').click(event => {
         event.preventDefault();
         // Convert checkboxes to true/false
-        let is_reoccurring = ( $('#reoccurring').val() === "on");
-        let is_autoSchedule = ( $('#auto-schedule').val() === "on");
+        let is_reoccurring = ($('#reoccurring').val() === "on");
+        let is_autoSchedule = ($('#auto-schedule').val() === "on");
 
         const newTask = {
             title: $('#task-title').val().trim(),
@@ -98,10 +156,10 @@ $(document).ready(function() {
             timeToComplete: $('#length').val(),
             is_autoSchedule: is_autoSchedule,
             is_reoccurring: is_reoccurring,
-            UserId: $("#add-task").attr("data-id")
+            UserId: $("#add-task").attr("data-id"),
+            userName: $("#add-task").attr("data-name"),
+            userEmail: $("#add-task").attr("data-email")
         }
-
-        console.log(newTask)
 
         $.ajax("/api/tasks", {
             type: "POST",
@@ -109,13 +167,13 @@ $(document).ready(function() {
         }).then(newTaskData => { location.reload(); });
     });
 
-    $(".update-task").click(function(event) {
+    $(".update-task").click(function (event) {
         event.preventDefault();
         let taskId = $(this).attr("data-id");
 
         // Convert checkboxes to true/false
-        let is_reoccurring = ( $('#reoccurring').val() === "on" );
-        let is_autoSchedule = ( $('#auto-schedule').val() === "on" );
+        let is_reoccurring = ($('#reoccurring').val() === "on");
+        let is_autoSchedule = ($('#auto-schedule').val() === "on");
 
         const updatedTaskObj = {
             title: $(`#title${taskId}`).val().trim(),
@@ -130,8 +188,6 @@ $(document).ready(function() {
 
         }
 
-        console.log(updatedTaskObj)
-
         $.ajax("/api/tasks/" + taskId, {
             type: "PUT",
             data: updatedTaskObj
@@ -141,16 +197,16 @@ $(document).ready(function() {
     })
 
     // delete task script
-    $(".delete-task").click(function(event) {
+    $(".delete-task").click(function (event) {
         event.preventDefault()
-            // Get the ID from the button.
+        // Get the ID from the button.
         let taskId = $(this).attr("data-id");
 
         // Send the DELETE request.
         $.ajax("/api/tasks/" + taskId, {
             type: "DELETE"
         }).then(
-            function() {
+            function () {
                 // Reload the page to get the updated list
                 location.reload();
             }
