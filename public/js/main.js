@@ -187,26 +187,46 @@ $(document).ready(function () {
         // Convert checkboxes to true/false
         let is_reoccurring = ($('#reoccurring').val() === "on");
         let is_autoSchedule = ($('#auto-schedule').val() === "on");
-        
-        const newTask = {
-            title: $('#task-title').val().trim(),
-            description: $('#details').val().trim(),
-            endDate: $('#duedatepicker').val(),
-            endTime: $('#timeduepicker').val(),
-            startDate: $('#datepicker').val(),
-            startTime: $('#timepicker').val(),
-            timeToComplete: $('#length').val(),
-            is_autoSchedule: is_autoSchedule,
-            is_reoccurring: is_reoccurring,
-            UserId: $("#add-task").attr("data-id"),
-            userName: $("#add-task").attr("data-name"),
-            userEmail: $("#add-task").attr("data-email")
+
+        const title = $('#task-title').val().trim();
+        const startDate = $('#datepicker').val();
+        const endDate = $('#duedatepicker').val();
+        const startTime = $('#timepicker').val();
+        const endTime = $('#timeduepicker').val();
+
+        if (!title) {
+            alert("Need to give your task a title");
         }
-        
-        $.ajax("/api/tasks", {
-            type: "POST",
-            data: newTask
-        }).then(newTaskData => { location.reload(); });
+        else if (!startDate || !startTime) {
+            alert("Need to specify when the task starts")
+        }
+        else if (startDate > endDate) {
+            alert("Your start date cannot be later than end date");
+        }
+        else if (startDate === endDate && startTime > endTime) {
+            alert("Start time must be before end time");
+        }
+        else {
+            const newTask = {
+                title: title,
+                description: $('#details').val().trim(),
+                endDate: endDate,
+                endTime: endTime,
+                startDate: startDate,
+                startTime: startTime,
+                timeToComplete: $('#length').val(),
+                is_autoSchedule: is_autoSchedule,
+                is_reoccurring: is_reoccurring,
+                UserId: $("#add-task").attr("data-id"),
+                userName: $("#add-task").attr("data-name"),
+                userEmail: $("#add-task").attr("data-email")
+            }
+
+            $.ajax("/api/tasks", {
+                type: "POST",
+                data: newTask
+            }).then(newTaskData => { location.reload(); });
+        }
     });
     
     $(".update-task").click(function (event) {
@@ -216,18 +236,36 @@ $(document).ready(function () {
         // Convert checkboxes to true/false
         let is_reoccurring = ($('#reoccurring').val() === "on");
         let is_autoSchedule = ($('#auto-schedule').val() === "on");
-        
+
+        const title = $('#task-title').val().trim();
+        const startDate = $('#datepicker').val();
+        const endDate = $('#duedatepicker').val();
+        const startTime = $('#timepicker').val();
+        const endTime = $('#timeduepicker').val();
+
+        if (!title) {
+            alert("Need to give your task a title");
+        }
+        else if (!startDate || !startTime) {
+            alert("Need to specify when the task starts")
+        }
+        else if (startDate > endDate) {
+            alert("Your start date cannot be later than end date");
+        }
+        else if (startDate === endDate && startTime > endTime) {
+            alert("Start time must be before end time");
+        }
+
         const updatedTaskObj = {
-            title: $(`#title${taskId}`).val().trim(),
-            description: $(`#details${taskId}`).val().trim(),
-            endDate: $(`#duedatepicker${taskId}`).val(),
-            endTime: $(`#timeduepicker${taskId}`).val(),
-            startDate: $(`#datepicker${taskId}`).val(),
-            startTime: $(`#timepicker${taskId}`).val(),
-            timeToComplete: $(`#length${taskId}`).val(),
+            title: title,
+            description: $('#details').val().trim(),
+            endDate: endDate,
+            endTime: endTime,
+            startDate: startDate,
+            startTime: startTime,
+            timeToComplete: $('#length').val(),
             is_autoSchedule: is_autoSchedule,
             is_reoccurring: is_reoccurring,
-            
         }
         
         $.ajax("/api/tasks/" + taskId, {
