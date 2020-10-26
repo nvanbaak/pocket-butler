@@ -37,11 +37,7 @@ $(document).ready(function() {
             alert("Need to fill in")
         } else if (!validEmail) {
             alert("Not valid email")
-<<<<<<< HEAD
-        } else if (phone.length > 0) {
-=======
-        }
-        else if (phone.length === 0) {
+        } else if (phone.length === 0) {
             const newSignUp = {
                 username: username,
                 password: password,
@@ -52,10 +48,8 @@ $(document).ready(function() {
             $.ajax("/signup", {
                 type: "POST",
                 data: newSignUp,
-            }).then(newSignUpData => { });
-        }
-        else if (phone.length > 0) {
->>>>>>> dev
+            }).then(newSignUpData => {});
+        } else if (phone.length > 0) {
             if (phone.length != 10 || validPhone === NaN) {
                 alert("not valid phone");
             } else {
@@ -114,11 +108,7 @@ $(document).ready(function() {
         } else if (!validEmail) {
             alert("Not valid email. Did not update")
             location.reload();
-<<<<<<< HEAD
-        } else if (phone.length > 0) {
-=======
-        }
-        else if (phone.length === 0) {
+        } else if (phone.length === 0) {
             const updatedUser = {
                 username: username,
                 password: password,
@@ -130,9 +120,7 @@ $(document).ready(function() {
                 type: "PUT",
                 data: updatedUser,
             }).then(updatedUseData => { location.reload() });
-        }
-        else if (phone.length > 0) {
->>>>>>> dev
+        } else if (phone.length > 0) {
             if (phone.length != 10 || validPhone === NaN) {
 
                 alert("not valid phone. Did not update");
@@ -179,17 +167,13 @@ $(document).ready(function() {
 
         if (!title) {
             alert("Need to give your task a title");
-        }
-        else if (!startDate || !startTime) {
+        } else if (!startDate || !startTime) {
             alert("Need to specify when the task starts")
-        }
-        else if (startDate > endDate) {
+        } else if (startDate > endDate) {
             alert("Your start date cannot be later than end date");
-        }
-        else if (startDate === endDate && startTime > endTime) {
+        } else if (startDate === endDate && startTime > endTime) {
             alert("Start time must be before end time");
-        }
-        else {
+        } else {
             const newTask = {
                 title: title,
                 description: $('#details').val().trim(),
@@ -228,14 +212,11 @@ $(document).ready(function() {
 
         if (!title) {
             alert("Need to give your task a title");
-        }
-        else if (!startDate || !startTime) {
+        } else if (!startDate || !startTime) {
             alert("Need to specify when the task starts")
-        }
-        else if (startDate > endDate) {
+        } else if (startDate > endDate) {
             alert("Your start date cannot be later than end date");
-        }
-        else if (startDate === endDate && startTime > endTime) {
+        } else if (startDate === endDate && startTime > endTime) {
             alert("Start time must be before end time");
         }
 
