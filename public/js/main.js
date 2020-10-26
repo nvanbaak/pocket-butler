@@ -177,7 +177,7 @@ $(document).ready(function() {
 
             // Add header cell
             const headerCell = $("<div>");
-            headerCell.text("Time");
+            headerCell.text("time");
             thisCol.append(headerCell);
             thisCol.append($("<br>"));
 
@@ -254,10 +254,12 @@ $(document).ready(function() {
                 
                 // Set text
                 newCell.text(`${col}${i}`);
+
+                // Identify it as a cell for styling
+                newCell.addClass("week-cell");
                 
                 // Append to col
                 thisCol.append(newCell);
-
             }
         }
     })
@@ -278,5 +280,7 @@ $(document).ready(function() {
         $(".category-list").append(newCat);
 
     });
+
+    // Once calendar is populated, add calendar behavior
 
 });

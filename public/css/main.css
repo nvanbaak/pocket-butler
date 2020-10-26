@@ -231,6 +231,15 @@ header {
     justify-content: space-around;
 }
 
+.week-cell {
+    cursor:pointer;
+    width: 100%;
+}
+
+.sched-col {
+    padding: 0px!important;
+}
+
 
 /* Media Queries */
 
