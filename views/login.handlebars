@@ -1,0 +1,66 @@
+<img class="blob responsive-img" src="/assets/Blob.png" alt="blob">
+<div class="container">
+    <header class="row">
+        <div class="col xl12">
+            <img class="logo" src="/assets/logo.png" alt="Pocket Butler Logo">
+        </div>
+    </header>
+
+    <main class="col xl12 row">
+        <div class="col xl6 l12 s12 hero-image-div">
+            <img class="responsive-img hero-image" src="/assets/login_image.png" alt="man logging in">
+        </div>
+        <div class="col xl5 l8 s12 offset-xl1 offset-l2 login-box">
+            <div class="row">
+                <h4 class="login-headline">Login</h4>
+            </div>
+            <form class="col xl12 l12">
+                <div class="row">
+                    <div class="input-field col xl10 l10 m12 s12 offset-xl1 offset-l1">
+                        <input placeholder="Username" id="username" type="text" class="validate">
+                        <label for="username">Username</label>
+                    </div>
+                    <div class="input-field col xl10 l10 m12 s12 offset-xl1 offset-l1">
+                        <input placeholder="Password" id="password" type="password" class="validate">
+                        <label for="password">Password</label>
+                    </div>
+                    <button id="login" class="col xl4 l4 m4 s4 offset-xl4 offset-l4 offset-m4 offset-s4 btn" name="action">Log In!</button>
+                </div>
+            </form>
+            <div class="row">
+                <a class="col xl12 l12 m12 s12 sign-up modal-trigger" href="#modal1">Sign Up!</a>
+            </div>
+            <!-- Sign up Modal -->
+            <div id="modal1" class="modal">
+                <div class="modal-content">
+                    <h5 style="text-align: center;">Sign Up</h5>
+                    <form class="col xl12 l12">
+                        <div class="row">
+                            <div class="input-field col xl10 l10 m12 s12 offset-xl1 offset-l1">
+                                <input placeholder="Username" id="user-name" type="text" class="validate">
+                                <label for="username">Username</label>
+                            </div>
+                            <div class="input-field col xl10 l10 m12 s12 offset-xl1 offset-l1">
+                                <input placeholder="Password" id="user-password" type="password" class="validate">
+                                <label for="password">Password</label>
+                            </div>
+                            <div class="input-field col xl10 l10 m12 s12 offset-xl1 offset-l1">
+                                <input placeholder="Email" id="email" type="text" class="validate">
+                                <label for="email">Email</label>
+                            </div>
+                            <div class="input-field col xl10 l10 m12 s12 offset-xl1 offset-l1">
+                                <input placeholder="phone-number" id="phone-number" type="text" class="validate">
+                                <label for="phone-number">Phone Number</label>
+                            </div>
+                            <button id="sign-up" class="col xl2 l2 m2 s4 offset-xl5 offset-l5 offset-m5 offset-s4 btn modal-close" name="action">Sign Up!</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+
+</div>
+
+<!-- page script -->
+<script src="./js/main.js"></script>

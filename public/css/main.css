@@ -1,0 +1,279 @@
+body {
+    width: 100vw;
+    height: 100vh;
+    background-color: #F7F7F7;
+    color: #000;
+    font-family: 'ubuntu', sans-serif;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 40px;
+}
+
+.blob {
+    position: fixed;
+    top: 0px;
+    right: -800px;
+    z-index: -2;
+}
+
+.btn {
+    background-color: #2C3E50 !important;
+    height: 50px;
+    border-radius: 20px;
+}
+
+#delete-user {
+    background-color: #572121 !important;
+}
+
+.delete-task {
+    background-color: #572121 !important;
+}
+
+.btn:hover {
+    background-color: #5222D0 !important;
+}
+
+.btn:active {
+    background-color: #ede7f6;
+}
+
+.logo {
+    height: 50px;
+    width: 150;
+}
+
+.modal {
+    border-radius: 10px;
+}
+
+.modal-close {
+    margin: 20px 0 20px 0;
+}
+
+
+/* login elements */
+
+.login-box {
+    padding: 0px !important;
+    background-color: #ffffff;
+    height: 450px;
+    border-radius: 20px;
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.4);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.login-headline {
+    text-align: center;
+    margin: 50px 0 15px 0;
+}
+
+.sign-up {
+    margin-top: 30px;
+    text-align: center;
+    color: #00838f;
+    cursor: pointer;
+}
+
+.sign-up:hover {
+    color: #9c27b0;
+}
+
+.sign-up:active {
+    color: #5222D0;
+}
+
+.material-icons {
+    font-size: 30px !important;
+}
+
+
+/* Dashboard Element */
+
+.dashboard {
+    background-color: #fff;
+    height: 760px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.4);
+    z-index: -1;
+}
+
+.dashboard-top {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.dashboard-welcome {
+    margin: 1rem;
+    padding: 1rem;
+}
+
+.calendar,
+.task-page {
+    padding: 0 10px 0 10px !important;
+    height: 500px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.4);
+}
+
+.clock {
+    margin: 0 0 0 10px !important;
+    height: 100px;
+    border-radius: 10px;
+    font-size: 12px;
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.4);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.clock-time {
+    font-size: 2rem;
+}
+
+.upcoming-tasks {
+    margin: 0 0 0 10px !important;
+    padding: 0 0 !important;
+    height: 100px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.4);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow-y: auto;
+}
+
+.task {
+    background-color: #fff;
+    border-width: 0px !important;
+    height: 40px !important;
+    width: 100%;
+    margin-top: 4px;
+    border-radius: 4px;
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.2) !important;
+    font-size: 14px;
+    text-align: center;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.task:hover {
+    background-color: #2C3E50;
+    color: #fff;
+}
+
+.task:active {
+    background-color: #5222D0;
+    color: #fff;
+}
+
+.new-task {
+    margin-left: 0px !important;
+    height: 100px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.4);
+}
+
+.settings-icon {
+    color: #F7F7F7;
+    cursor: pointer;
+}
+
+.settings-icon:hover {
+    color: #faf8a5;
+}
+
+.setting-icon:active {
+    color: #C99F3A;
+}
+
+.checkboxes {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+/* Media Queries */
+
+@media only screen and (max-width: 1200px) {
+    .blob {
+        right: -400px;
+    }
+    .login-box {
+        margin-top: 40px;
+    }
+    .dashboard {
+        height: 740px;
+    }
+}
+
+@media only screen and (max-width: 992px) {
+    .blob {
+        right: -300px;
+    }
+    .logo-img {
+        max-height: 75px;
+    }
+    .calendar,
+    .task-page {
+        background-color: whitesmoke;
+        border-radius: 10px;
+        max-height: 500px;
+        overflow-y: scroll;
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 10px;
+    }
+    .dashboard {
+        height: 680px;
+    }
+}
+
+
+/* Mobile */
+
+@media only screen and (max-width: 600px) {
+    .blob {
+        right: -175px;
+    }
+    .clock {
+        height: 60px;
+        text-align: center;
+        padding: 4px 4px 4px 4px !important;
+        margin: 0 0 0 10px !important;
+    }
+    .new-task {
+        margin: 0 0 0 30px !important;
+        height: 60px;
+    }
+    .clock-time {
+        font-size: 1rem;
+    }
+    .upcoming-tasks {
+        visibility: hidden !important;
+        width: 0vw !important;
+        height: 0vh !important;
+    }
+    .dashboard {
+        height: 600px;
+    }
+    .dashboard-welcome {
+        font-size: 2rem;
+        margin-bottom: 0;
+    }
+    .hero-image {
+        height: 0px;
+        width: 0px;
+    }
+}

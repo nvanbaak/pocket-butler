@@ -1,0 +1,256 @@
+<img class="blob responsive-img" src="./assets/Blob.png" alt="blob">
+<div class="container">
+    <header class="row">
+        <div class="col xl3 l3 m11">
+            <img class="logo" src="./assets/logo.png" alt="Pocket Butler Logo">
+        </div>
+        <div class="col xl l1 m1 s1 offset-xl7 offset-l5 center-align ">
+            <a class="waves-effect waves-light modal-trigger" href="#newtask-modal">
+                <i class="material-icons settings-icon">add_box</i>
+            </a>
+        </div>
+        <div class="col xl l1 m1 s1 center-align ">
+            <a class="waves-effect waves-light modal-trigger" href="#schedule-modal">
+                <i class="material-icons settings-icon">date_range</i>
+            </a>
+        </div>
+        <div class="col xl l1 m1 s1 center-align ">
+            <a class="waves-effect waves-light modal-trigger" href="#user-modal">
+                <i class="material-icons settings-icon">settings</i>
+            </a>
+        </div>
+
+        <!-- Schedule Settings Modal -->
+        <div id="schedule-modal" class="modal">
+            <div class="modal-content">
+                <h5 style="text-align: center;">Schedule Settings</h5>
+                <form class="col xl12 l12">
+                    <div class="row">
+
+                    </div>
+                    <div class="row">
+                        <button id="set-schedule" data-id="{{this.id}}" class="col xl2 l2 m2 s5 offset-xl3 offset-l3 offset-m3 offset-s1 btn modal-close" type="submit" name="action">Accept</button>
+                        <button data-id="{{this.id}}" class="col xl2 l2 m2 s5 offset-xl2 offset-l2 offset-m2 offset-s2 btn modal-close" name="action">Close</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Account Settings Modal -->
+        <div id="user-modal" class="modal">
+            <div class="modal-content">
+                <h5 style="text-align: center;">Account Settings</h5>
+                <form class="col xl12 l12">
+                    <div class="row">
+                        <div class="input-field col xl10 l10 m12 s12 offset-xl1 offset-l1">
+                            <input placeholder="Username" id="user-name1" type="text" class="validate" value="{{this.username}}">
+                            <label for="username">Username</label>
+                        </div>
+                        <div class="input-field col xl10 l10 m12 s12 offset-xl1 offset-l1">
+                            <input placeholder="Password" id="user-password1" type="password" class="validate">
+                            <label for="password">Password</label>
+                        </div>
+                        <div class="input-field col xl10 l10 m12 s12 offset-xl1 offset-l1">
+                            <input placeholder="Email" id="email1" type="text" class="validate" value="{{this.email}}">
+                            <label for="email">Email</label>
+                        </div>
+                        <div class="input-field col xl10 l10 m12 s12 offset-xl1 offset-l1">
+                            <input placeholder="phone-number" id="phone-number1" type="text" class="validate" value="{{this.phone}}">
+                            <label for="phone-number">Phone Number</label>
+                        </div>
+                        <input type="hidden" class="user_id" type="text" value={{this.id}}>
+                        <button id="update-user" data-id="{{this.id}}" class="col xl2 l2 m2 s3 offset-xl1 offset-l1 offset-m1 btn modal-close" type="submit" name="action">Update</button>
+                        <button id="close-settings" data-id="{{this.id}}" class="col xl2 l2 m2 s3 offset-xl2 offset-l2 offset-m2 offset-s1 btn modal-close" name="action">Close</button>
+                        <button id="delete-user" data-id="{{this.id}}" class="col xl2 l2 m2 s3 offset-xl2 offset-l2 offset-m2 offset-s1 btn modal-close" type="submit" name="action">Delete</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </header>
+
+    <main class="row s12 dashboard">
+        <h4 class="dashboard-welcome">Welcome {{username}}</h4>
+        <div class="row col s12 dashboard-top ">
+            <button class="col xl2 l2 m3 s6 new-task btn modal-trigger" href="#newtask-modal">Add</button>
+            <div class="col xl3 l3 m3 s6 clock">
+                <p class="date-disp"></p>
+                <p class="clock-time"></p>
+            </div>
+            <div class="col xl5 l5 m6 s12 upcoming-tasks">
+                <h6 style="text-align: center;">Upcoming Tasks</h6>
+
+                {{#each Tasks}}
+
+                <div data-id={{id}} class="task modal-trigger" href="#modal{{id}}">
+                    <p>{{title}}</p>
+
+                </div>
+
+                <!-- Update/delete task modal -->
+                <div id="modal{{id}}" class="modal">
+                    <div class="modal-content">
+                        <h5 style="text-align: center;">Update Task</h5>
+                        <form class="col xl12 l12">
+                            <div class="row">
+                                <div class="input-field col xl10 l10 m12 s12 offset-xl1 offset-l1">
+                                    <input id="title{{id}}" placeholder="Task Title" type="text" class="validate" value="{{title}}">
+                                    <label for="task-title">Task</label>
+                                </div>
+                                <div class="input-field col xl10 l10 m12 s12 offset-xl1 offset-l1">
+                                    <textarea id="details{{id}}" placeholder="Details" class="materialize-textarea ">{{this.description}}</textarea>
+                                    <label for="details">Details</label>
+                                </div>
+                                <div class="input-field browser-default col xl10 l10 m12 s12 offset-xl1 offset-l1">
+                                    <select id="length{{id}}" value="{{this.timeToComplete}}">
+                                        <option value="0.15">0:15</option>
+                                        <option value="0.30">0:30</option>
+                                        <option value="0.45">0:45</option>
+                                        <option value="1.00">1:00</option>
+                                        <option value="1.30">1:30</option>
+                                        <option value="2.00">2:00</option>
+                                    </select>
+                                    <label>Estimated time to complete (hours:minutes):</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="input-field col xl5 l5 m6 s6 offset-xl1 offset-l1">
+                                    <input id="datepicker{{id}}" type="text" class="datepicker" value="{{this.startDate}}">
+                                    <label for="datepicker">Start Date</label>
+                                </div>
+
+                                <div class="input-field col xl5 l5 m6 s6">
+                                    <input id="timepicker{{id}}" type="text" class="timepicker" value="{{this.startTime}}">
+                                    <label for="timepicker">Start Time</label>
+                                </div>
+                            </div>
+
+                            <div class="row">
+
+                                <div class="input-field col xl5 l5 m6 s6 offset-xl1 offset-l1">
+                                    <input id="duedatepicker{{id}}" type="text" class="datepicker duedatepicker" value="{{this.endDate}}">
+                                    <label for="duedatepicker">Deadline Date</label>
+                                </div>
+
+                                <div class="input-field col xl5 l5 m6 s6">
+                                    <input id="timeduepicker{{id}}" type="text" class="timepicker timeduepicker" value="{{this.endTime}}">
+                                    <label for="timeduepicker">Deadline Time</label>
+                                </div>
+                            </div>
+
+                            <div class="checkboxes col xl10 l10 m12 s12 offset-xl1 offset-l1">
+                                <p>
+                                    <label>
+                                            <input class="update-reoccurring" for="reoccurring" type="checkbox"
+                                                 checked="checked" />
+                                            <span>This is a recurring event</span>
+                                        </label>
+                                </p>
+                                <p>
+                                    <label>
+                                            <input class="update-auto-schedule" for="auto-schedule" type="checkbox"
+                                                checked="checked" />
+                                            <span>Schedule this for me</span>
+                                        </label>
+                                </p>
+                            </div>
+                            <button data-id="{{this.id}}" class="col xl2 l2 m2 s4 offset-xl1 offset-l1 offset-m1 offset-s1 btn modal-close update-task">Update</button>
+                            <button class="col xl2 l2 m2 s4 offset-xl2 offset-l2 offset-m2 offset-s2 btn modal-close">Close</button>
+                            <button data-id="{{this.id}}" class="col xl2 l2 m2 s4 offset-xl2 offset-l2 offset-m2 offset-s2 btn modal-close delete-task">Delete</button>
+
+                        </form>
+                    </div>
+                </div>
+                {{/each}}
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col xl10 l10 m12 s12 offset-xl1 offset-l1 calendar" id="calendar"></div>
+        </div>
+
+
+        <!-- New task modal -->
+        <div id="newtask-modal" class="modal">
+            <div class="modal-content">
+                <h5 style="text-align: center;">New Task</h5>
+                <form class="col xl12 l12">
+                    <div class="row">
+                        <div class="input-field col xl10 l10 m12 s12 offset-xl1 offset-l1">
+                            <input placeholder="Task Title" id="task-title" type="text" class="validate">
+                            <label for="task-title">Task</label>
+                        </div>
+                        <div class="input-field col xl10 l10 m12 s12 offset-xl1 offset-l1">
+                            <textarea placeholder="Details" id="details" class="materialize-textarea"></textarea>
+                            <label for="details">Details</label>
+                        </div>
+                        <div class="input-field browser-default col xl10 l10 m12 s12 offset-xl1 offset-l1">
+                            <select id="length">
+                                <option value="0.15">0:15</option>
+                                <option value="0.30">0:30</option>
+                                <option value="0.45">0:45</option>
+                                <option value="1.00">1:00</option>
+                                <option value="1.30">1:30</option>
+                                <option value="2.00">2:00</option>
+                            </select>
+                            <label>Estimated time to complete (hours:minutes):</label>
+                        </div>
+
+                        <div class="row">
+                            <div class="input-field col xl5 l5 m6 s6 offset-xl1 offset-l1">
+                                <input id="datepicker" type="text" class="datepicker">
+                                <label for="datepicker">Start Date</label>
+                            </div>
+
+                            <div class="input-field col xl5 l5 m6 s6">
+                                <input id="timepicker" type="text" class="timepicker">
+                                <label for="timepicker">Start Time</label>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="input-field col xl5 l5 m6 s6 offset-xl1 offset-l1">
+                                <input id="duedatepicker" type="text" class="datepicker duedatepicker">
+                                <label for="duedatepicker">Deadline Date</label>
+                            </div>
+
+                            <div class="input-field col xl5 l5 m6 s6">
+                                <input id="timeduepicker" type="text" class="timepicker timeduepicker">
+                                <label for="timeduepicker">Deadline Time</label>
+                            </div>
+                        </div>
+
+                        <div class="checkboxes col xl10 l10 m12 s12 offset-xl1 offset-l1">
+                            <p>
+                                <label>
+                                    <input id="reoccurring" for="reoccurring" type="checkbox" 
+                                        checked="checked"/>
+                                    <span>This is a recurring event</span>
+                                </label>
+                            </p>
+                            <p>
+                                <label>
+                                    <input id="auto-schedule" for="auto-schedule" type="checkbox" 
+                                        checked="checked" />
+                                    <span>Schedule this for me</span>
+                                </label>
+                            </p>
+                        </div>
+                        <button id="add-task" data-id="{{id}}" class="col xl2 l2 m2 s4 offset-xl3 offset-l3 offset-m3 offset-s1 btn modal-close">Add</button>
+                        <button class="col xl2 l2 m2 s4 offset-xl2 offset-l2 offset-m2 offset-s2 btn modal-close">Close</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+</div>
+<!-- Full Calendar Script -->
+<script src='./js/fullcal-main.js'></script>
+
+<!-- Render Calendar script -->
+<script src="./js/fullcal-render.js"></script>
+
+<!-- page script -->
+<script src="./js/main.js"></script>
+
+<!-- script for clock widget -->
+<script src="./js/clock.js"></script>
