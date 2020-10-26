@@ -202,6 +202,19 @@ $(document).ready(function() {
         );
     });
 
+    // Logout
+    $("#logout").on("click", function(event) {
+        event.preventDefault();
+
+        $.ajax("/logout/", {
+            type: "GET"
+        }).then(
+            function() {
+                // Reload the page to get the updated list
+                location.replace("/logout")
+            }
+        );
+    })
 
 
 

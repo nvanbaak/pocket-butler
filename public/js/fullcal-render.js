@@ -45,22 +45,6 @@ function getTaskData() {
             },
             events: fullCalObjArr,
 
-
-            // eventClick: function(info) {
-            //     console.log($(this.Calendar))
-            //     $(this.Calendar).addClass("modal-trigger")
-            //     console.log($(this))
-            //         // $(this).attr("href", "#modalA");
-
-            //     // alert('Event: ' + info.event.title);
-            //     // alert('Coordinates: ' + info.jsEvent.pageX + ',' + info.jsEvent.pageY);
-            //     // alert('View: ' + info.event.extendedProps.description);
-
-            //     // change the border color just for fun
-            //     info.el.style.borderColor = 'red';
-            // }
-
-
         });
 
         calendar.render();
