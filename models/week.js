@@ -2,15 +2,14 @@ const db = require(".");
 
 module.exports = function(sequelize, DataTypes) {
     const Week = sequelize.define("Week", {
-        date: {
-            type: DataTypes.STRING,
-            allowNull: false,
-        },
+        // date: {
+        //     type: DataTypes.STRING,
+        //     allowNull: false,
+        // },
         days: {
-            type: DataTypes.STRING,
+            type: DataTypes.TEXT,
             allowNull: false,
         }
-
     });
 
     Week.associate = function(models) {

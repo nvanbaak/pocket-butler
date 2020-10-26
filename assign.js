@@ -1,7 +1,41 @@
-const { table } = require("console");
+moment = require("moment.js")
 
-// Dependencies
-fs = require("fs");
+
+// ENTRY POINT: USER ADDS OR UPDATES A TASK
+
+// Ajax for all user tasks
+
+// Get all categories for the week
+
+// Order user tasks by deadline
+
+// 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // Global variables
 let today = 0; // we're using an integer in the place of a date, but theoretically we could make this work with calendar math

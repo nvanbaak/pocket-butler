@@ -69,19 +69,34 @@ $(document).ready(function () {
                 $.ajax("/signup", {
                     type: "POST",
                     data: newSignUp,
-                }).then(newSignUpData => { });
+                }).then(newSignUpData => {
+
+                    // Create a default schedule for User once they sign up
+                    const signupsched = [];
+                    makeWeekendSchedule(signupsched);
+                    makeWeekdaySchedule(signupsched);
+                    makeWeekendSchedule(signupsched);
+
+                    $.ajax("/api/weeks", {
+                        type: "POST",
+                        data: {
+                            days: JSON.stringify(signupsched),
+                            UserId: newSignUpData.id
+                        }
+                    })
+                });
             }
         }
-
     });
 
+    
     // login script 
     $('#login').click(event => {
         event.preventDefault();
-
+        
         const username = $('#username').val().trim();
         const password = $('#password').val().trim();
-
+        
         if (!username || !password) {
             // TODO:
             alert("Please enter both a username and password")
@@ -97,19 +112,19 @@ $(document).ready(function () {
             }).then(loginUserData => { location.replace("/dashboard") });
         }
     });
-
+    
     // Update User
     $('#update-user').click(event => {
         event.preventDefault();
         let id = $('#update-user').attr("data-id")
-
+        
         const username = $('#user-name1').val().trim();
         const password = $('#user-password1').val().trim();
         const email = $('#email1').val().trim();
         const phone = $('#phone-number1').val().trim();
         const validEmail = email.includes("@");
         const validPhone = parseInt(phone);
-
+        
         if (!username || !email) {
             // TODO:
             alert("Need to fill in. Did not update")
@@ -127,7 +142,7 @@ $(document).ready(function () {
                 email: email,
                 phone: phone
             };
-
+            
             $.ajax("/users/" + id, {
                 type: "PUT",
                 data: updatedUser,
@@ -145,7 +160,7 @@ $(document).ready(function () {
                     email: email,
                     phone: phone
                 };
-
+                
                 $.ajax("/users/" + id, {
                     type: "PUT",
                     data: updatedUser,
@@ -153,13 +168,13 @@ $(document).ready(function () {
             }
         }
     });
-
+    
     // delete user script 
     $('#delete-user').click(event => {
         event.preventDefault();
         alert("Are you Sure?");
         let id = $('#delete-user').attr("data-id");
-
+        
         $.ajax("/users/" + id, {
             type: "DELETE",
         }).then((deletedUserData) => { location.replace("/logout") });
@@ -171,7 +186,7 @@ $(document).ready(function () {
         // Convert checkboxes to true/false
         let is_reoccurring = ($('#reoccurring').val() === "on");
         let is_autoSchedule = ($('#auto-schedule').val() === "on");
-
+        
         const newTask = {
             title: $('#task-title').val().trim(),
             description: $('#details').val().trim(),
@@ -186,21 +201,21 @@ $(document).ready(function () {
             userName: $("#add-task").attr("data-name"),
             userEmail: $("#add-task").attr("data-email")
         }
-
+        
         $.ajax("/api/tasks", {
             type: "POST",
             data: newTask
         }).then(newTaskData => { location.reload(); });
     });
-
+    
     $(".update-task").click(function (event) {
         event.preventDefault();
         let taskId = $(this).attr("data-id");
-
+        
         // Convert checkboxes to true/false
         let is_reoccurring = ($('#reoccurring').val() === "on");
         let is_autoSchedule = ($('#auto-schedule').val() === "on");
-
+        
         const updatedTaskObj = {
             title: $(`#title${taskId}`).val().trim(),
             description: $(`#details${taskId}`).val().trim(),
@@ -211,9 +226,9 @@ $(document).ready(function () {
             timeToComplete: $(`#length${taskId}`).val(),
             is_autoSchedule: is_autoSchedule,
             is_reoccurring: is_reoccurring,
-
+            
         }
-
+        
         $.ajax("/api/tasks/" + taskId, {
             type: "PUT",
             data: updatedTaskObj
@@ -227,7 +242,7 @@ $(document).ready(function () {
         event.preventDefault()
         // Get the ID from the button.
         let taskId = $(this).attr("data-id");
-
+        
         // Send the DELETE request.
         $.ajax("/api/tasks/" + taskId, {
             type: "DELETE"
@@ -236,14 +251,230 @@ $(document).ready(function () {
                 // Reload the page to get the updated list
                 location.reload();
             }
-        );
+            );
+        });
+        
+        // Set up calendar on weekly schedule
+        const weekcolumns = ["timecol","sun","mon","tues","wed","thur","fri","sat"];
+        
+        // Set up schedule
+        const schedule = [];
+        weekcolumns.forEach(dayName => {
+            
+            let day = [];
+            for (let time = 0; time < 24; time++) {
+                if (time < 8) {
+                    day.push("sleep");
+                } else if (time === 9) {
+                    day.push("~");
+                } else if (time < 12) {
+                    day.push("work");
+                } else if (time === 12 || time === 18) {
+                    day.push("meal");
+                } else if (time < 18) {
+                    day.push("work");
+                } else if (time < 22) {
+                    day.push("personal");
+                } else {
+                    day.push("sleep");
+                }
+            }
+            schedule.push(day);
+        });
+        
+        // for each day of the week,
+        weekcolumns.forEach(col => {
+            
+            // make a column
+            const thisCol = $("<div>")
+            .addClass(`${col} col center-align`);
+            
+            // add it to the calendar block
+            $(".week-cal").append(thisCol);
+            
+            // If it's the time column,
+            if (col === "timecol") {
+                
+                // We do a modified version of the cell creation process below
+                
+                // Add header cell
+                const headerCell = $("<div>");
+                headerCell.text("time");
+                thisCol.append(headerCell);
+                thisCol.append($("<br>"));
+                
+                // Add 24 cells
+                for (let i = 0; i < 24; i++) {
+                    
+                    // Make cell
+                    const newCell = $("<div>");
+                    
+                // Create hour
+                let label;
+
+                if (i === 0 ){
+                    label = 12;
+                } else if (i > 12) {
+                    label = i - 12;
+                } else {
+                    label = i;
+                }
+                
+                // THIS CODE SUPPORTS HALF-HOUR TIME BLOCKS
+                // We're not using that right now but I'm leaving it in for future development
+                
+                // if (i === 0 || i === 24 ) {
+                    //     label = '12';
+                    // } else if (i === 1 || 1 === 25) {
+                        //     label = '12.5';
+                        // } else if (i > 25 ) {
+                            //     label = `${(i - 24)/2}`;
+                            // } else {
+                                //     label = `${i/2}`;
+                                // }
+                                
+                                // // translate number to time
+                                // // first check if there's a decimal
+                                // if (label[label.length-2] === ".") {
+                                    //     // These are our half-hour times
+                                    //     label = label.replace(".5", ":30");;
+                                    // } else {
+                                        //     // the rest just get some zeroes
+                                        //     label+=":00";
+                                        // }
+                                        
+                                        // Add am/pm designation
+                                        if (i < 12) {
+                                            label += " am";
+                                        } else {
+                                            label += " pm";
+                                        }
+                                        
+                                        // Set text
+                                        newCell.text(label);
+                                        
+                                        // append to column
+                                        thisCol.append(newCell);
+                                    }
+                                    
+                                } else {
+                                    
+                                    // Add header cell
+                                    const headerCell = $("<div>");
+                                    headerCell.text(col);
+                                    thisCol.append(headerCell);
+                                    thisCol.append($("<br>"));
+                                    
+                                    // Add 24 cells
+                                    for (let i = 0; i < 24; i++) {
+                                        
+                                        // Make cell
+                                        const newCell = $("<div>");
+                                        
+                                        // Give it a unique identifier
+                                        newCell.data("ref", `${col}${i}`);
+                                        
+                                        // Set text equal to schedule of that day
+                                        newCell.text(schedule[weekcolumns.indexOf(col)][i]);
+                                        
+                                        // Identify it as a cell for styling
+                                        newCell.addClass("week-cell");
+                                        
+                                        // Append to col
+                                        thisCol.append(newCell);
+                                    }
+                                }
+                            })
+                            
+                            // Add list of categories
+                            const timeCategories = ["sleep", "work", "meal", "personal", "chores", "~"];
+                            
+                            // For each category of time...
+                            timeCategories.forEach(thisCat => {
+                                
+                                // make a new div
+                                const newCat = $("<div>");
+                                newCat.data("category", thisCat);
+                                newCat.text(thisCat);
+                                
+                                // The first statement is selected, the rest are not
+                                if (thisCat === "sleep") {
+                                    newCat.addClass(`sched-cat sched-cat-sel`);
+                                } else {
+                                    newCat.addClass(`sched-cat sched-cat-unsel`);
+                                }
+                                
+        // Append to list
+        $(".category-list").append(newCat);
+
     });
 
-    // Set up calendar on weekly schedule
-    const weekcolumns = ["timecol","sun","mon","tues","wed","thur","fri","sat"];
+    // Script to set time as active
+    $(".category-list").click(event => {
 
-    const schedule = [];
-    weekcolumns.forEach(dayName => {
+        const selected = event.target;
+        
+        // first remove selected class from everything
+        if (selected.className.includes("sched-cat")) {
+            
+            // get everything on the list
+            const divList = $(".category-list").children();
+            
+            // Set to unselected
+            for (let divEl = 0; divEl < divList.length; divEl++) {
+                divList[divEl].classList.remove("sched-cat-sel");
+                divList[divEl].classList.add("sched-cat-unsel");
+            }
+            
+            // Remove unsel from selected div and add sel
+            selected.classList.remove("sched-cat-unsel");
+            selected.classList.add("sched-cat-sel");
+        }
+    })
+    
+    // Once calendar is populated, add calendar behavior
+    $(".week-cal").click(event => {
+        event.preventDefault();
+        
+        // Get selected element
+        const timeEl = event.target
+        
+        // Once they click on a week cell
+        if (timeEl.className === "week-cell") {
+            
+            // Get the selected time category
+            const active = $(".category-list .sched-cat-sel").text();
+            
+            // Replace the text in the cell
+            timeEl.innerText = active;
+        }   
+    })
+    
+});
+
+// schedule creation functions
+function makeWeekendSchedule(schedArray) {
+    let day = [];
+    for (let weekend = 0; weekend < 24; weekend++) {
+        if (weekend < 10) {
+            day.push("sleep");
+        } else if (weekend < 12) {
+            day.push("chores");
+        } else if (weekend === 12 || weekend === 18) {
+            day.push("meal");
+        } else if (weekend < 22) {
+            day.push("personal");
+        } else {
+            day.push("sleep");
+        }
+    }
+    schedArray.push(day);
+}
+function makeWeekdaySchedule(schedArray) {
+
+    // We make five weekdays
+    for (let weekDay = 0; weekDay < 5; weekDay++) {
+        // Create the day
         let day = [];
         for (let time = 0; time < 24; time++) {
             if (time < 8) {
@@ -262,175 +493,8 @@ $(document).ready(function () {
                 day.push("sleep");
             }
         }
-        schedule.push(day);
-    });
+        schedArray.push(day);
+    }
 
-    // for each day of the week,
-    weekcolumns.forEach(col => {
 
-        // make a column
-        const thisCol = $("<div>")
-            .addClass(`${col} col center-align`);
-
-        // add it to the calendar block
-        $(".week-cal").append(thisCol);
-
-        // If it's the time column,
-        if (col === "timecol") {
-
-            // We do a modified version of the cell creation process below
-
-            // Add header cell
-            const headerCell = $("<div>");
-            headerCell.text("time");
-            thisCol.append(headerCell);
-            thisCol.append($("<br>"));
-
-            // Add 24 cells
-            for (let i = 0; i < 24; i++) {
-                
-                // Make cell
-                const newCell = $("<div>");
-
-                // Create hour
-                let label;
-
-                if (i === 0 ){
-                    label = 12;
-                } else if (i > 12) {
-                    label = i - 12;
-                } else {
-                    label = i;
-                }
-
-                // THIS CODE SUPPORTS HALF-HOUR TIME BLOCKS
-                // We're not using that right now but I'm leaving it in for future development
-
-                // if (i === 0 || i === 24 ) {
-                //     label = '12';
-                // } else if (i === 1 || 1 === 25) {
-                //     label = '12.5';
-                // } else if (i > 25 ) {
-                //     label = `${(i - 24)/2}`;
-                // } else {
-                //     label = `${i/2}`;
-                // }
-
-                // // translate number to time
-                // // first check if there's a decimal
-                // if (label[label.length-2] === ".") {
-                //     // These are our half-hour times
-                //     label = label.replace(".5", ":30");;
-                // } else {
-                //     // the rest just get some zeroes
-                //     label+=":00";
-                // }
-
-                // Add am/pm designation
-                if (i < 12) {
-                    label += " am";
-                } else {
-                    label += " pm";
-                }
-
-                // Set text
-                newCell.text(label);
-
-                // append to column
-                thisCol.append(newCell);
-            }
-
-        } else {
-
-            // Add header cell
-            const headerCell = $("<div>");
-            headerCell.text(col);
-            thisCol.append(headerCell);
-            thisCol.append($("<br>"));
-            
-            // Add 24 cells
-            for (let i = 0; i < 24; i++) {
-                
-                // Make cell
-                const newCell = $("<div>");
-                
-                // Give it a unique identifier
-                newCell.data("ref", `${col}${i}`);
-                
-                // Set text equal to schedule of that day
-                newCell.text(schedule[weekcolumns.indexOf(col)][i]);
-
-                // Identify it as a cell for styling
-                newCell.addClass("week-cell");
-                
-                // Append to col
-                thisCol.append(newCell);
-            }
-        }
-    })
-
-    // Add list of categories
-    const timeCategories = ["sleep", "work", "meal", "personal", "chores", "~"];
-    
-    // For each category of time...
-    timeCategories.forEach(thisCat => {
-
-        // make a new div
-        const newCat = $("<div>");
-        newCat.data("category", thisCat);
-        newCat.text(thisCat);
-
-        // The first statement is selected, the rest are not
-        if (thisCat === "sleep") {
-            newCat.addClass(`sched-cat sched-cat-sel`);
-        } else {
-            newCat.addClass(`sched-cat sched-cat-unsel`);
-        }
-
-        // Append to list
-        $(".category-list").append(newCat);
-
-    });
-
-    // Script to set time as active
-    $(".category-list").click(event => {
-
-        const selected = event.target;
-
-        // first remove selected class from everything
-        if (selected.className.includes("sched-cat")) {
-
-            // get everything on the list
-            const divList = $(".category-list").children();
-
-            // Set to unselected
-            for (let divEl = 0; divEl < divList.length; divEl++) {
-                divList[divEl].classList.remove("sched-cat-sel");
-                divList[divEl].classList.add("sched-cat-unsel");
-            }
-
-            // Remove unsel from selected div and add sel
-            selected.classList.remove("sched-cat-unsel");
-            selected.classList.add("sched-cat-sel");
-        }
-    })
-
-    // Once calendar is populated, add calendar behavior
-    $(".week-cal").click(event => {
-        event.preventDefault();
-        
-        // Get selected element
-        const timeEl = event.target
-
-        // Once they click on a week cell
-        if (timeEl.className === "week-cell") {
-            
-            // Get the selected time category
-            const active = $(".category-list .sched-cat-sel").text();
-
-            // Replace the text in the cell
-            timeEl.innerText = active;
-        }   
-    })
-
-});
+}
