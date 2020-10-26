@@ -25,31 +25,57 @@ $(document).ready(function() {
     // Sign up script 
     $('#sign-up').click(event => {
         event.preventDefault();
-        const newSignUp = {
-            username: $('#user-name').val().trim(),
-            password: $('#user-password').val().trim(),
-            email: $('#email').val().trim(),
-            phone: $('#phone-number').val().trim()
-        };
+        const username = $('#user-name').val().trim();
+        const password = $('#user-password').val().trim();
+        const email = $('#email').val().trim();
+        const phone = $('#phone-number').val().trim();
 
-        $.ajax("/signup", {
-            type: "POST",
-            data: newSignUp,
-        }).then(newSignUpData => {});
+        const validEmail = email.includes("@");
+        const validPhone = parseInt(phone);
+
+        if (!username || !password || !email) {
+            alert("Need to fill in")
+        } else if (!validEmail) {
+            alert("Not valid email")
+        } else if (phone.length > 0) {
+            if (phone.length != 10 || validPhone === NaN) {
+                alert("not valid phone");
+            } else {
+                const newSignUp = {
+                    username: username,
+                    password: password,
+                    email: email,
+                    phone: phone
+                };
+
+                $.ajax("/signup", {
+                    type: "POST",
+                    data: newSignUp,
+                }).then(newSignUpData => {});
+            }
+        }
 
     });
 
     // login script 
     $('#login').click(event => {
         event.preventDefault();
-        const loginUser = {
-            username: $('#username').val().trim(),
-            password: $('#password').val().trim(),
-        };
-        $.ajax("/login", {
-            type: "POST",
-            data: loginUser,
-        }).then(loginUserData => { location.replace("/dashboard") });
+
+        const username = $('#username').val().trim();
+        const password = $('#password').val().trim();
+
+        if (!username || !password) {
+            alert("Please enter both a username and password")
+        } else {
+            const loginUser = {
+                username: username,
+                password: password,
+            };
+            $.ajax("/login", {
+                type: "POST",
+                data: loginUser,
+            }).then(loginUserData => { location.replace("/dashboard") });
+        }
     });
 
     // Update User
@@ -57,17 +83,37 @@ $(document).ready(function() {
         event.preventDefault();
         let id = $('#update-user').attr("data-id")
 
-        const updatedUser = {
-            username: $('#user-name1').val().trim(),
-            password: $('#user-password1').val().trim(),
-            email: $('#email1').val().trim(),
-            phone: $('#phone-number1').val().trim()
-        };
+        const username = $('#user-name1').val().trim();
+        const password = $('#user-password1').val().trim();
+        const email = $('#email1').val().trim();
+        const phone = $('#phone-number1').val().trim();
+        const validEmail = email.includes("@");
+        const validPhone = parseInt(phone);
 
-        $.ajax("/users/" + id, {
-            type: "PUT",
-            data: updatedUser,
-        }).then(updatedUseData => {});
+        if (!username || !email) {
+            alert("Need to fill in. Did not update")
+            location.reload();
+        } else if (!validEmail) {
+            alert("Not valid email. Did not update")
+            location.reload();
+        } else if (phone.length > 0) {
+            if (phone.length != 10 || validPhone === NaN) {
+                alert("not valid phone. Did not update");
+                location.reload();
+            } else {
+                const updatedUser = {
+                    username: username,
+                    password: password,
+                    email: email,
+                    phone: phone
+                };
+
+                $.ajax("/users/" + id, {
+                    type: "PUT",
+                    data: updatedUser,
+                }).then(updatedUseData => { location.reload() });
+            }
+        }
     });
 
     // delete user script 
@@ -102,8 +148,6 @@ $(document).ready(function() {
             userName: $("#add-task").attr("data-name"),
             userEmail: $("#add-task").attr("data-email")
         }
-
-
 
         $.ajax("/api/tasks", {
             type: "POST",
