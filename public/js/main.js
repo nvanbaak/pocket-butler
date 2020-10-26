@@ -160,11 +160,15 @@ $(document).ready(function() {
     // Set up calendar on weekly schedule
     const weekcolumns = ["timecol","sun","mon","tues","wed","thur","fri","sat"];
 
-    // In each column
+    // for each day of the week,
     weekcolumns.forEach(col => {
 
-        // get reference to intended column
-        const thisCol = $(`.${col}`);
+        // make a column
+        const thisCol = $("<div>")
+            .addClass(`${col} col center-align`);
+
+        // add it to the calendar block
+        $(".week-cal").append(thisCol);
 
         // If it's the time column,
         if (col === "timecol") {
@@ -253,12 +257,26 @@ $(document).ready(function() {
                 
                 // Append to col
                 thisCol.append(newCell);
+
             }
         }
-        
-
-        
-
     })
+
+    // Add list of categories
+    const timeCategories = ["sleep", "work", "personal", "chores"];
+    
+    // For each category of time...
+    timeCategories.forEach(thisCat => {
+
+        // make a new div
+        const newCat = $("<div>");
+        newCat.addClass(`sched-cat sched-cat-unsel`);
+        newCat.data("category", thisCat);
+        newCat.text(thisCat);
+
+        // Append to list
+        $(".category-list").append(newCat);
+
+    });
 
 });
