@@ -38,7 +38,7 @@ module.exports = function(sequelize, DataTypes) {
             defaultValue: false
         },
         timeToComplete: {
-            type: DataTypes.DECIMAL(10, 2),
+            type: DataTypes.TIME,
             allowNull: true
         },
         //   might need to change to compare easier to calendar

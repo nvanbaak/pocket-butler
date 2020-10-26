@@ -7,31 +7,30 @@ function getTaskData() {
         const fullCalObjArr = [];
         for (let i = 0; i < taskData.length; i++) {
             const task = taskData[i];
+            const newStartDate = task.startDate.replace(/T.*$/g, "").trim();
+            const newEndDate = task.endDate.replace(/T.*$/g, "").trim();
             if (task.startTime === "00:00:00") {
-                let newStartDate = task.startDate.replace(/T.*$/g, "").trim();
-                let newEndDate = task.endDate.replace(/T.*$/g, "").trim();
-
                 let fullCalObj = {
                     title: task.title,
                     start: newStartDate,
-                    end: newEndDate,
+                    end: newStartDate,
                     extendedProps: {
                         description: task.description
                     }
                 };
                 fullCalObjArr.push(fullCalObj);
+
             } else {
-                let newStartDate = task.startDate.replace(/T.*$/g, "").trim();
-                let newEndDate = task.endDate.replace(/T.*$/g, "").trim();
                 let fullCalObj = {
                     title: task.title,
                     start: `${newStartDate}T${task.startTime}`,
-                    end: `${newEndDate}T${task.endTime}`,
+                    end: `${newStartDate}T${task.startTime + task.length}`,
                     extendedProps: {
                         description: task.description
                     }
                 };
                 fullCalObjArr.push(fullCalObj);
+
             }
 
         };

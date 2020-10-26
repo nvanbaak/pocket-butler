@@ -98,6 +98,7 @@ $(document).ready(function() {
             location.reload();
         } else if (phone.length > 0) {
             if (phone.length != 10 || validPhone === NaN) {
+
                 alert("not valid phone. Did not update");
                 location.reload();
             } else {
@@ -200,5 +201,8 @@ $(document).ready(function() {
             }
         );
     });
+
+
+
 
 });
