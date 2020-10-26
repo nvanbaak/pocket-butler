@@ -85,8 +85,8 @@ $(document).ready(function() {
     $('#add-task').click(event => {
         event.preventDefault();
         // Convert checkboxes to true/false
-        let is_reoccurring = ( $('#reoccurring').val() === "on");
-        let is_autoSchedule = ( $('#auto-schedule').val() === "on");
+        let is_reoccurring = ($('#reoccurring').val() === "on");
+        let is_autoSchedule = ($('#auto-schedule').val() === "on");
 
         const newTask = {
             title: $('#task-title').val().trim(),
@@ -98,7 +98,9 @@ $(document).ready(function() {
             timeToComplete: $('#length').val(),
             is_autoSchedule: is_autoSchedule,
             is_reoccurring: is_reoccurring,
-            UserId: $("#add-task").attr("data-id")
+            UserId: $("#add-task").attr("data-id"),
+            userName: $("#add-task").attr("data-name"),
+            userEmail: $("#add-task").attr("data-email")
         }
 
         console.log(newTask)
@@ -114,8 +116,8 @@ $(document).ready(function() {
         let taskId = $(this).attr("data-id");
 
         // Convert checkboxes to true/false
-        let is_reoccurring = ( $('#reoccurring').val() === "on" );
-        let is_autoSchedule = ( $('#auto-schedule').val() === "on" );
+        let is_reoccurring = ($('#reoccurring').val() === "on");
+        let is_autoSchedule = ($('#auto-schedule').val() === "on");
 
         const updatedTaskObj = {
             title: $(`#title${taskId}`).val().trim(),
