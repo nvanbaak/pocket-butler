@@ -322,8 +322,6 @@ $(document).ready(function () {
             timeCol.append(headerCell);
             timeCol.append($("<br>"));
 
-
-
             // Add 24 cells
             for (let i = 0; i < 24; i++) {
 
@@ -405,7 +403,10 @@ $(document).ready(function () {
     
                     // Set text equal to schedule of that day
                     newCell.text(week[sched][i]);
-    
+                    
+                    // Store it in data
+                    newCell.data("category",week[sched][i]);
+
                     // Identify it as a cell for styling
                     newCell.addClass("week-cell");
     
