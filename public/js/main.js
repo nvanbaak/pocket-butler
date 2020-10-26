@@ -110,8 +110,6 @@ $(document).ready(function () {
                 data: loginUser,
             }).then(loginUserData => { 
                 location.replace("/dashboard");
-                
-                console.log(loginUserData);
             });
         }
     });
@@ -254,16 +252,27 @@ $(document).ready(function () {
                 // Reload the page to get the updated list
                 location.reload();
             }
-            );
-        });
+        );
+    });
         
+    // Schedule population
+    $("#open-schedule").click(event => {
+        let weekId = $(this).attr("data-id");
+
+        $.ajax(`/api/weeks/${weekId}`, {
+            type: "GET"
+        }).then(weekRaw => {
+
+            let week = JSON.parse(weekRaw.days);
+            console.log(week);
+
+        })
+
+
+    })
+
     // Set up calendar on weekly schedule
     const weekcolumns = ["timecol","sun","mon","tues","wed","thur","fri","sat"];
-    
-    // function to populate schedule modal
-    function populateSchedule() {
-
-    }
 
     // Set up schedule
     const schedule = [];

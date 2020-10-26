@@ -10,9 +10,11 @@
             </a>
         </div>
         <div class="col xl l1 m1 s1 center-align ">
-            <a class="waves-effect waves-light modal-trigger" href="#schedule-modal">
+            {{#each Week}}
+            <a id="open-schedule" data-id="{{id}}" class="waves-effect waves-light modal-trigger" href="#schedule-modal">
                 <i class="material-icons settings-icon">date_range</i>
             </a>
+            {{/each}}
         </div>
         <div class="col xl l1 m1 s1 center-align ">
             <a class="waves-effect waves-light modal-trigger" href="#user-modal">
