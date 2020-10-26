@@ -96,7 +96,6 @@ $(document).ready(function () {
         const phone = $('#phone-number1').val().trim();
         const validEmail = email.includes("@");
         const validPhone = parseInt(phone);
-        console.log(phone);
 
         if (!username || !email) {
             // TODO:
@@ -160,8 +159,6 @@ $(document).ready(function () {
             UserId: $("#add-task").attr("data-id")
         }
 
-        console.log(newTask)
-
         $.ajax("/api/tasks", {
             type: "POST",
             data: newTask
@@ -188,8 +185,6 @@ $(document).ready(function () {
             is_reoccurring: is_reoccurring,
 
         }
-
-        console.log(updatedTaskObj)
 
         $.ajax("/api/tasks/" + taskId, {
             type: "PUT",
