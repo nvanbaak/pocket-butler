@@ -306,111 +306,113 @@ $(document).ready(function () {
             console.log(week);
 
             // Set up calendar on weekly schedule
-            const weekcolumns = ["timecol", "sun", "mon", "tues", "wed", "thur", "fri", "sat"];
+            const weekcolumns = ["sun", "mon", "tues", "wed", "thur", "fri", "sat"];
+
+            // Create time labels
+
+            // Start with a column
+            const timeCol = $("<div>");
+
+            // add it to the calendar block
+            $(".week-cal").append(timeCol);
+
+            // Add header cell
+            const headerCell = $("<div>");
+            headerCell.text("time");
+            timeCol.append(headerCell);
+            timeCol.append($("<br>"));
+
+
+
+            // Add 24 cells
+            for (let i = 0; i < 24; i++) {
+
+                // Make cell
+                const newCell = $("<div>");
+
+                // Create hour
+                let label;
+
+                if (i === 0) {
+                    label = 12;
+                } else if (i > 12) {
+                    label = i - 12;
+                } else {
+                    label = i;
+                }
+
+                // THIS CODE SUPPORTS HALF-HOUR TIME BLOCKS
+                // We're not using that right now but I'm leaving it in for future development
+
+                // if (i === 0 || i === 24 ) {
+                //     label = '12';
+                // } else if (i === 1 || 1 === 25) {
+                //     label = '12.5';
+                // } else if (i > 25 ) {
+                //     label = `${(i - 24)/2}`;
+                // } else {
+                //     label = `${i/2}`;
+                // }
+
+                // // translate number to time
+                // // first check if there's a decimal
+                // if (label[label.length-2] === ".") {
+                //     // These are our half-hour times
+                //     label = label.replace(".5", ":30");;
+                // } else {
+                //     // the rest just get some zeroes
+                //     label+=":00";
+                // }
+
+                // Add am/pm designation
+                if (i < 12) {
+                    label += " am";
+                } else {
+                    label += " pm";
+                }
+
+                // Set text
+                newCell.text(label);
+
+                // append to column
+                timeCol.append(newCell);
+            }
 
             // for each day of the week,
-            weekcolumns.forEach(col => {
-        
+            for (let sched = 0; sched < 7; sched++) {
+
                 // make a column
                 const thisCol = $("<div>")
-                    .addClass(`${col} col center-align`);
-        
+                .addClass(`${weekcolumns[sched]} col center-align`);
+
                 // add it to the calendar block
                 $(".week-cal").append(thisCol);
         
-                // If it's the time column,
-                if (col === "timecol") {
-        
-                    // We do a modified version of the cell creation process below
-        
-                    // Add header cell
-                    const headerCell = $("<div>");
-                    headerCell.text("time");
-                    thisCol.append(headerCell);
-                    thisCol.append($("<br>"));
-        
-                    // Add 24 cells
-                    for (let i = 0; i < 24; i++) {
-        
-                        // Make cell
-                        const newCell = $("<div>");
-        
-                        // Create hour
-                        let label;
-        
-                        if (i === 0) {
-                            label = 12;
-                        } else if (i > 12) {
-                            label = i - 12;
-                        } else {
-                            label = i;
-                        }
-        
-                        // THIS CODE SUPPORTS HALF-HOUR TIME BLOCKS
-                        // We're not using that right now but I'm leaving it in for future development
-        
-                        // if (i === 0 || i === 24 ) {
-                        //     label = '12';
-                        // } else if (i === 1 || 1 === 25) {
-                        //     label = '12.5';
-                        // } else if (i > 25 ) {
-                        //     label = `${(i - 24)/2}`;
-                        // } else {
-                        //     label = `${i/2}`;
-                        // }
-        
-                        // // translate number to time
-                        // // first check if there's a decimal
-                        // if (label[label.length-2] === ".") {
-                        //     // These are our half-hour times
-                        //     label = label.replace(".5", ":30");;
-                        // } else {
-                        //     // the rest just get some zeroes
-                        //     label+=":00";
-                        // }
-        
-                        // Add am/pm designation
-                        if (i < 12) {
-                            label += " am";
-                        } else {
-                            label += " pm";
-                        }
-        
-                        // Set text
-                        newCell.text(label);
-        
-                        // append to column
-                        thisCol.append(newCell);
-                    }
-        
-                } else {
-        
-                    // Add header cell
-                    const headerCell = $("<div>");
-                    headerCell.text(col);
-                    thisCol.append(headerCell);
-                    thisCol.append($("<br>"));
-        
-                    // Add 24 cells
-                    for (let i = 0; i < 24; i++) {
-        
-                        // Make cell
-                        const newCell = $("<div>");
-        
-                        // Give it a unique identifier
-                        newCell.data("ref", `${col}${i}`);
-        
-                        // Set text equal to schedule of that day
-                        newCell.text(schedule[weekcolumns.indexOf(col)][i]);
-        
-                        // Identify it as a cell for styling
-                        newCell.addClass("week-cell");
-        
-                        // Append to col
-                        thisCol.append(newCell);
-                    }
+                // Add header cell
+                const headerCell = $("<div>");
+                headerCell.text(weekcolumns[sched]);
+                thisCol.append(headerCell);
+                thisCol.append($("<br>"));
+    
+                // Add 24 cells
+                for (let i = 0; i < 24; i++) {
+    
+                    // Make cell
+                    const newCell = $("<div>");
+    
+                    // Give it a unique identifier
+                    newCell.data("ref", `${weekcolumns[sched]}${i}`);
+    
+                    // Set text equal to schedule of that day
+                    newCell.text(week[sched][i]);
+    
+                    // Identify it as a cell for styling
+                    newCell.addClass("week-cell");
+    
+                    // Append to col
+                    thisCol.append(newCell);
                 }
-            })
+            }
         
             // Add list of categories
             const timeCategories = ["sleep", "work", "meal", "personal", "chores", "~"];
@@ -476,12 +478,10 @@ $(document).ready(function () {
                 }
             })
 
-
         })
 
 
     })
-
 
     // schedule creation functions
     function makeWeekendSchedule(schedArray) {
