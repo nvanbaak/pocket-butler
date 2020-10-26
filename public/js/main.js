@@ -65,7 +65,7 @@ $(document).ready(function () {
                     email: email,
                     phone: phone
                 };
-    
+
                 $.ajax("/signup", {
                     type: "POST",
                     data: newSignUp,
@@ -120,6 +120,19 @@ $(document).ready(function () {
             alert("Not valid email. Did not update")
             location.reload();
         }
+        else if (phone.length === 0) {
+            const updatedUser = {
+                username: username,
+                password: password,
+                email: email,
+                phone: phone
+            };
+
+            $.ajax("/users/" + id, {
+                type: "PUT",
+                data: updatedUser,
+            }).then(updatedUseData => { location.reload() });
+        }
         else if (phone.length > 0) {
             if (phone.length != 10 || validPhone === NaN) {
                 alert("not valid phone. Did not update");
@@ -132,11 +145,11 @@ $(document).ready(function () {
                     email: email,
                     phone: phone
                 };
-        
+
                 $.ajax("/users/" + id, {
                     type: "PUT",
                     data: updatedUser,
-                }).then(updatedUseData => {location.reload()});
+                }).then(updatedUseData => { location.reload() });
             }
         }
     });
