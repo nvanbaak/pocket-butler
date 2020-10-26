@@ -9,35 +9,39 @@ module.exports = function(sequelize, DataTypes) {
         },
         description: {
             type: DataTypes.STRING,
-            allowNull: false,
-            validate: {
-                len: [1, 140]
-            }
+            allowNull: true,
         },
-        //   might need to change to compare easier to calendar
-        deadline: {
-            type: DataTypes.STRING,
-            allowNull: false,
-            validate: {
-                len: [1, 140]
-            }
+        endDate: {
+            type: DataTypes.DATE,
+            allowNull: true,
         },
-        autoschedule: {
+        endTime: {
+            type: DataTypes.TIME,
+            allowNull: true,
+        },
+        startDate: {
+            type: DataTypes.DATE,
+            allowNull: true,
+        },
+        startTime: {
+            type: DataTypes.TIME,
+            allowNull: true,
+        },
+        is_autoSchedule: {
             type: DataTypes.BOOLEAN,
-            allowNull: false
+            allowNull: false,
+            defaultValue: false
+        },
+        is_reoccurring: {
+            type: DataTypes.BOOLEAN,
+            allowNull: true,
+            defaultValue: false
         },
         timeToComplete: {
             type: DataTypes.DECIMAL(10, 2),
             allowNull: true
         },
         //   might need to change to compare easier to calendar
-        startline: {
-            type: DataTypes.STRING,
-            allowNull: true,
-            validate: {
-                len: [1, 140]
-            }
-        },
         complete: {
             type: DataTypes.BOOLEAN,
             defaultValue: false

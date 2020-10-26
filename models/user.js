@@ -1,3 +1,5 @@
+const bcrypt = require('bcrypt');
+
 module.exports = function(sequelize, DataTypes) {
     const User = sequelize.define('User', {
         //add properties here
@@ -13,16 +15,17 @@ module.exports = function(sequelize, DataTypes) {
 
     User.associate = function(models) {
         // add associations here
-        User.hasMany(models.Day), {
-                onDelete: "cascade"
-            },
-            User.hasMany(models.Week), {
-                onDelete: "cascade"
-            }
-        User.hasMany(models.Task), {
-                onDelete: "cascade"
-            }
-            // ex: User.hasMany(models.BlogPost)
+        User.hasMany(models.Task, {
+            onDelete: "cascade"
+        })
+        User.hasMany(models.Week, {
+            onDelete: "cascade"
+        })
     };
+
+    User.beforeCreate(user => {
+        user.password = bcrypt.hashSync(user.password, bcrypt.genSaltSync(10), null)
+    });
+
     return User;
 }
