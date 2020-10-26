@@ -1,5 +1,5 @@
 const db = require("../models");
-
+const sendEmail = require("../sendEmail")
 module.exports = function(app) {
     // Getting all of the users tasks for the calendar 
     app.get("/api/tasks/user/id", (req, res) => {
@@ -35,8 +35,19 @@ module.exports = function(app) {
     // creating new task
     app.post("/api/tasks", (req, res) => {
         db.Task.create(req.body).then((newTask) => {
-            res.json(newTask);
-        })
+                res.json(newTask);
+            }).then(function(data) {
+
+                let textToSend = `Hi ${req.body. userName} you have created a new task , ${req.body.title} on ${req.body. startDate} Start time ${req.body.startTime} and its Due on ${req.body.endDate} at ${req.body.endTime}  `
+                sendEmail(req.body.userEmail, textToSend)
+
+
+            })
+            // add the email and the name of the user to the post object coming from the frontEnd
+            // import sendEmail file into this page (at the top)
+            // create the text that you want to be sent    
+
+
     });
 
     // updating a task
