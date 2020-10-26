@@ -157,4 +157,62 @@ $(document).ready(function() {
         );
     });
 
+    // Set up calendar on weekly schedule
+    const weekcolumns = ["timecol","sun","mon","tues","wed","thur","fri","sat"];
+
+    // In each column
+    weekcolumns.forEach(col => {
+
+        // get reference to intended column
+        const thisCol = $(`.${col}`);
+
+        // If it's the time column,
+        if (col === "timecol") {
+
+            // We do a modified version of the cell creation process below
+
+            // Add 24 cells
+            for (let i = 0; i < 48; i++) {
+                
+                // Make cell
+                const newCell = $("<div>");
+
+                // Create time label
+                let label;
+                if (i === 0 || i === 23 ) {
+                    label = `12`;
+                } else if (i > 25 ) {
+                    label = i - 24;
+                } else {
+                    label = i;
+                }
+
+                // Set text
+                newCell.text(`${col}${i}`);
+            }
+
+        } else {
+            
+            // Add 24 cells
+            for (let i = 0; i < 24; i++) {
+                
+                // Make cell
+                const newCell = $("<div>");
+                
+                // Give it a unique identifier
+                newCell.data("ref", `${col}${i}`);
+                
+                // Set text
+                newCell.text(`${col}${i}`);
+                
+                // Append to col
+                thisCol.append(newCell);
+            }
+        }
+        
+
+        
+
+    })
+
 });

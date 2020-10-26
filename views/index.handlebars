@@ -24,19 +24,50 @@
         <div id="schedule-modal" class="modal">
             <div class="modal-content">
                 <h5 style="text-align: center;">Schedule Settings</h5>
-                <form class="col xl12 l12">
+                <div class="row">
                     <div class="row">
+                        <div class="col xl3 l3 m4 s5 offset-xl1 offset-l1 offset-m1 offset-s1">
+                            <h6>Your Weekly Schedule</h6>
+                        </div>
+                        <div class="col xl3 l3 m4 s5 offset-xl5 offset-l5 offset-m3 offset-s1">
+                            <h6>Add a category</h6>
+                        </div>
+                    </div>
+                        <div class="row week-cal">
+                            <div class="col xl1 l1 m1 s1 timecol">
+                            </div>
 
+                            <div class="col xl1 l1 m1 s1 sunday">
+                            </div>
+
+                            <div class="col xl1 l1 m1 s1 monday">
+                            </div>
+
+                            <div class="col xl1 l1 m1 s1 tuesday">
+                            </div>
+
+                            <div class="col xl1 l1 m1 s1 wednesday">
+                            </div>
+
+                            <div class="col xl1 l1 m1 s1 thursday">
+                            </div>
+
+                            <div class="col xl1 l1 m1 s1 friday">
+                            </div>
+                            
+                            <div class="col xl1 l1 m1 s1 saturday">
+                            </div>
+                        </div>
                     </div>
-                    <div class="row">
-                        <button id="set-schedule" data-id="{{this.id}}"
-                            class="col xl2 l2 m2 s5 offset-xl3 offset-l3 offset-m3 offset-s1 btn modal-close"
-                            type="submit" name="action">Accept</button>
-                        <button data-id="{{this.id}}"
-                            class="col xl2 l2 m2 s5 offset-xl2 offset-l2 offset-m2 offset-s2 btn modal-close"
-                            name="action">Close</button>
-                    </div>
-                </form>
+                </div>
+                <div class="row">
+                    <button id="set-schedule" data-id="{{this.id}}"
+                        class="col xl2 l2 m2 s5 offset-xl3 offset-l3 offset-m3 offset-s1 btn modal-close"
+                        type="submit" name="action">Accept</button>
+                    <button data-id="{{this.id}}"
+                        class="col xl2 l2 m2 s5 offset-xl2 offset-l2 offset-m2 offset-s2 btn modal-close"
+                        name="action">Close</button>
+                </div>
             </div>
         </div>
 
