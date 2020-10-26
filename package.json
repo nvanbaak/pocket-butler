@@ -27,6 +27,7 @@
         "express-session": "^1.17.1",
         "fullcalendar": "^5.3.2",
         "moment": "^2.29.1",
+        "mysql": "^2.18.1",
         "mysql2": "^2.2.5",
         "nodemailer": "^6.4.14",
         "sequelize": "^6.3.5",
