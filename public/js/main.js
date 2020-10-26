@@ -277,7 +277,6 @@ $(document).ready(function() {
                 
                 // Set text equal to schedule of that day
                 newCell.text(schedule[weekcolumns.indexOf(col)][i]);
-                // newCell.text("~");
 
                 // Identify it as a cell for styling
                 newCell.addClass("week-cell");
@@ -289,16 +288,22 @@ $(document).ready(function() {
     })
 
     // Add list of categories
-    const timeCategories = ["sleep", "work", "meal", "personal", "chores"];
+    const timeCategories = ["sleep", "work", "meal", "personal", "chores", "~"];
     
     // For each category of time...
     timeCategories.forEach(thisCat => {
 
         // make a new div
         const newCat = $("<div>");
-        newCat.addClass(`sched-cat sched-cat-unsel`);
         newCat.data("category", thisCat);
         newCat.text(thisCat);
+
+        // The first statement is selected, the rest are not
+        if (thisCat === "sleep") {
+            newCat.addClass(`sched-cat sched-cat-sel`);
+        } else {
+            newCat.addClass(`sched-cat sched-cat-unsel`);
+        }
 
         // Append to list
         $(".category-list").append(newCat);
@@ -336,9 +341,14 @@ $(document).ready(function() {
         const timeEl = event.target
 
         // Once they click on a week cell
-        if (timeEl.class === "week-cell") {
-            console.log("this is a week!");
-        }
+        if (timeEl.className === "week-cell") {
+            
+            // Get the selected time category
+            const active = $(".category-list .sched-cat-sel").text();
+
+            // Replace the text in the cell
+            timeEl.innerText = active;
+        }   
     })
 
 });
