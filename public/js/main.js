@@ -41,6 +41,19 @@ $(document).ready(function () {
             // TODO:
             alert("Not valid email")
         }
+        else if (phone.length === 0) {
+            const newSignUp = {
+                username: username,
+                password: password,
+                email: email,
+                phone: phone
+            };
+
+            $.ajax("/signup", {
+                type: "POST",
+                data: newSignUp,
+            }).then(newSignUpData => { });
+        }
         else if (phone.length > 0) {
             if (phone.length != 10 || validPhone === NaN) {
                 alert("not valid phone");
