@@ -9,7 +9,9 @@ moment = require("moment.js")
 
 // Order user tasks by deadline
 
-// 
+// Assign tasks to week slots
+
+// update start times of tasks
 
 
 
