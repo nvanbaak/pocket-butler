@@ -34,10 +34,12 @@ $(document).ready(function() {
         const validPhone = parseInt(phone);
 
         if (!username || !password || !email) {
+
             alert("Need to fill in")
         } else if (!validEmail) {
             alert("Not valid email")
         } else if (phone.length === 0) {
+
             const newSignUp = {
                 username: username,
                 password: password,
@@ -51,8 +53,11 @@ $(document).ready(function() {
             }).then(newSignUpData => {});
         } else if (phone.length > 0) {
             if (phone.length != 10 || validPhone === NaN) {
-                alert("not valid phone");
-            } else {
+
+                alert("Not a valid phone number. Only include numbers (no dashes) and provide a 10 digit phone number (includes area code)");
+            }
+            else {
+
                 const newSignUp = {
                     username: username,
                     password: password,
@@ -103,10 +108,12 @@ $(document).ready(function() {
         const validPhone = parseInt(phone);
 
         if (!username || !email) {
-            alert("Need to fill in. Did not update")
+
+            alert("Need to provide both a username and an email.. Did not update")
             location.reload();
         } else if (!validEmail) {
             alert("Not valid email. Did not update")
+
             location.reload();
         } else if (phone.length === 0) {
             const updatedUser = {
@@ -123,7 +130,8 @@ $(document).ready(function() {
         } else if (phone.length > 0) {
             if (phone.length != 10 || validPhone === NaN) {
 
-                alert("not valid phone. Did not update");
+                alert("Not a valid phone. Did not update");
+
                 location.reload();
             } else {
                 const updatedUser = {
