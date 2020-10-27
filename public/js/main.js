@@ -35,11 +35,11 @@ $(document).ready(function () {
 
         if (!username || !password || !email) {
             // TODO:
-            alert("Need to fill in")
+            alert("Check to be sure that a username, password, and email is provided")
         }
         else if (!validEmail) {
             // TODO:
-            alert("Not valid email")
+            alert("Not a valid email")
         }
         else if (phone.length === 0) {
             const newSignUp = {
@@ -56,7 +56,7 @@ $(document).ready(function () {
         }
         else if (phone.length > 0) {
             if (phone.length != 10 || validPhone === NaN) {
-                alert("not valid phone");
+                alert("Not a valid phone number. Only include numbers (no dashes) and provide a 10 digit phone number (includes area code)");
             }
             else {
                 const newSignUp = {
@@ -112,12 +112,12 @@ $(document).ready(function () {
 
         if (!username || !email) {
             // TODO:
-            alert("Need to fill in. Did not update")
+            alert("Need to provide both a username and an email. Did not update")
             location.reload();
         }
         else if (!validEmail) {
             // TODO:
-            alert("Not valid email. Did not update")
+            alert("Not a valid email. Did not update")
             location.reload();
         }
         else if (phone.length === 0) {
@@ -135,7 +135,7 @@ $(document).ready(function () {
         }
         else if (phone.length > 0) {
             if (phone.length != 10 || validPhone === NaN) {
-                alert("not valid phone. Did not update");
+                alert("Not a valid phone. Did not update");
                 location.reload();
             }
             else {
