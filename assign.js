@@ -1,4 +1,7 @@
-moment = require("moment.js")
+var moment = require('moment'); // require
+moment().format(); 
+
+
 
 
 // ENTRY POINT: USER ADDS OR UPDATES A TASK
@@ -13,194 +16,77 @@ moment = require("moment.js")
 
 // update start times of tasks
 
+// ===============================================
+//          AUTOSCHEDULER FUNCTIONALITY
+// ===============================================
 
+// Given a week object (seven arrays of 24 hours), an object
+// The returned object has two child arrays, "personal" and "work", which contain day,hour references to a week
+// today is the day of the week, and thisHour is the current hour.  We won't get references past those points
+function findAvailableTimes(weekObj, today, thisHour) {
 
+    // set up output object
+    // This list will contain paired values representing week and hour indices
+    const outputObj = {
+        work: [],
+        personal: []
+    };
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// Global variables
-let today = 0; // we're using an integer in the place of a date, but theoretically we could make this work with calendar math
-
-// Classes
-class Week {
-    constructor(dayArr, startDate) {
-        this.days = dayArr;
-        this.startDate = startDate;
-    }
-
-    setDays(newArr) {
-        this.days = newArr;
-    }
-
-    getDays() {
-        return this.days;
-    }
-
-    getDate() {
-        return this.startDate;
-    }
-}
-
-// the User class has a list of tasks, a week template, and a schedule
-class User {
-    constructor(weekTemplate) {
-        this.tasks = [];
-        this.template = weekTemplate;
-        this.schedule = [];
-    }
-
-    getTasks() {
-        return this.tasks;
-    }
-
-    addTask(task) {
-        this.tasks.push(task);
-    }
-
-    getTemplate() {
-        return this.template;
-    }
-
-    setTemplate(weekObj) {
-        this.template = weekObj;
-    }
-
-    getSchedule() {
-        return this.schedule;
-    }
-
-    addToSchedule(weekObj) {
-        this.schedule.push(weekObj);
-    }
-}
-
-// Builds and returns a task object
-// name:       name of task
-// category:   used for assigning task start times
-// time:       task start time
-// deadline:   date integer at which the task must be completed
-function newTask(name, category, time, deadline) {
-    return {
-        "name":name,
-        "category":category,
-        "time":time,
-        "deadline":deadline
-    }
-}
-
-// generates and returns a dummy schedule
-function wageSlave() {
-
-    let schedule = [];
-
-    // For each of seven days...
-    for (let i = 0; i < 7; i++) {
-
-        let day = [];
-
-        // We start the day sleeping
-        let category = "sleep"
-
-        // generate 24 hours in blocks
-        for (let j = 0; j < 24; j++) {
-
-            // Update category
-            if (j > 21) category = "sleep";
-            else if (j > 19) category = "hobby";
-            else if (j > 18) category = "dinner";
-            else if (j > 17) category = "";
-            else if (j > 12) category = "work";
-            else if (j > 11) category = "lunch";
-            else if (j > 7) category = "work";
-            else if (j > 6) category = "";
-
-            // Push to the day
-            day.push(category);
-        }
-
-        // Put the day in the schedule
-        schedule.push(day);
-    }
-
-    return schedule;
-}
-
-// returns a list of arrays containing references to each block by category
-function getAllCategoryTimes(weekObj) {
-
-    // set up output list
-    // This list will contain objects with a "name" property and a "reference" property
-    // "reference" will be a list of indices that will point to blocks in the original week
-    let catList = [];
-
-    // Run through the week object by days
+    // iterate through days
     for (let day = 0; day < weekObj.length; day++) {
 
-        // For each day, run through the hours
-        for (let hour = 0; hour < weekObj[day].length; hour++) {
+        // iterate through hours
+        for (let hour = 0; hour < weekObj[day].length; hour ++) {
 
-            // Locate the index for that category in the list, if any
-            // Start with an index at -1
-            let catIndex = -1;
-
-            // Run through the list of categories
-            for (let i = 0; i < catList.length; i++) {
-
-                // This statement requires some explanation:
-                // For each object in the category list, we get the name of that category
-                // Then we check it against the string in the week object, which should also be a category string
-                if (catList[i].name === weekObj[day][hour]) {
-
-                    // If they're the same, reset the index
-                    catIndex = i; 
-                    
-                    // then push and break the loop
-                    catList[i].reference.push([day, hour]);
-                    break;
-                }
+            // If the hour stores "work", store the ref
+            if (weekObj[day][hour] === "work") {
+                outputArr.work.push([day,hour]);
             }
 
-            // if the category we want isn't in the list...
-            if (catIndex === -1) {
-
-                // push a new category object to the list
-                catList.push({
-                    "name":weekObj[day][hour],
-                    "reference":[[day,hour]] // We gotta format it this way or it'll put the values in separately
-                });
+            // If the hour stores "personal", store the ref
+            if (weekObj[day][hour] === "personal") {
+                outputArr.personal.push([day,hour]);
             }
         }
     }
 
-    // Having walked through the whole week, return the list
-    return catList;
+    return outputObj;
 }
 
-newWeek = new Week(wageSlave(), 1);
+// This function returns a moment object pointing to the most recent Sunday
+function mostRecentSunday() {
+    // define now
+    let now = moment();
 
-console.table(newWeek.getDays()[0]);
+    // Is today Sunday?
+    if (now.format("dddd") === "Sunday") {
+        
+        // If so, return
+        return now;
 
-let timeBlocks = getAllCategoryTimes(newWeek.getDays())
+    // Otherwise start rolling back
+    } else {
+        // Start with yesterday
+        let daysAgo = 1;
+        while (true) {
+            // Was yesterday Sunday?
+            if (now.subtract(daysAgo, "days").format("dddd") === "Sunday") {
+                // Yes?  Great, send it back
+                return now;
+            } else {
+                // No?  Check the previous day
+                daysAgo++;
+            }
+        }
+    }
+}
 
-console.table(timeBlocks);
+
+
+
+function autoschedule(userId) {
+
+}
+
+
+
