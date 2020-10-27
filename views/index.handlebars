@@ -61,6 +61,7 @@
                 <form class="col xl12 l12">
                     <div class="row">
                         <div class="input-field col xl10 l10 m12 s12 offset-xl1 offset-l1">
+                            <label for="username" class="title-error" style="visibility: hidden;">Error! incorrect Field!</label>
                             <input placeholder="Username" id="user-name1" type="text" class="validate" value="{{this.username}}">
                             <label for="username">Username</label>
                         </div>
@@ -78,7 +79,7 @@
                         </div>
                         <input type="hidden" class="user_id" type="text" value={{this.id}}>
                         <button id="update-user" data-id="{{this.id}}" class="col xl2 l2 m2 s3 offset-xl1 offset-l1 offset-m1 btn modal-close" type="submit" name="action">Update</button>
-                        <button id="close-settings" data-id="{{this.id}}" class="col xl2 l2 m2 s3 offset-xl2 offset-l2 offset-m2 offset-s1 btn modal-close" name="action">Close</button>
+                        <button id="logout" data-id="{{this.id}}" class="col xl2 l2 m2 s3 offset-xl2 offset-l2 offset-m2 offset-s1 btn modal-close" name="action">Logout</button>
                         <button id="delete-user" data-id="{{this.id}}" class="col xl2 l2 m2 s3 offset-xl2 offset-l2 offset-m2 offset-s1 btn modal-close" type="submit" name="action">Delete</button>
                     </div>
                 </form>
@@ -120,12 +121,12 @@
                                 </div>
                                 <div class="input-field browser-default col xl10 l10 m12 s12 offset-xl1 offset-l1">
                                     <select id="length{{id}}" value="{{this.timeToComplete}}">
-                                        <option value="0.15">0:15</option>
-                                        <option value="0.30">0:30</option>
-                                        <option value="0.45">0:45</option>
-                                        <option value="1.00">1:00</option>
-                                        <option value="1.30">1:30</option>
-                                        <option value="2.00">2:00</option>
+                                        <option value="00:15:00">0:15</option>
+                                        <option value="00:30:00">0:30</option>
+                                        <option value="00:45:00">0:45</option>
+                                        <option value="01:00:00">1:00</option>
+                                        <option value="01:30:00">1:30</option>
+                                        <option value="02:00:00">2:00</option>
                                     </select>
                                     <label>Estimated time to complete (hours:minutes):</label>
                                 </div>
@@ -156,13 +157,6 @@
                             </div>
 
                             <div class="checkboxes col xl10 l10 m12 s12 offset-xl1 offset-l1">
-                                <p>
-                                    <label>
-                                            <input class="update-reoccurring" for="reoccurring" type="checkbox"
-                                                 checked="checked" />
-                                            <span>This is a recurring event</span>
-                                        </label>
-                                </p>
                                 <p>
                                     <label>
                                             <input class="update-auto-schedule" for="auto-schedule" type="checkbox"
@@ -203,12 +197,12 @@
                         </div>
                         <div class="input-field browser-default col xl10 l10 m12 s12 offset-xl1 offset-l1">
                             <select id="length">
-                                <option value="0.15">0:15</option>
-                                <option value="0.30">0:30</option>
-                                <option value="0.45">0:45</option>
-                                <option value="1.00">1:00</option>
-                                <option value="1.30">1:30</option>
-                                <option value="2.00">2:00</option>
+                                <option value="00:15:00">0:15</option>
+                                <option value="00:30:00">0:30</option>
+                                <option value="00:45:00">0:45</option>
+                                <option value="01:00:00">1:00</option>
+                                <option value="01:30:00">1:30</option>
+                                <option value="02:00:00">2:00</option>
                             </select>
                             <label>Estimated time to complete (hours:minutes):</label>
                         </div>
@@ -219,9 +213,9 @@
                                 <label for="datepicker">Start Date (leave blank if autoscheduling)</label>
                             </div>
 
-                            <div class="input-field col xl5 l5 m6 s6">
+                            <div class="input-field col xl5 l5 m6 s6 start-time" >
                                 <input id="timepicker" type="text" class="timepicker">
-                                <label for="timepicker">Start Time</label>
+                                <label for="timepicker" >Start Time</label>
                             </div>
                         </div>
 
@@ -236,23 +230,16 @@
                                 <label for="timeduepicker">Deadline Time</label>
                             </div>
                         </div>
-
-                        <div class="checkboxes col xl10 l10 m12 s12 offset-xl1 offset-l1">
-                            <p>
+                        
+                           <div class="checkboxes col xl10 l10 m12 s12 offset-xl1 offset-l1">
+                               <p>
                                 <label>
-                                    <input id="reoccurring" for="reoccurring" type="checkbox" 
-                                        checked="checked"/>
-                                    <span>This is a recurring event</span>
-                                </label>
-                            </p>
-                            <p>
-                                <label>
-                                    <input id="auto-schedule" for="auto-schedule" type="checkbox" 
-                                        checked="checked" />
+                                    <input id="auto-schedule" for="auto-schedule" type="checkbox"/>
                                     <span>Schedule this for me</span>
                                 </label>
                             </p>
                         </div>
+                     
                         <button id="add-task" data-id="{{id}}" data-name="{{this.username}}" data-email="{{this.email}}" class="col xl2 l2 m2 s4 offset-xl3 offset-l3 offset-m3 offset-s1 btn modal-close">Add</button>
                         <button class="col xl2 l2 m2 s4 offset-xl2 offset-l2 offset-m2 offset-s2 btn modal-close">Close</button>
                     </div>
