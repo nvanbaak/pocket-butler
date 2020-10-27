@@ -12,7 +12,7 @@ module.exports = function(toEmail, sendText) {
     let mailOptions = {
         from: 'pocketbuttler@gmail.com',
         to: toEmail,
-        subject: 'Testing',
+        subject: 'New Task',
         text: sendText
     }
 
