@@ -32,11 +32,19 @@ function findAvailableTimes(weekObj, today, thisHour) {
         personal: []
     };
 
-    // iterate through days
-    for (let day = 0; day < weekObj.length; day++) {
+    // iterate through days, starting with today
+    for (let day = today; day < weekObj.length; day++) {
+
+        // Start at hour 0
+        let startHour = 0;
+        
+        // If this is the first day we're considering, we start with the next available hour instead
+        if (day === today) {
+            startHour += thisHour + 1;
+        }
 
         // iterate through hours
-        for (let hour = 0; hour < weekObj[day].length; hour ++) {
+        for (let hour = startHour; hour < weekObj[day].length; hour ++) {
 
             // If the hour stores "work", store the ref
             if (weekObj[day][hour] === "work") {
@@ -52,6 +60,40 @@ function findAvailableTimes(weekObj, today, thisHour) {
 
     return outputObj;
 }
+
+// This function takes a moment object and returns 0-6 based on what day of the week it is
+function findWeekIndex(momentObj) {
+
+    const dayStr = momentObj.format("dddd");
+
+    switch (dayStr) {
+
+        case "Sunday":
+            return 0;
+        
+        case "Monday":
+            return 1;
+
+        case "Tuesday":
+            return 2;
+        
+        case "Wednesday":
+            return 3;
+        
+        case "Thursday":
+            return 4;
+
+        case "Friday":
+            return 5;
+
+        case "Saturday":
+            return 6;
+
+        default:
+            return -1;
+    }
+}
+
 
 // This function returns a moment object pointing to the most recent Sunday
 function mostRecentSunday() {
