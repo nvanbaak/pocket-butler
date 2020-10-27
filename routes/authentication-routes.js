@@ -59,7 +59,7 @@ module.exports = function(app) {
     // Log out
     app.get("/logout", (req, res) => {
         req.session.destroy();
-        res.render("login");
+        // res.render("login");
     })
 
     // session homepage aka users dashboard
