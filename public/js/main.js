@@ -1,5 +1,5 @@
 // init page 
-$(document).ready(function () {
+$(document).ready(function() {
 
     // Materialize init 
     // ******************************
@@ -10,7 +10,7 @@ $(document).ready(function () {
     $('.timepicker').timepicker();
 
     // For adding seconds (00)
-    $('.timepicker').on('change', function () {
+    $('.timepicker').on('change', function() {
         let receivedVal = $(this).val();
         $(this).val(receivedVal + ":00");
     });
@@ -34,14 +34,12 @@ $(document).ready(function () {
         const validPhone = parseInt(phone);
 
         if (!username || !password || !email) {
-            // TODO:
+
             alert("Need to fill in")
-        }
-        else if (!validEmail) {
-            // TODO:
+        } else if (!validEmail) {
             alert("Not valid email")
-        }
-        else if (phone.length === 0) {
+        } else if (phone.length === 0) {
+
             const newSignUp = {
                 username: username,
                 password: password,
@@ -52,13 +50,14 @@ $(document).ready(function () {
             $.ajax("/signup", {
                 type: "POST",
                 data: newSignUp,
-            }).then(newSignUpData => { });
-        }
-        else if (phone.length > 0) {
+            }).then(newSignUpData => {});
+        } else if (phone.length > 0) {
             if (phone.length != 10 || validPhone === NaN) {
-                alert("not valid phone");
+
+                alert("Not a valid phone number. Only include numbers (no dashes) and provide a 10 digit phone number (includes area code)");
             }
             else {
+
                 const newSignUp = {
                     username: username,
                     password: password,
@@ -69,7 +68,7 @@ $(document).ready(function () {
                 $.ajax("/signup", {
                     type: "POST",
                     data: newSignUp,
-                }).then(newSignUpData => { });
+                }).then(newSignUpData => {});
             }
         }
 
@@ -83,10 +82,8 @@ $(document).ready(function () {
         const password = $('#password').val().trim();
 
         if (!username || !password) {
-            // TODO:
             alert("Please enter both a username and password")
-        }
-        else {
+        } else {
             const loginUser = {
                 username: username,
                 password: password,
@@ -111,16 +108,14 @@ $(document).ready(function () {
         const validPhone = parseInt(phone);
 
         if (!username || !email) {
-            // TODO:
-            alert("Need to fill in. Did not update")
+
+            alert("Need to provide both a username and an email.. Did not update")
             location.reload();
-        }
-        else if (!validEmail) {
-            // TODO:
+        } else if (!validEmail) {
             alert("Not valid email. Did not update")
+
             location.reload();
-        }
-        else if (phone.length === 0) {
+        } else if (phone.length === 0) {
             const updatedUser = {
                 username: username,
                 password: password,
@@ -132,13 +127,13 @@ $(document).ready(function () {
                 type: "PUT",
                 data: updatedUser,
             }).then(updatedUseData => { location.reload() });
-        }
-        else if (phone.length > 0) {
+        } else if (phone.length > 0) {
             if (phone.length != 10 || validPhone === NaN) {
-                alert("not valid phone. Did not update");
+
+                alert("Not a valid phone. Did not update");
+
                 location.reload();
-            }
-            else {
+            } else {
                 const updatedUser = {
                     username: username,
                     password: password,
@@ -180,17 +175,13 @@ $(document).ready(function () {
 
         if (!title) {
             alert("Need to give your task a title");
-        }
-        else if (!startDate || !startTime) {
+        } else if (!startDate || !startTime) {
             alert("Need to specify when the task starts")
-        }
-        else if (startDate > endDate) {
+        } else if (startDate > endDate) {
             alert("Your start date cannot be later than end date");
-        }
-        else if (startDate === endDate && startTime > endTime) {
+        } else if (startDate === endDate && startTime > endTime) {
             alert("Start time must be before end time");
-        }
-        else {
+        } else {
             const newTask = {
                 title: title,
                 description: $('#details').val().trim(),
@@ -213,7 +204,7 @@ $(document).ready(function () {
         }
     });
 
-    $(".update-task").click(function (event) {
+    $(".update-task").click(function(event) {
         event.preventDefault();
         let taskId = $(this).attr("data-id");
 
@@ -229,14 +220,11 @@ $(document).ready(function () {
 
         if (!title) {
             alert("Need to give your task a title");
-        }
-        else if (!startDate || !startTime) {
+        } else if (!startDate || !startTime) {
             alert("Need to specify when the task starts")
-        }
-        else if (startDate > endDate) {
+        } else if (startDate > endDate) {
             alert("Your start date cannot be later than end date");
-        }
-        else if (startDate === endDate && startTime > endTime) {
+        } else if (startDate === endDate && startTime > endTime) {
             alert("Start time must be before end time");
         }
 
@@ -261,20 +249,36 @@ $(document).ready(function () {
     })
 
     // delete task script
-    $(".delete-task").click(function (event) {
+    $(".delete-task").click(function(event) {
         event.preventDefault()
-        // Get the ID from the button.
+            // Get the ID from the button.
         let taskId = $(this).attr("data-id");
 
         // Send the DELETE request.
         $.ajax("/api/tasks/" + taskId, {
             type: "DELETE"
         }).then(
-            function () {
+            function() {
                 // Reload the page to get the updated list
                 location.reload();
             }
         );
     });
+
+    // Logout
+    $("#logout").on("click", function(event) {
+        event.preventDefault();
+
+        $.ajax("/logout/", {
+            type: "GET"
+        }).then(
+            function() {
+                // Reload the page to get the updated list
+                location.replace("/logout")
+            }
+        );
+    })
+
+
 
 });

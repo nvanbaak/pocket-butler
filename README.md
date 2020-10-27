@@ -24,7 +24,6 @@
 ### General info
 ​
 
-
 Web Link: <>
 ​
 
@@ -89,7 +88,7 @@ If you have any questions please create an issue.
 ​
 ​
 ### Authors
-- [Nik Van Baak](https://github.com/nvanbaak)
+- [Nikolai Van Baak](https://github.com/nvanbaak)
 - [Devon DeVaughn](https://github.com/DevonDeVaughnn)
 - [Maxwell Hanson](https://github.com/MaxHanson07)
 - [Ahmad Al-Karzoun](https://github.com/karzoun)
