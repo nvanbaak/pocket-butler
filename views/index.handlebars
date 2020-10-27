@@ -4,16 +4,6 @@
         <div class="col xl3 l3 m11">
             <img class="logo" src="./assets/logo.png" alt="Pocket Butler Logo">
         </div>
-        <div class="col xl l1 m1 s1 offset-xl7 offset-l5 center-align ">
-            <a class="waves-effect waves-light modal-trigger" href="#newtask-modal">
-                <i class="material-icons settings-icon">add_box</i>
-            </a>
-        </div>
-        <div class="col xl l1 m1 s1 center-align ">
-            <a class="waves-effect waves-light modal-trigger" href="#schedule-modal">
-                <i class="material-icons settings-icon">date_range</i>
-            </a>
-        </div>
         <div class="col xl l1 m1 s1 center-align ">
             <a class="waves-effect waves-light modal-trigger" href="#user-modal">
                 <i class="material-icons settings-icon">settings</i>
@@ -125,28 +115,6 @@
                                 </div>
                             </div>
 
-                            <div class="row">
-
-                                <div class="input-field col xl5 l5 m6 s6 offset-xl1 offset-l1">
-                                    <input id="duedatepicker{{id}}" type="text" class="datepicker duedatepicker" value="{{this.endDate}}">
-                                    <label for="duedatepicker">Deadline Date</label>
-                                </div>
-
-                                <div class="input-field col xl5 l5 m6 s6">
-                                    <input id="timeduepicker{{id}}" type="text" class="timepicker timeduepicker" value="{{this.endTime}}">
-                                    <label for="timeduepicker">Deadline Time</label>
-                                </div>
-                            </div>
-
-                            <div class="checkboxes col xl10 l10 m12 s12 offset-xl1 offset-l1">
-                                <p>
-                                    <label>
-                                            <input class="update-auto-schedule" for="auto-schedule" type="checkbox"
-                                                checked="checked" />
-                                            <span>Schedule this for me</span>
-                                        </label>
-                                </p>
-                            </div>
                             <button data-id="{{this.id}}"  class="col xl2 l2 m2 s4 offset-xl1 offset-l1 offset-m1 offset-s1 btn modal-close update-task">Update</button>
                             <button class="col xl2 l2 m2 s4 offset-xl2 offset-l2 offset-m2 offset-s2 btn modal-close">Close</button>
                             <button data-id="{{this.id}}" class="col xl2 l2 m2 s4 offset-xl2 offset-l2 offset-m2 offset-s2 btn modal-close delete-task">Delete</button>
@@ -199,27 +167,6 @@
                                 <input id="timepicker" type="text" class="timepicker">
                                 <label for="timepicker" >Start Time</label>
                             </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="input-field col xl5 l5 m6 s6 offset-xl1 offset-l1">
-                                <input id="duedatepicker" type="text" class="datepicker duedatepicker">
-                                <label for="duedatepicker">Deadline Date</label>
-                            </div>
-
-                            <div class="input-field col xl5 l5 m6 s6">
-                                <input id="timeduepicker" type="text" class="timepicker timeduepicker">
-                                <label for="timeduepicker">Deadline Time</label>
-                            </div>
-                        </div>
-                        
-                           <div class="checkboxes col xl10 l10 m12 s12 offset-xl1 offset-l1">
-                               <p>
-                                <label>
-                                    <input id="auto-schedule" for="auto-schedule" type="checkbox"/>
-                                    <span>Schedule this for me</span>
-                                </label>
-                            </p>
                         </div>
                      
                         <button id="add-task" data-id="{{id}}" data-name="{{this.username}}" data-email="{{this.email}}" class="col xl2 l2 m2 s4 offset-xl3 offset-l3 offset-m3 offset-s1 btn modal-close">Add</button>
