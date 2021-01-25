@@ -113,7 +113,7 @@ function getTaskData() {
 
 
 ### Summary
-- This project is a front-end based web app pairs you with a workout and playlist of your choice.
+- Pocket Butler is an easy and inviting planner app.
 ​
 ### CSS style
 - CSS styling was built with Materialize CSS 
