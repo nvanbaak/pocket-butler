@@ -4,9 +4,7 @@ var db = require("../models");
 
 module.exports = function(app) {
   app.get("/api/weeks", function(req, res) {
-    db.Week.findAll({
-      include: [db.Day]
-    }).then(function(dbWeek) {
+    db.Week.findAll({ }).then(function(dbWeek) {
       res.json(dbWeek);
     });
   });
@@ -15,8 +13,7 @@ module.exports = function(app) {
     db.Week.findOne({
       where: {
         id: req.params.id
-      },
-      include: [db.Day]
+      }
     }).then(function(dbWeek) {
       res.json(dbWeek);
     });

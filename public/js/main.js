@@ -68,10 +68,24 @@ $(document).ready(function() {
                 $.ajax("/signup", {
                     type: "POST",
                     data: newSignUp,
-                }).then(newSignUpData => {});
+                }).then(newSignUpData => {
+
+                    // Create a default schedule for User once they sign up
+                    const signupsched = [];
+                    makeWeekendSchedule(signupsched);
+                    makeWeekdaySchedule(signupsched);
+                    makeWeekendSchedule(signupsched);
+
+                    $.ajax("/api/weeks", {
+                        type: "POST",
+                        data: {
+                            days: JSON.stringify(signupsched),
+                            UserId: newSignUpData.id
+                        }
+                    })
+                });
             }
         }
-
     });
 
     // login script 
@@ -91,7 +105,9 @@ $(document).ready(function() {
             $.ajax("/login", {
                 type: "POST",
                 data: loginUser,
-            }).then(loginUserData => { location.replace("/dashboard") });
+            }).then(loginUserData => {
+                location.replace("/dashboard");
+            });
         }
     });
 
@@ -200,7 +216,11 @@ $(document).ready(function() {
             $.ajax("/api/tasks", {
                 type: "POST",
                 data: newTask
-            }).then(newTaskData => { location.reload(); });
+            }).then(newTaskData => { 
+                
+                location.reload(); 
+            
+            });
         }
     });
 
@@ -265,19 +285,315 @@ $(document).ready(function() {
         );
     });
 
-    // Logout
-    $("#logout").on("click", function(event) {
-        event.preventDefault();
+    // Schedule population
+    $("#open-schedule").click(event => {
 
-        $.ajax("/logout/", {
+        let weekId = $("#open-schedule").attr("data-id");
+
+        $.ajax(`/api/weeks/${weekId}`, {
             type: "GET"
-        }).then(
-            function() {
-                // Reload the page to get the updated list
-                location.replace("/logout")
+        }).then(weekRaw => {
+
+            let week = JSON.parse(weekRaw.days);
+            console.log(week);
+
+            // Set up calendar on weekly schedule
+            const weekcolumns = ["sun", "mon", "tues", "wed", "thur", "fri", "sat"];
+
+            // Create time labels
+
+            // Start with a column
+            const timeCol = $("<div>");
+
+            // add it to the calendar block
+            $(".week-cal").empty();
+            $(".week-cal").append(timeCol);
+
+            // Add header cell
+            const headerCell = $("<div>");
+            headerCell.text("time");
+            timeCol.append(headerCell);
+            timeCol.append($("<br>"));
+
+            // Add 24 cells
+            for (let i = 0; i < 24; i++) {
+
+                // Make cell
+                const newCell = $("<div>");
+
+                // Create hour
+                let label;
+
+                if (i === 0) {
+                    label = 12;
+                } else if (i > 12) {
+                    label = i - 12;
+                } else {
+                    label = i;
+                }
+
+                // THIS CODE SUPPORTS HALF-HOUR TIME BLOCKS
+                // We're not using that right now but I'm leaving it in for future development
+
+                // if (i === 0 || i === 24 ) {
+                //     label = '12';
+                // } else if (i === 1 || 1 === 25) {
+                //     label = '12.5';
+                // } else if (i > 25 ) {
+                //     label = `${(i - 24)/2}`;
+                // } else {
+                //     label = `${i/2}`;
+                // }
+
+                // // translate number to time
+                // // first check if there's a decimal
+                // if (label[label.length-2] === ".") {
+                //     // These are our half-hour times
+                //     label = label.replace(".5", ":30");;
+                // } else {
+                //     // the rest just get some zeroes
+                //     label+=":00";
+                // }
+
+                // Add am/pm designation
+                if (i < 12) {
+                    label += " am";
+                } else {
+                    label += " pm";
+                }
+
+                // Set text
+                newCell.text(label);
+
+                // append to column
+                timeCol.append(newCell);
             }
-        );
+
+            // for each day of the week,
+            for (let sched = 0; sched < 7; sched++) {
+
+                // make a column
+                const thisCol = $("<div>")
+                .addClass(`${weekcolumns[sched]} col center-align`);
+
+                // add it to the calendar block
+                $(".week-cal").append(thisCol);
+        
+                // Add header cell
+                const headerCell = $("<div>");
+                headerCell.text(weekcolumns[sched]);
+                thisCol.append(headerCell);
+                thisCol.append($("<br>"));
+    
+                // Add 24 cells
+                for (let i = 0; i < 24; i++) {
+    
+                    // Make cell
+                    const newCell = $("<div>");
+    
+                    // Give it a unique identifier
+                    newCell.data("ref", `${weekcolumns[sched]}${i}`);
+    
+                    // Set text equal to schedule of that day
+                    newCell.text(week[sched][i]);
+                    
+                    // Store it in data
+                    newCell.data("category",week[sched][i]);
+
+                    // Identify it as a cell for styling
+                    newCell.addClass("week-cell");
+    
+                    // Append to col
+                    thisCol.append(newCell);
+                }
+            }
+        
+            // Clear categories
+            $(".category-list").empty();
+
+            // Add list of categories
+            const timeCategories = ["sleep", "work", "meal", "personal", "chores", "~"];
+        
+            // For each category of time...
+            timeCategories.forEach(thisCat => {
+        
+                // make a new div
+                const newCat = $("<div>");
+                newCat.data("category", thisCat);
+                newCat.text(thisCat);
+        
+                // The first statement is selected, the rest are not
+                if (thisCat === "sleep") {
+                    newCat.addClass(`sched-cat sched-cat-sel`);
+                } else {
+                    newCat.addClass(`sched-cat sched-cat-unsel`);
+                }
+        
+                // Append to list
+                $(".category-list").append(newCat);
+        
+            });
+        
+            // Script to set time as active
+            $(".category-list").click(event => {
+        
+                const selected = event.target;
+        
+                // first remove selected class from everything
+                if (selected.className.includes("sched-cat")) {
+        
+                    // get everything on the list
+                    const divList = $(".category-list").children();
+        
+                    // Set to unselected
+                    for (let divEl = 0; divEl < divList.length; divEl++) {
+                        divList[divEl].classList.remove("sched-cat-sel");
+                        divList[divEl].classList.add("sched-cat-unsel");
+                    }
+        
+                    // Remove unsel from selected div and add sel
+                    selected.classList.remove("sched-cat-unsel");
+                    selected.classList.add("sched-cat-sel");
+                }
+            })
+        
+            // Once calendar is populated, add calendar behavior
+            $(".week-cal").click(event => {
+                event.preventDefault();
+        
+                // Get selected element
+                const timeEl = event.target
+        
+                // Once they click on a week cell
+                if (timeEl.className === "week-cell") {
+        
+                    // Get the selected time category
+                    const active = $(".category-list .sched-cat-sel").text();
+        
+                    // Replace the text in the cell
+                    timeEl.innerText = active;
+                }
+            })
+
+        })
+
+
     })
+
+    // schedule creation functions
+    function makeWeekendSchedule(schedArray) {
+        let day = [];
+        for (let weekend = 0; weekend < 24; weekend++) {
+            if (weekend < 10) {
+                day.push("sleep");
+            } else if (weekend < 12) {
+                day.push("chores");
+            } else if (weekend === 12 || weekend === 18) {
+                day.push("meal");
+            } else if (weekend < 22) {
+                day.push("personal");
+            } else {
+                day.push("sleep");
+            }
+        }
+        schedArray.push(day);
+    }
+    function makeWeekdaySchedule(schedArray) {
+
+        // We make five weekdays
+        for (let weekDay = 0; weekDay < 5; weekDay++) {
+            // Create the day
+            let day = [];
+            for (let time = 0; time < 24; time++) {
+                if (time < 8) {
+                    day.push("sleep");
+                } else if (time === 8) {
+                    day.push("~");
+                } else if (time < 12) {
+                    day.push("work");
+                } else if (time === 12 || time === 18) {
+                    day.push("meal");
+                } else if (time < 18) {
+                    day.push("work");
+                } else if (time < 22) {
+                    day.push("personal");
+                } else {
+                    day.push("sleep");
+                }
+            }
+            schedArray.push(day);
+        }
+
+
+    }
+
+    // ===============================================
+    //          AUTOSCHEDULER FUNCTIONALITY
+    // ===============================================
+
+    // Given a week object (seven arrays of 24 hours), an object
+    // The returned object has two child arrays, "personal" and "work", which contain day,hour references to a week
+    // today is the day of the week, and thisHour is the current hour.  We won't get references past those points
+    function findAvailableTimes(weekObj, today, thisHour) {
+
+        // set up output object
+        // This list will contain paired values representing week and hour indices
+        const outputObj = {
+            work: [],
+            personal: []
+        };
+
+        // iterate through days, starting with today
+        for (let day = today; day < weekObj.length; day++) {
+
+            // Start at hour 0
+            let startHour = 0;
+            
+            // If this is the first day we're considering, we start with the next available hour instead
+            if (day === today) {
+                startHour += thisHour + 1;
+            }
+
+            // iterate through hours
+            for (let hour = startHour; hour < weekObj[day].length; hour ++) {
+
+                // If the hour stores "work", store the ref
+                if (weekObj[day][hour] === "work") {
+                    outputArr.work.push([day,hour]);
+                }
+
+                // If the hour stores "personal", store the ref
+                if (weekObj[day][hour] === "personal") {
+                    outputArr.personal.push([day,hour]);
+                }
+            }
+        }
+
+        return outputObj;
+    }
+
+
+    function setStartTimes(userId) {
+        // A bit hacky, but this is the one place on the page where the week id is stored
+        const weekId = $("#open-schedule").attr("data-id");;
+
+        // Get tasks
+        $.ajax("/api/tasks", {
+            type: "GET"
+        }).then(taskArr => {
+
+            // Get week
+            $.ajax(`/api/week/${weekId}`, {
+                type: "GET"
+            }).then(week=> {
+
+                console.log(taskArr);
+                console.log(week);
+
+            })
+        })
+    }
+
 
 
 

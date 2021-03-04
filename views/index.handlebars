@@ -10,9 +10,11 @@
             </a>
         </div>
         <div class="col xl l1 m1 s1 center-align ">
-            <a class="waves-effect waves-light modal-trigger" href="#schedule-modal">
+            {{#each Weeks}}
+            <a id="open-schedule" data-id="{{id}}" class="waves-effect waves-light modal-trigger" href="#schedule-modal">
                 <i class="material-icons settings-icon">date_range</i>
             </a>
+            {{/each}}
         </div>
         <div class="col xl l1 m1 s1 center-align ">
             <a class="waves-effect waves-light modal-trigger" href="#user-modal">
@@ -24,15 +26,31 @@
         <div id="schedule-modal" class="modal">
             <div class="modal-content">
                 <h5 style="text-align: center;">Schedule Settings</h5>
-                <form class="col xl12 l12">
+                <div class="row">
                     <div class="row">
+                        <div class="col xl4 l4 m4 s5 offset-xl2 offset-l2 offset-m2 offset-s2 center-align">
+                            <h6>Your Weekly Schedule</h6>
+                        </div>
+                        <div class="col xl3 l3 m4 s5 offset-xl3 offset-l3 offset-m1">
+                            <h6 class= "center-align">Time categories</h6>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col week-cal card xl8 l8 m8 s8">
+                        </div>
 
+                        <div class="col card xl3 l3 m4 s4 offset-xl1 offset-l1 center-align category-list">
+                        </div>
                     </div>
-                    <div class="row">
-                        <button id="set-schedule" data-id="{{this.id}}" class="col xl2 l2 m2 s5 offset-xl3 offset-l3 offset-m3 offset-s1 btn modal-close" type="submit" name="action">Accept</button>
-                        <button data-id="{{this.id}}" class="col xl2 l2 m2 s5 offset-xl2 offset-l2 offset-m2 offset-s2 btn modal-close" name="action">Close</button>
-                    </div>
-                </form>
+                </div>
+                <div class="row">
+                    <button id="set-schedule" data-id="{{this.id}}"
+                        class="col xl2 l2 m2 s5 offset-xl3 offset-l3 offset-m3 offset-s1 btn modal-close"
+                        type="submit" name="action">Accept</button>
+                    <button data-id="{{this.id}}"
+                        class="col xl2 l2 m2 s5 offset-xl2 offset-l2 offset-m2 offset-s2 btn modal-close"
+                        name="action">Close</button>
+                </div>
             </div>
         </div>
 
@@ -116,7 +134,7 @@
                             <div class="row">
                                 <div class="input-field col xl5 l5 m6 s6 offset-xl1 offset-l1">
                                     <input id="datepicker{{id}}" type="text" class="datepicker" value="{{this.startDate}}">
-                                    <label for="datepicker">Start Date</label>
+                                    <label for="datepicker">Start Date (leave blank if autoscheduling)</label>
                                 </div>
 
                                 <div class="input-field col xl5 l5 m6 s6">
@@ -192,7 +210,7 @@
                         <div class="row">
                             <div class="input-field col xl5 l5 m6 s6 offset-xl1 offset-l1">
                                 <input id="datepicker" type="text" class="datepicker">
-                                <label for="datepicker">Start Date</label>
+                                <label for="datepicker">Start Date (leave blank if autoscheduling)</label>
                             </div>
 
                             <div class="input-field col xl5 l5 m6 s6 start-time" >
@@ -230,6 +248,7 @@
         </div>
     </main>
 </div>
+
 <!-- Full Calendar Script -->
 <script src='./js/fullcal-main.js'></script>
 

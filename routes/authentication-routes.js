@@ -69,7 +69,8 @@ module.exports = function(app) {
                 where: {
                     id: req.session.user.id
                 },
-                include: [db.Task]
+                include: [db.Task],
+                include: [db.Week]
             }).then(function(dbUser) {
                 const userObj = dbUser.toJSON();
                 res.render("index", userObj);
