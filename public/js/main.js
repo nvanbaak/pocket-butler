@@ -306,6 +306,7 @@ $(document).ready(function() {
             const timeCol = $("<div>");
 
             // add it to the calendar block
+            $(".week-cal").empty();
             $(".week-cal").append(timeCol);
 
             // Add header cell
@@ -407,6 +408,9 @@ $(document).ready(function() {
                 }
             }
         
+            // Clear categories
+            $(".category-list").empty();
+
             // Add list of categories
             const timeCategories = ["sleep", "work", "meal", "personal", "chores", "~"];
         
